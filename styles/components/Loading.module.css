@@ -1,0 +1,12 @@
+.container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--white);
+}
+
+.container > span {
+  margin: 20px;
+  color: var(--highlight);
+}
