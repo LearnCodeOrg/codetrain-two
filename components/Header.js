@@ -1,9 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+import styles from '../styles/components/Header.module.css';
+
 export default function Header() {
   return (
-    <div>
+    <div className={styles.container}>
       <Link href="/">
         <a>
           <Image
@@ -15,8 +17,9 @@ export default function Header() {
         </a>
       </Link>
       <h1>Codetrain</h1>
+      <span className="flexfill" />
       <Link href="/create">
-        <a>Create</a>
+        <a className={styles.link}>Create</a>
       </Link>
     </div>
   );
