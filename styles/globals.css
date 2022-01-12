@@ -5,8 +5,7 @@
 html, body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'retro', monospace;
 }
 
 a {
@@ -20,4 +19,9 @@ button {
 
 .flexfill {
   flex-grow: 1;
+}
+
+@font-face {
+  font-family: 'retro';
+  src: url('/fonts/retro.ttf');
 }
