@@ -8,10 +8,22 @@ const mapPixels = 256;
 export default function GameFrame() {
   const screenRef = useRef();
 
+  // get game source
+  const gameSrc = getGameSrc();
+  const [source, setSource] = useState(gameSrc);
+
   // focuses on screen
   function focus() {
     screenRef.current.focus();
   }
+
+  // reset source when cleared
+  useEffect(() => {
+    if (source === null) {
+      setSource(gameSrc);
+      focus();
+    }
+  }, [source]);
 
   // focus frame on start
   useEffect(() => {
@@ -29,6 +41,11 @@ export default function GameFrame() {
         height={mapPixels}
         frameBorder="0"
       />
+      <div>
+        <button onClick={() => setSource(null)}>
+          <ReplayIcon />
+        </button>
+      </div>
     </div>
   );
 }
