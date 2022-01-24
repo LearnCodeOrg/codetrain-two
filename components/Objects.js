@@ -36,6 +36,18 @@ export default function Objects() {
     setCurrObject(spriteIndex);
   }
 
+  // draws canvas
+  function draw() {
+    // clear canvas
+    ctx.fillStyle = '#fff';
+    ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+  }
+
+  // draw when curr object changes
+  useEffect(() => {
+    draw();
+  }, [currObject]);
+
   return (
     <div>
       <h1>Objects</h1>
