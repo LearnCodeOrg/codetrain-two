@@ -2,9 +2,26 @@
   height: 100%;
 }
 
-.center {
+.page {
   height: var(--page);
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #efefef;
+  padding: 20px 40px;
+}
+
+.center > h1 {
+  display: flex;
+  align-items: center;
+}
+
+.center > button {
+  padding: 10px 20px;
 }

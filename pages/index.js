@@ -14,8 +14,10 @@ export default function Index() {
       <Header />
       <div className={styles.page}>
         <div className={styles.center}>
-          <Logo />
-          <h1>Codetrain</h1>
+          <h1>
+            <Logo />
+            Codetrain
+          </h1>
           {
             auth.currentUser ?
             <button onClick={() => signOut(auth)}>
