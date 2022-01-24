@@ -11,6 +11,8 @@ const gridPixels = 32;
 const canvasWidth = gridWidth * gridPixels;
 const canvasHeight = gridHeight * gridPixels;
 
+const border = 2;
+
 export default function Objects() {
   const canvasRef = useRef();
 
@@ -50,10 +52,20 @@ export default function Objects() {
         // if selected
         if (currObject === spriteIndex) {
           // draw sprite
-          ctx.fillRect(x * gridPixels, y * gridPixels, gridPixels, gridPixels);
+          const spriteX = x * gridPixels;
+          const spriteY = y * gridPixels;
+          ctx.fillRect(spriteX, spriteY, gridPixels, border);
+          ctx.fillRect(spriteX, spriteY, border, gridPixels);
+          ctx.fillRect(spriteX + gridPixels - border, spriteY, border, gridPixels);
+          ctx.fillRect(spriteX, spriteY + gridPixels - border, gridPixels, border);
         }
       }
     }
+    // draw border
+    ctx.fillRect(0, 0, canvasWidth, border);
+    ctx.fillRect(0, 0, border, canvasWidth);
+    ctx.fillRect(canvasWidth - border, 0, border, canvasHeight);
+    ctx.fillRect(0, canvasHeight - border, canvasWidth, border);
   }
 
   // draw when curr object changes
