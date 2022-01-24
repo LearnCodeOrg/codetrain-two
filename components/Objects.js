@@ -38,6 +38,14 @@ export default function Objects() {
     setCurrObject(spriteIndex);
   }
 
+  // fills canvas border
+  function fillBorder(x, y, width, height) {
+    ctx.fillRect(x, y, width, border);
+    ctx.fillRect(x, y, border, width);
+    ctx.fillRect(x + width - border, y, border, height);
+    ctx.fillRect(x, y + height - border, width, border);
+  }
+
   // draws canvas
   function draw() {
     // clear canvas
@@ -54,18 +62,12 @@ export default function Objects() {
           // draw sprite
           const spriteX = x * gridPixels;
           const spriteY = y * gridPixels;
-          ctx.fillRect(spriteX, spriteY, gridPixels, border);
-          ctx.fillRect(spriteX, spriteY, border, gridPixels);
-          ctx.fillRect(spriteX + gridPixels - border, spriteY, border, gridPixels);
-          ctx.fillRect(spriteX, spriteY + gridPixels - border, gridPixels, border);
+          fillBorder(spriteX, spriteY, gridPixels, gridPixels);
         }
       }
     }
     // draw border
-    ctx.fillRect(0, 0, canvasWidth, border);
-    ctx.fillRect(0, 0, border, canvasWidth);
-    ctx.fillRect(canvasWidth - border, 0, border, canvasHeight);
-    ctx.fillRect(0, canvasHeight - border, canvasWidth, border);
+    fillBorder(0, 0, canvasWidth, canvasHeight);
   }
 
   // draw when curr object changes
