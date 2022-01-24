@@ -7,7 +7,7 @@ let ctx;
 
 const gridHeight = 4;
 const gridWidth = 4;
-const gridPixels = 16;
+const gridPixels = 32;
 const canvasWidth = gridWidth * gridPixels;
 const canvasHeight = gridHeight * gridPixels;
 
@@ -41,6 +41,19 @@ export default function Objects() {
     // clear canvas
     ctx.fillStyle = '#fff';
     ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+    // for each sprite
+    ctx.fillStyle = '#000';
+    for (let x = 0; x < gridWidth; x++) {
+      for (let y = 0; y < gridHeight; y++) {
+        // get sprite index
+        const spriteIndex = y * gridWidth + x;
+        // if selected
+        if (currObject === spriteIndex) {
+          // draw sprite
+          ctx.fillRect(x * gridPixels, y * gridPixels, gridPixels, gridPixels);
+        }
+      }
+    }
   }
 
   // draw when curr object changes
