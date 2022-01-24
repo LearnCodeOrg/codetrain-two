@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import styles from '../styles/components/Logo.module.css';
+
 const logo = '/img/logo.png';
 const logoalt = '/img/logoalt.png';
 
@@ -8,11 +10,12 @@ export default function Logo() {
 
   return (
     <img
+      className={styles.img}
       src={src}
       onMouseEnter={() => setSrc(logoalt)}
       onMouseLeave={() => setSrc(logo)}
       width="48"
-      height="48"
+      height="24"
     />
   );
 }
