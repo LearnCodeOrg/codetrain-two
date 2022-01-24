@@ -25,16 +25,21 @@ export default function Objects() {
     ctx = canvas.getContext('2d');
   }, []);
 
-  // selects object based on given mouse data
-  function select(e) {
+  // gets sprite index with given mouse data
+  function getSpriteIndex(e) {
     // get x and y on canvas
     const currX = e.clientX - canvas.offsetLeft + window.scrollX;
     const currY = e.clientY - canvas.offsetTop + window.scrollY;
     // get x and y in grid units
     const gridX = Math.floor(currX / gridPixels);
     const gridY = Math.floor(currY / gridPixels);
-    // select sprite
-    const spriteIndex = gridY * gridWidth + gridX;
+    // return sprite index
+    return gridY * gridWidth + gridX
+  }
+
+  // selects object based on given mouse data
+  function select(e) {
+    const spriteIndex = getSpriteIndex(e);
     if (spriteIndex === currObject) return;
     setCurrObject(spriteIndex);
   }
@@ -76,15 +81,9 @@ export default function Objects() {
     draw();
   }, [currObject, hoverIndex]);
 
+  // hover over objects
   function hover(e) {
-    // get x and y on canvas
-    const currX = e.clientX - canvas.offsetLeft + window.scrollX;
-    const currY = e.clientY - canvas.offsetTop + window.scrollY;
-    // get x and y in grid units
-    const gridX = Math.floor(currX / gridPixels);
-    const gridY = Math.floor(currY / gridPixels);
-    // return sprite index
-    const spriteIndex = gridY * gridWidth + gridX;
+    const spriteIndex = getSpriteIndex(e);
     setHoverIndex(spriteIndex);
   }
 
