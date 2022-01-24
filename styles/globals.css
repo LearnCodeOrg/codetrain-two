@@ -8,6 +8,10 @@ html, body {
   font-family: 'retro', monospace;
 }
 
+html, body, #__next {
+  height: 100%;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -19,6 +23,11 @@ button {
 
 .flexfill {
   flex-grow: 1;
+}
+
+:root {
+  --header: 80px;
+  --page: calc(100% - var(--header));
 }
 
 @font-face {

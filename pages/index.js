@@ -9,9 +9,9 @@ export default function Index() {
   const auth = getAuth();
 
   return (
-    <div>
+    <div className={styles.container}>
       <Header />
-      <div>
+      <div className={styles.center}>
         <h1>Codetrain</h1>
         {
           auth.currentUser ?
