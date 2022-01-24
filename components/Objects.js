@@ -17,6 +17,7 @@ export default function Objects() {
   const canvasRef = useRef();
 
   const [currObject, setCurrObject] = useState(0);
+  const [hoverIndex, setHoverIndex] = useState(-1);
 
   // get canvas context on start
   useEffect(() => {
@@ -73,7 +74,19 @@ export default function Objects() {
   // draw when curr object changes
   useEffect(() => {
     draw();
-  }, [currObject]);
+  }, [currObject, hoverIndex]);
+
+  function hover(e) {
+    // get x and y on canvas
+    const currX = e.clientX - canvas.offsetLeft + window.scrollX;
+    const currY = e.clientY - canvas.offsetTop + window.scrollY;
+    // get x and y in grid units
+    const gridX = Math.floor(currX / gridPixels);
+    const gridY = Math.floor(currY / gridPixels);
+    // return sprite index
+    const spriteIndex = gridY * gridWidth + gridX;
+    setHoverIndex(spriteIndex);
+  }
 
   return (
     <div>
@@ -83,6 +96,8 @@ export default function Objects() {
         width={canvasWidth}
         height={canvasHeight}
         onMouseDown={select}
+        onMouseMove={hover}
+        onMouseLeave={() => setHoverIndex(-1)}
       />
     </div>
   );
