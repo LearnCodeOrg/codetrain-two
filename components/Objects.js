@@ -63,11 +63,15 @@ export default function Objects() {
       for (let y = 0; y < gridHeight; y++) {
         // get sprite index
         const spriteIndex = y * gridWidth + x;
-        // if selected
+        const spriteX = x * gridPixels;
+        const spriteY = y * gridPixels;
+        // if hovering, draw background
+        if (hoverIndex === spriteIndex) {
+          const size = gridPixels - border * 2;
+          ctx.fillRect(spriteX + border, spriteY + border, size, size);
+        }
+        // if selected, draw border
         if (currObject === spriteIndex) {
-          // draw sprite
-          const spriteX = x * gridPixels;
-          const spriteY = y * gridPixels;
           fillBorder(spriteX, spriteY, gridPixels, gridPixels);
         }
       }
