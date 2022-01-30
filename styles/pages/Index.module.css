@@ -22,6 +22,10 @@
   align-items: center;
 }
 
+.center > h1 > span {
+  margin-left: 8px;
+}
+
 .center > button {
   padding: 10px 20px;
 }

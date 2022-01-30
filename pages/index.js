@@ -16,7 +16,7 @@ export default function Index() {
         <div className={styles.center}>
           <h1>
             <Logo />
-            Codetrain
+            <span>Codetrain</span>
           </h1>
           {
             auth.currentUser ?
