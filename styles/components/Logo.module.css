@@ -1,3 +1,4 @@
 .img {
   image-rendering: pixelated;
+  cursor: pointer;
 }

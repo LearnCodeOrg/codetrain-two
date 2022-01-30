@@ -6,11 +6,7 @@ import styles from '../styles/components/Header.module.css';
 export default function Header() {
   return (
     <div className={styles.container}>
-      <Link href="/">
-        <a>
-          <Logo />
-        </a>
-      </Link>
+      <Logo />
       <h1>Codetrain</h1>
       <span className="flexfill" />
       <Link href="/">
