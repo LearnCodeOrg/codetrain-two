@@ -14,10 +14,10 @@ export default function Index() {
       <Header />
       <div className={styles.page}>
         <div className={styles.center}>
-          <h1>
+          <div className={styles.title}>
             <Logo />
-            <span>Codetrain</span>
-          </h1>
+            <h1>Codetrain</h1>
+          </div>
           {
             auth.currentUser ?
             <button
