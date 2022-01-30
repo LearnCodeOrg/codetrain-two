@@ -20,11 +20,17 @@ export default function Index() {
           </h1>
           {
             auth.currentUser ?
-            <button onClick={() => signOut(auth)}>
+            <button
+              className="textbutton"
+              onClick={() => signOut(auth)}
+            >
               Sign Out
             </button> :
-            <button onClick={signInWithGoogle}>
-              Sign in with Google
+            <button
+              className="textbutton"
+              onClick={signInWithGoogle}
+            >
+              Sign In
             </button>
           }
         </div>
