@@ -24,8 +24,24 @@ export default function getGameSrc(props) {
       ctx: __canvas__.getContext('2d'),
       codes: ${JSON.stringify(codes)},
       gameObjects = ${JSON.stringify(gameObjects)},
+      throwError: e => {
+        console.log(e);
+      }
     };
     function __start__() {
+      function gameLoop(time) {
+        try {
+          $$.spriteCodes.forEach(code => code.update());
+        } catch (e) {
+          throwError(e);
+        }
+        requestAnimationFrame(gameLoop);
+      }
+      try {
+        requestAnimationFrame(gameLoop);
+      } catch (e) {
+        throwError(e);
+      }
     }
   </script>
 </html>
