@@ -1,8 +1,11 @@
 import Objects from '../components/Objects';
+import Draw from '../components/Draw';
+import Colors from '../components/Colors';
+import GameFrame from '../components/GameFrame';
 import Loading from '../components/Loading';
 
 import { useState } from 'react';
-import { defaultCodes } from '../util/defaultData';
+import { defaultCodes, defaultColors } from '../util/defaultData';
 import dynamic from 'next/dynamic';
 
 import styles from '../styles/components/Engine.module.css';
@@ -25,15 +28,23 @@ export default function Engine() {
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       <CodeEditor
         value={codes[currObject]}
         onChange={val => updateCode(val)}
       />
-      <Objects
-        currObject={currObject}
-        setCurrObject={setCurrObject}
-      />
+      <div>
+        <Objects
+          currObject={currObject}
+          setCurrObject={setCurrObject}
+        />
+        <Colors
+          colors={colors}
+          setColors={setColors}
+          setCurrColor={setCurrColor}
+        />
+        <Draw />
+      </div>
       <div>
         <GameFrame
           codes={codes}
