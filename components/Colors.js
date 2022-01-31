@@ -5,11 +5,13 @@ export default function Colors(props) {
 
   return (
     <div>
-      <div>
+      <h1>Colors</h1>
+      <div className={styles.tiles}>
         {
           colors.map((color, i) =>
             <div
               onClick={() => setCurrColor(i)}
+              className={styles.tile}
               style={{ background: color }}
               key={i}
             />
