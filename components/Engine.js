@@ -34,6 +34,11 @@ export default function Engine() {
         currObject={currObject}
         setCurrObject={setCurrObject}
       />
+      <div>
+        <GameFrame
+          codes={codes}
+        />
+      </div>
     </div>
   );
 }

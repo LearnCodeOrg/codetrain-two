@@ -1,15 +1,13 @@
-import ReplayIcon from '@mui/icons-material/Replay';
-
 import { useEffect, useRef, useState } from 'react';
 import getGameSrc from '../util/getGameSrc';
 
 const mapPixels = 256;
 
-export default function GameFrame() {
+export default function GameFrame(props) {
   const screenRef = useRef();
 
   // get game source
-  const gameSrc = getGameSrc();
+  const gameSrc = getGameSrc(props);
   const [source, setSource] = useState(gameSrc);
 
   // focuses on screen
@@ -43,7 +41,7 @@ export default function GameFrame() {
       />
       <div>
         <button onClick={() => setSource(null)}>
-          <ReplayIcon />
+          Replay
         </button>
       </div>
     </div>
