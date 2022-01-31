@@ -20,10 +20,22 @@ export default function getGameSrc(props) {
     }
   </style>
   <script>
+    class GameObject {
+      start() {}
+      update() {}
+    }
     const $$ = {
       ctx: __canvas__.getContext('2d'),
       codes: ${JSON.stringify(codes)},
       gameObjects = ${JSON.stringify(gameObjects)},
+      getCodeFunction: (gameObject, index) => {
+        return (
+          (function() {
+            eval($$.codes[gameObject.objectIndex]);
+            return eval(\`new GameObject\${gameObject.objectIndex}\`);
+          })()
+        );
+      },
       throwError: e => {
         console.log(e);
       }
@@ -38,6 +50,10 @@ export default function getGameSrc(props) {
         requestAnimationFrame(gameLoop);
       }
       try {
+        $$.spriteCodes = $$.gameObjects.map((gameObject, index) =>
+          $$.getCodeFunction(gameObject, index)
+        );
+        $$.spriteCodes.forEach(code => code.start());
         requestAnimationFrame(gameLoop);
       } catch (e) {
         throwError(e);
