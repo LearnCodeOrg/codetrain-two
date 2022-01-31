@@ -13,7 +13,9 @@ const CodeEditor = dynamic(import('../components/CodeEditor'), {
 
 export default function Engine() {
   const [currObject, setCurrObject] = useState(0);
+  const [currColor, setCurrColor] = useState(0);
   const [codes, setCodes] = useState(defaultCodes);
+  const [colors, setColors] = useState(defaultColors);
 
   // updates code with given value
   function updateCode(val) {
