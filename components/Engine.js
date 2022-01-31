@@ -19,12 +19,18 @@ export default function Engine() {
   const [currObject, setCurrObject] = useState(0);
   const [codes, setCodes] = useState(defaultCodes);
 
+  // updates code with given value
+  function updateCode(val) {
+    const newCodes = codes.slice();
+    newCodes[currObject] = val;
+    setCodes(newCodes);
+  }
+
   return (
     <div>
       <CodeEditor
-        codes={codes}
-        setCodes={setCodes}
-        currObject={currObject}
+        value={codes[currObject]}
+        onChange={val => updateCode(val)}
       />
       <Objects
         currObject={currObject}
