@@ -2,18 +2,14 @@ import Objects from '../components/Objects';
 import Loading from '../components/Loading';
 
 import { useState } from 'react';
+import { defaultCodes } from '../util/defaultData';
 import dynamic from 'next/dynamic';
+
+import styles from '../styles/components/Engine.module.css';
 
 const CodeEditor = dynamic(import('../components/CodeEditor'), {
   loading: function Load() { return <Loading /> }, ssr: false
 });
-
-import styles from '../styles/components/Engine.module.css';
-
-const objectCount = 16;
-const defaultCodes = Array(objectCount).fill(0).map(
-  (val, i) => `// Object ${i}`
-);
 
 export default function Engine() {
   const [currObject, setCurrObject] = useState(0);
