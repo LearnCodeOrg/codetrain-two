@@ -13,10 +13,11 @@ const canvasHeight = gridHeight * gridPixels;
 
 const border = 2;
 
-export default function Objects() {
+export default function Objects(props) {
+  const { currObject, setCurrObject } = props;
+
   const canvasRef = useRef();
 
-  const [currObject, setCurrObject] = useState(0);
   const [hoverIndex, setHoverIndex] = useState(-1);
 
   // get canvas context on start
@@ -92,7 +93,7 @@ export default function Objects() {
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       <h1>Objects</h1>
       <canvas
         ref={canvasRef}
