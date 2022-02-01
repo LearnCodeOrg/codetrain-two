@@ -67,6 +67,23 @@ export default function Draw(props) {
   // draws canvas
   function draw() {
     ctx.clearRect(0, 0, spritePx, spritePx);
+    // get current object
+    const object = objects[currObject];
+    // for each pixel
+    for (let x = 0; x < spriteSize; x++) {
+      for (let y = 0; y < spriteSize; y++) {
+        // set fill color
+        const pixelIndex = y * spriteSize + x;
+        const colorIndex = object[pixelIndex];
+        if (colorIndex === -1) continue;
+        const color = colors[colorIndex];
+        ctx.fillStyle = color;
+        // fill rect
+        const pxX = x * pixelPx;
+        const pxY = y * pixelPx;
+        ctx.fillRect(pxX, pxY, pixelPx, pixelPx);
+      }
+    }
   }
 
   // get canvas and context on start
