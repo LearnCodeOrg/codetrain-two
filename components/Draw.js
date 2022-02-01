@@ -14,6 +14,21 @@ const spritePx = spriteSize * pixelPx;
 export default function Draw() {
   const canvasRef = useRef();
 
+  // sketches canvas with given mouse data
+  function sketch(e) {
+    // get mouse position
+    const mouseX = e.clientX - canvas.offsetLeft;
+    const mouseY = e.clientY - canvas.offsetTop;
+    // get pixel position
+    const pixelX = Math.floor(mouseX / pixelPx);
+    const pixelY = Math.floor(mouseY / pixelPx);
+    // return if last position
+    if (pixelX === lastX && pixelY === lastY) return;
+    // set last position
+    lastX = pixelX;
+    lastY = pixelY;
+  }
+
   // called on mouse down
   function mouseDown(e) {
     lastX = undefined;
