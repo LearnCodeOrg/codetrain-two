@@ -4,10 +4,13 @@ import styles from '../styles/components/Colors.module.css';
 
 let canvas, ctx;
 
-const tileCount = 4;
-const tilePx = 32;
-const canvasWidth = tileCount * tilePx;
-const canvasHeight = tilePx;
+const gridWidth = 4;
+const gridHeight = 1;
+const gridPixels = 32;
+const canvasWidth = gridWidth * gridPixels;
+const canvasHeight = gridHeight * gridPixels;
+
+const border = 4;
 
 export default function Colors(props) {
   const { colors, setColors, currColor, setCurrColor } = props;
@@ -15,6 +18,18 @@ export default function Colors(props) {
   const [hoverIndex, setHoverIndex] = useState(-1);
 
   const canvasRef = useRef();
+
+  // gets sprite index with given mouse data
+  function getSpriteIndex(e) {
+    // get x and y on canvas
+    const currX = e.clientX - canvas.offsetLeft + window.scrollX;
+    const currY = e.clientY - canvas.offsetTop + window.scrollY;
+    // get x and y in grid units
+    const gridX = Math.floor(currX / gridPixels);
+    const gridY = Math.floor(currY / gridPixels);
+    // return sprite index
+    return gridY * gridWidth + gridX;
+  }
 
   // selects color
   function select(e) {
