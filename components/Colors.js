@@ -38,6 +38,22 @@ export default function Colors(props) {
 
   // draws canvas
   function draw() {
+    for (let x = 0; x < gridWidth; x++) {
+      for (let y = 0; y < gridHeight; y++) {
+        // get color index
+        const colorIndex = y * gridWidth + x;
+        ctx.fillStyle = colors[colorIndex];
+        const gridX = x * gridPixels;
+        const gridY = y * gridPixels;
+        ctx.fillRect(gridX, gridY, gridPixels, gridPixels);
+        if (colorIndex === hoverIndex) {
+          fillHover(gridX, gridY, gridPixels, gridPixels);
+        }
+        if (colorIndex === currColor) {
+          fillBorder(gridX, gridY, gridPixels, gridPixels);
+        }
+      }
+    }
   }
 
   // get canvas context on start
