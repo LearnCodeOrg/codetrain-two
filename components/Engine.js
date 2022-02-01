@@ -5,7 +5,9 @@ import GameFrame from '../components/GameFrame';
 import Loading from '../components/Loading';
 
 import { useState } from 'react';
-import { defaultCodes, defaultColors } from '../util/defaultData';
+import {
+  defaultCodes, defaultColors, defaultObjects
+} from '../util/defaultData';
 import dynamic from 'next/dynamic';
 
 import styles from '../styles/components/Engine.module.css';
@@ -19,6 +21,7 @@ export default function Engine() {
   const [currColor, setCurrColor] = useState(0);
   const [codes, setCodes] = useState(defaultCodes);
   const [colors, setColors] = useState(defaultColors);
+  const [objects, setObjects] = useState(defaultObjects);
 
   // updates code with given value
   function updateCode(val) {
@@ -41,9 +44,16 @@ export default function Engine() {
         <Colors
           colors={colors}
           setColors={setColors}
+          currColor={currColor}
           setCurrColor={setCurrColor}
         />
-        <Draw />
+        <Draw
+          objects={objects}
+          setObjects={setObjects}
+          colors={colors}
+          currColor={currColor}
+          currObject={currObject}
+        />
       </div>
       <div>
         <GameFrame
