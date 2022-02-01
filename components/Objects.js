@@ -11,7 +11,7 @@ const gridPixels = 32;
 const canvasWidth = gridWidth * gridPixels;
 const canvasHeight = gridHeight * gridPixels;
 
-const border = 2;
+const border = 4;
 
 export default function Objects(props) {
   const { currObject, setCurrObject } = props;
@@ -35,7 +35,7 @@ export default function Objects(props) {
     const gridX = Math.floor(currX / gridPixels);
     const gridY = Math.floor(currY / gridPixels);
     // return sprite index
-    return gridY * gridWidth + gridX
+    return gridY * gridWidth + gridX;
   }
 
   // selects object based on given mouse data
@@ -78,12 +78,9 @@ export default function Objects(props) {
         const spriteIndex = y * gridWidth + x;
         const spriteX = x * gridPixels;
         const spriteY = y * gridPixels;
-        // if hovering, draw background
         if (hoverIndex === spriteIndex) {
-          const size = gridPixels - border * 2;
-          ctx.fillRect(spriteX + border, spriteY + border, size, size);
+          fillHover(spriteX, spriteY, gridPixels, gridPixels);
         }
-        // if selected, draw border
         if (currObject === spriteIndex) {
           fillBorder(spriteX, spriteY, gridPixels, gridPixels);
         }
