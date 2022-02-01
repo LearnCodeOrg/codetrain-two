@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import styles from '../styles/components/Colors.module.css';
 
@@ -10,9 +10,28 @@ const canvasWidth = tileCount * tilePx;
 const canvasHeight = tilePx;
 
 export default function Colors(props) {
-  const { colors, setColors, setCurrColor } = props;
+  const { colors, setColors, currColor, setCurrColor } = props;
+
+  const [hoverIndex, setHoverIndex] = useState(-1);
 
   const canvasRef = useRef();
+
+  // selects color
+  function select(e) {
+    const spriteIndex = getSpriteIndex(e);
+    setCurrColor(spriteIndex);
+  }
+
+  // hovers mouse
+  function hover(e) {
+    const spriteIndex = getSpriteIndex(e);
+    setHoverIndex(spriteIndex);
+  }
+
+  // clears mouse hover
+  function clearHover(e) {
+    setHoverIndex(-1);
+  }
 
   // draw hover selector
   function fillHover(x, y, width, height) {
