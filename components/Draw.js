@@ -10,7 +10,9 @@ const pixelPx = 16;
 const spriteSize = 8;
 const spritePx = spriteSize * pixelPx;
 
-export default function Draw() {
+export default function Draw(props) {
+  const { objects, setObjects, colors, currColor, currObject } = props;
+
   const canvasRef = useRef();
 
   // sketches canvas with given mouse data
@@ -62,11 +64,21 @@ export default function Draw() {
     sketching = false;
   }
 
+  // draws canvas
+  function draw() {
+    ctx.clearRect(0, 0, spritePx, spritePx);
+  }
+
   // get canvas and context on start
   useEffect(() => {
     canvas = canvasRef.current;
     ctx = canvas.getContext('2d');
   }, []);
+
+  // draw canvas when data updates
+  useEffect(() => {
+    draw();
+  }, [colors, objects, currObject]);
 
   return (
     <div>
