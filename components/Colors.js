@@ -36,19 +36,32 @@ export default function Colors(props) {
     ctx.fillRect(x, y + height - border, width, border);
   }
 
+  // draws canvas
+  function draw() {
+  }
+
   // get canvas context on start
   useEffect(() => {
     canvas = canvasRef.current;
     ctx = canvas.getContext('2d');
   }, []);
 
+  // draw on data change
+  useEffect(() => {
+    draw();
+  }, [hoverIndex, currColor]);
+
   return (
     <div>
       <h1>Colors</h1>
       <canvas
+        className={styles.canvas}
         ref={canvasRef}
         width={canvasWidth}
         height={canvasHeight}
+        onMouseDown={select}
+        onMouseMove={hover}
+        onMouseLeave={clearHover}
       />
     </div>
   );
