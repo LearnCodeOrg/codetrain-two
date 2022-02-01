@@ -28,18 +28,6 @@ export default function Colors(props) {
         width={canvasWidth}
         height={canvasHeight}
       />
-      <div className={styles.tiles}>
-        {
-          colors.map((color, i) =>
-            <div
-              onClick={() => setCurrColor(i)}
-              className={styles.tile}
-              style={{ background: color }}
-              key={i}
-            />
-          )
-        }
-      </div>
     </div>
   );
 }
