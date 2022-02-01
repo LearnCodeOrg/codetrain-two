@@ -3,12 +3,11 @@ import { useRef, useEffect } from 'react';
 import styles from '../styles/components/Draw.module.css';
 
 let sketching = false;
-
 let lastX, lastY;
 let canvas, ctx;
 
 const pixelPx = 16;
-const spriteSize = 4;
+const spriteSize = 8;
 const spritePx = spriteSize * pixelPx;
 
 export default function Draw() {
@@ -27,6 +26,17 @@ export default function Draw() {
     // set last position
     lastX = pixelX;
     lastY = pixelY;
+    // get pixel index
+    const pixelIndex = pixelY * spriteSize + pixelX;
+    // update objects
+    const newObjects = objects.slice();
+    const newObject = objects[currObject].slice();
+    // return if same color
+    if (newObject[pixelIndex] === currColor) return;
+    // update objects
+    newObject[pixelIndex] = currColor;
+    newObjects[currObject] = newObject;
+    setObjects(newObjects);
   }
 
   // called on mouse down
