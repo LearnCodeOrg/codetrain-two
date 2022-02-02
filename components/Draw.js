@@ -52,6 +52,18 @@ export default function Draw(props) {
   // called on mouse move
   function mouseMove(e) {
     if (sketching) sketch(e);
+    else {
+      // get mouse position
+      const mouseX = e.clientX - canvas.offsetLeft;
+      const mouseY = e.clientY - canvas.offsetTop;
+      // get pixel position
+      const pixelX = Math.floor(mouseX / pixelPx);
+      const pixelY = Math.floor(mouseY / pixelPx);
+      // get pixel index
+      const pixelIndex = pixelY * spriteSize + pixelX;
+      // set hover index
+      setHoverIndex(pixelIndex);
+    }
   }
 
   // called on mouse up
