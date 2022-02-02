@@ -1,10 +1,9 @@
 import { useRef, useState, useEffect } from 'react';
-import { fillHover } from '../util/fill';
+import { fillBorder, fillHover } from '../util/fill';
 import { unitIndex } from '../util/mouse';
 
 import styles from '../styles/components/Draw.module.css';
 
-let sketching = false;
 let lastIndex;
 let canvas, ctx;
 
@@ -18,6 +17,7 @@ export default function Draw(props) {
   const { objects, setObjects, colors, currColor, currObject } = props;
 
   const [hoverIndex, setHoverIndex] = useState(-1);
+  const [sketching, setSketching] = useState(false);
 
   const canvasRef = useRef();
 
@@ -43,7 +43,7 @@ export default function Draw(props) {
   // called on mouse down
   function mouseDown(e) {
     lastIndex = undefined;
-    sketching = true;
+    setSketching(true);
     sketch(e);
   }
 
@@ -60,12 +60,12 @@ export default function Draw(props) {
 
   // called on mouse up
   function mouseUp(e) {
-    sketching = false;
+    setSketching(false);
   }
 
   // called on mouse leave
   function mouseLeave(e) {
-    sketching = false;
+    setSketching(false);
     setHoverIndex(-1);
   }
 
@@ -88,7 +88,11 @@ export default function Draw(props) {
         ctx.fillRect(pxX, pxY, pixelPx, pixelPx);
         // draw hover
         if (pixelIndex === hoverIndex) {
-          fillHover(ctx, border, pxX, pxY, pixelPx, pixelPx);
+          if (sketching) {
+            fillBorder(ctx, border, pxX, pxY, pixelPx, pixelPx);
+          } else {
+            fillHover(ctx, border, pxX, pxY, pixelPx, pixelPx);
+          }
         }
       }
     }
@@ -103,7 +107,7 @@ export default function Draw(props) {
   // draw canvas when data updates
   useEffect(() => {
     draw();
-  }, [colors, objects, currObject, hoverIndex]);
+  }, [colors, objects, currObject, hoverIndex, sketching]);
 
   return (
     <div className={styles.container}>
