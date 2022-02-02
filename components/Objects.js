@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
+import { spriteSize } from '../util/units'
 import { fillBorder, fillHover } from '../util/fill';
 import { unitIndex } from '../util/mouse';
 
@@ -16,7 +17,7 @@ const canvasHeight = gridHeight * gridPixels;
 const border = 4;
 
 export default function Objects(props) {
-  const { currObject, setCurrObject } = props;
+  const { objects, colors, currObject, setCurrObject } = props;
 
   const canvasRef = useRef();
 
@@ -80,7 +81,7 @@ export default function Objects(props) {
   // draw when curr object changes
   useEffect(() => {
     draw();
-  }, [currObject, hoverIndex]);
+  }, [currObject, hoverIndex, colors, objects]);
 
   // hover over objects
   function hover(e) {

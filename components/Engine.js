@@ -38,6 +38,8 @@ export default function Engine() {
       />
       <div>
         <Objects
+          objects={objects}
+          colors={colors}
           currObject={currObject}
           setCurrObject={setCurrObject}
         />
