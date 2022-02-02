@@ -46,6 +46,21 @@ export default function Objects(props) {
       for (let y = 0; y < gridHeight; y++) {
         // get sprite index
         const spriteIndex = y * gridWidth + x;
+        // draw sprite
+        const sprite = objects[spriteIndex];
+        for (let px = 0; px < spriteSize; px++) {
+          for (let py = 0; py < spriteSize; py++) {
+            const pixelIndex = py * spriteSize + px;
+            const colorIndex = sprite[pixelIndex];
+            ctx.fillStyle = colorIndex === -1 ? '#fff' : colors[colorIndex];
+            const squarePixels = gridPixels / spriteSize;
+            ctx.fillRect(
+              x * gridPixels + px * squarePixels, y * gridPixels + py * squarePixels,
+              squarePixels, squarePixels
+            );
+          }
+        }
+        // draw pixels
         const spriteX = x * gridPixels;
         const spriteY = y * gridPixels;
         // fill hover
