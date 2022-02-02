@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 import { fillHover } from '../util/fill';
+import { unitIndex } from '../util/mouse';
 
 import styles from '../styles/components/Draw.module.css';
 
@@ -22,14 +23,8 @@ export default function Draw(props) {
 
   // sketches canvas with given mouse data
   function sketch(e) {
-    // get mouse position
-    const mouseX = e.clientX - canvas.offsetLeft;
-    const mouseY = e.clientY - canvas.offsetTop;
-    // get pixel position
-    const pixelX = Math.floor(mouseX / pixelPx);
-    const pixelY = Math.floor(mouseY / pixelPx);
-    // get pixel index
-    const pixelIndex = pixelY * spriteSize + pixelX;
+    // calculate pixel index
+    const pixelIndex = unitIndex(e, canvas, pixelPx, spriteSize);
     // return if last position
     if (pixelIndex === lastIndex) return;
     // set last position
@@ -57,14 +52,8 @@ export default function Draw(props) {
     if (sketching) {
       sketch(e);
     }
-    // get mouse position
-    const mouseX = e.clientX - canvas.offsetLeft;
-    const mouseY = e.clientY - canvas.offsetTop;
-    // get pixel position
-    const pixelX = Math.floor(mouseX / pixelPx);
-    const pixelY = Math.floor(mouseY / pixelPx);
     // get pixel index
-    const pixelIndex = pixelY * spriteSize + pixelX;
+    const pixelIndex = unitIndex(e, canvas, pixelPx, spriteSize);
     // set hover index
     setHoverIndex(pixelIndex);
   }
