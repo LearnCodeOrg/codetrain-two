@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { fillHover } from '../util/fill';
 
 import styles from '../styles/components/Colors.module.css';
 
@@ -48,19 +49,6 @@ export default function Colors(props) {
     setHoverIndex(-1);
   }
 
-  // draw hover selector
-  function fillHover(x, y, width, height) {
-    ctx.fillStyle = '#000';
-    ctx.fillRect(x, y, border * 2, border);
-    ctx.fillRect(x, y, border, border * 2);
-    ctx.fillRect(x + width - border * 2, y, border * 2, border);
-    ctx.fillRect(x + width - border, y, border, border * 2);
-    ctx.fillRect(x, y + height - border, border * 2, border);
-    ctx.fillRect(x, y + height - border * 2, border, border * 2);
-    ctx.fillRect(x + width - border * 2, y + height - border, border * 2, border);
-    ctx.fillRect(x + width - border, y + height - border * 2, border, border * 2);
-  }
-
   // draw border selector
   function fillBorder(x, y, width, height) {
     ctx.fillStyle = '#000';
@@ -81,7 +69,7 @@ export default function Colors(props) {
         const gridY = y * gridPixels;
         ctx.fillRect(gridX, gridY, gridPixels, gridPixels);
         if (colorIndex === hoverIndex) {
-          fillHover(gridX, gridY, gridPixels, gridPixels);
+          fillHover(ctx, border, gridX, gridY, gridPixels, gridPixels);
         }
         if (colorIndex === currColor) {
           fillBorder(gridX, gridY, gridPixels, gridPixels);
