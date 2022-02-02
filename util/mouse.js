@@ -11,6 +11,6 @@ export function unitPosition(e, container, unit) {
 
 // returns index of unit position
 export function unitIndex(e, container, unit, width) {
-  const [unitX, unitY] = roundMouse(e, container, unit);
+  const [unitX, unitY] = unitPosition(e, container, unit);
   return unitY * width + unitX;
 }

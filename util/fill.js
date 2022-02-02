@@ -14,7 +14,7 @@ export function fillHover(ctx, border, x, y, width, height) {
 }
 
 // fills border marker with given dimensions
-function fillBorder(ctx, border, x, y, width, height) {
+export function fillBorder(ctx, border, x, y, width, height) {
   ctx.fillStyle = fillColor;
   ctx.fillRect(x, y, width, border);
   ctx.fillRect(x, y, border, width);
