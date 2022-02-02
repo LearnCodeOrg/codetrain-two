@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { fillHover } from '../util/fill';
+import { fillBorder, fillHover } from '../util/fill';
 
 import styles from '../styles/components/Colors.module.css';
 
@@ -49,15 +49,6 @@ export default function Colors(props) {
     setHoverIndex(-1);
   }
 
-  // draw border selector
-  function fillBorder(x, y, width, height) {
-    ctx.fillStyle = '#000';
-    ctx.fillRect(x, y, width, border);
-    ctx.fillRect(x, y, border, width);
-    ctx.fillRect(x + width - border, y, border, height);
-    ctx.fillRect(x, y + height - border, width, border);
-  }
-
   // draws canvas
   function draw() {
     for (let x = 0; x < gridWidth; x++) {
@@ -72,7 +63,7 @@ export default function Colors(props) {
           fillHover(ctx, border, gridX, gridY, gridPixels, gridPixels);
         }
         if (colorIndex === currColor) {
-          fillBorder(gridX, gridY, gridPixels, gridPixels);
+          fillBorder(ctx, border, gridX, gridY, gridPixels, gridPixels);
         }
       }
     }
