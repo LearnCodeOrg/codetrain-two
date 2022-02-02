@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { fillHover } from '../util/fill';
+import { fillBorder, fillHover } from '../util/fill';
 
 import styles from '../styles/components/Objects.module.css';
 
@@ -46,14 +46,6 @@ export default function Objects(props) {
     setCurrObject(spriteIndex);
   }
 
-  // fills canvas border
-  function fillBorder(x, y, width, height) {
-    ctx.fillRect(x, y, width, border);
-    ctx.fillRect(x, y, border, width);
-    ctx.fillRect(x + width - border, y, border, height);
-    ctx.fillRect(x, y + height - border, width, border);
-  }
-
   // draws canvas
   function draw() {
     // clear canvas
@@ -67,16 +59,18 @@ export default function Objects(props) {
         const spriteIndex = y * gridWidth + x;
         const spriteX = x * gridPixels;
         const spriteY = y * gridPixels;
+        // fill hover
         if (hoverIndex === spriteIndex) {
           fillHover(ctx, border, spriteX, spriteY, gridPixels, gridPixels);
         }
+        // fill border
         if (currObject === spriteIndex) {
-          fillBorder(spriteX, spriteY, gridPixels, gridPixels);
+          fillBorder(ctx, border, spriteX, spriteY, gridPixels, gridPixels);
         }
       }
     }
     // draw border
-    fillBorder(0, 0, canvasWidth, canvasHeight);
+    fillBorder(ctx, border, 0, 0, canvasWidth, canvasHeight);
   }
 
   // draw when curr object changes
