@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { fillBorder, fillHover } from '../util/fill';
+import { unitIndex } from '../util/mouse';
 
 import styles from '../styles/components/Colors.module.css';
 
@@ -20,27 +21,15 @@ export default function Colors(props) {
 
   const canvasRef = useRef();
 
-  // gets sprite index with given mouse data
-  function getSpriteIndex(e) {
-    // get x and y on canvas
-    const currX = e.clientX - canvas.offsetLeft + window.scrollX;
-    const currY = e.clientY - canvas.offsetTop + window.scrollY;
-    // get x and y in grid units
-    const gridX = Math.floor(currX / gridPixels);
-    const gridY = Math.floor(currY / gridPixels);
-    // return sprite index
-    return gridY * gridWidth + gridX;
-  }
-
   // selects color
   function select(e) {
-    const spriteIndex = getSpriteIndex(e);
+    const spriteIndex = unitIndex(e, canvas, gridPixels, gridWidth);
     setCurrColor(spriteIndex);
   }
 
   // hovers mouse
   function hover(e) {
-    const spriteIndex = getSpriteIndex(e);
+    const spriteIndex = unitIndex(e, canvas, gridPixels, gridWidth);
     setHoverIndex(spriteIndex);
   }
 
