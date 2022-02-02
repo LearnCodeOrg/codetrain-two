@@ -10,6 +10,8 @@ const pixelPx = 16;
 const spriteSize = 8;
 const spritePx = spriteSize * pixelPx;
 
+const border = 2;
+
 export default function Draw(props) {
   const { objects, setObjects, colors, currColor, currObject } = props;
 
@@ -103,13 +105,16 @@ export default function Draw(props) {
         // set fill color
         const pixelIndex = y * spriteSize + x;
         const colorIndex = object[pixelIndex];
-        if (colorIndex === -1) continue;
-        const color = colors[colorIndex];
+        const color = colorIndex === -1 ? '#fff' : colors[colorIndex];
         ctx.fillStyle = color;
         // fill rect
         const pxX = x * pixelPx;
         const pxY = y * pixelPx;
         ctx.fillRect(pxX, pxY, pixelPx, pixelPx);
+        // draw hover
+        if (pixelIndex === hoverIndex) {
+          fillHover(pxX, pxY, pixelPx, pixelPx);
+        }
       }
     }
   }
@@ -123,7 +128,7 @@ export default function Draw(props) {
   // draw canvas when data updates
   useEffect(() => {
     draw();
-  }, [colors, objects, currObject]);
+  }, [colors, objects, currObject, hoverIndex]);
 
   return (
     <div>
