@@ -8,3 +8,9 @@ export function unitPosition(e, container, unit) {
   const unitY = Math.floor(mouseY / unit);
   return [unitX, unitY];
 }
+
+// returns index of unit position
+export function unitIndex(e, container, unit, width) {
+  const [unitX, unitY] = roundMouse(e, container, unit);
+  return unitY * width + unitX;
+}
