@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { fillBorder, fillHover } from '../util/fill';
+import { unitIndex } from '../util/mouse';
 
 import styles from '../styles/components/Objects.module.css';
 
@@ -27,21 +28,9 @@ export default function Objects(props) {
     ctx = canvas.getContext('2d');
   }, []);
 
-  // gets sprite index with given mouse data
-  function getSpriteIndex(e) {
-    // get x and y on canvas
-    const currX = e.clientX - canvas.offsetLeft + window.scrollX;
-    const currY = e.clientY - canvas.offsetTop + window.scrollY;
-    // get x and y in grid units
-    const gridX = Math.floor(currX / gridPixels);
-    const gridY = Math.floor(currY / gridPixels);
-    // return sprite index
-    return gridY * gridWidth + gridX;
-  }
-
   // selects object based on given mouse data
   function select(e) {
-    const spriteIndex = getSpriteIndex(e);
+    const spriteIndex = unitIndex(e, canvas, gridPixels, gridWidth);
     if (spriteIndex === currObject) return;
     setCurrObject(spriteIndex);
   }
@@ -80,7 +69,7 @@ export default function Objects(props) {
 
   // hover over objects
   function hover(e) {
-    const spriteIndex = getSpriteIndex(e);
+    const spriteIndex = unitIndex(e, canvas, gridPixels, gridWidth);
     setHoverIndex(spriteIndex);
   }
 
