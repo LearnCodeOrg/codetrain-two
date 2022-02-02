@@ -4,7 +4,7 @@ import { fillHover } from '../util/fill';
 import styles from '../styles/components/Draw.module.css';
 
 let sketching = false;
-let lastX, lastY;
+let lastIndex;
 let canvas, ctx;
 
 const pixelPx = 16;
@@ -28,13 +28,12 @@ export default function Draw(props) {
     // get pixel position
     const pixelX = Math.floor(mouseX / pixelPx);
     const pixelY = Math.floor(mouseY / pixelPx);
-    // return if last position
-    if (pixelX === lastX && pixelY === lastY) return;
-    // set last position
-    lastX = pixelX;
-    lastY = pixelY;
     // get pixel index
     const pixelIndex = pixelY * spriteSize + pixelX;
+    // return if last position
+    if (pixelIndex === lastIndex) return;
+    // set last position
+    lastIndex = pixelIndex;
     // update objects
     const newObjects = objects.slice();
     const newObject = objects[currObject].slice();
@@ -48,8 +47,7 @@ export default function Draw(props) {
 
   // called on mouse down
   function mouseDown(e) {
-    lastX = undefined;
-    lastY = undefined;
+    lastIndex = undefined;
     sketching = true;
     sketch(e);
   }
