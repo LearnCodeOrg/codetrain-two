@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 import styles from '../styles/components/Draw.module.css';
 
@@ -12,6 +12,8 @@ const spritePx = spriteSize * pixelPx;
 
 export default function Draw(props) {
   const { objects, setObjects, colors, currColor, currObject } = props;
+
+  const [hoverIndex, setHoverIndex] = useState(-1);
 
   const canvasRef = useRef();
 
@@ -51,7 +53,10 @@ export default function Draw(props) {
 
   // called on mouse move
   function mouseMove(e) {
-    if (sketching) sketch(e);
+    if (sketching) {
+      sketch(e);
+      setHoverIndex(-1);
+    }
     else {
       // get mouse position
       const mouseX = e.clientX - canvas.offsetLeft;
@@ -74,6 +79,7 @@ export default function Draw(props) {
   // called on mouse leave
   function mouseLeave(e) {
     sketching = false;
+    setHoverIndex(-1);
   }
 
   // draws canvas
