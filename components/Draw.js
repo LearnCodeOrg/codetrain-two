@@ -68,31 +68,29 @@ export default function Draw(props) {
 
   // draws canvas
   function draw() {
-    ctx.clearRect(0, 0, spritePx, spritePx);
+    ctx.clearRect(0, 0, spritePixels, spritePixels);
     // get current object
     const object = objects[currObject];
     // for each pixel
-    for (let x = 0; x < spriteSize; x++) {
-      for (let y = 0; y < spriteSize; y++) {
+    for (let x = 0; x < spriteSquares; x++) {
+      for (let y = 0; y < spriteSquares; y++) {
         // set fill color
-        const pixelIndex = y * spriteSize + x;
-        const colorIndex = object[pixelIndex];
+        const squareIndex = y * spriteSquares + x;
+        const colorIndex = object[squareIndex];
         const color = colorIndex === -1 ? '#fff' : colors[colorIndex];
         ctx.fillStyle = color;
         // fill rect
-        const pxX = x * pixelPx;
-        const pxY = y * pixelPx;
-        ctx.fillRect(pxX, pxY, pixelPx, pixelPx);
+        const pxX = x * squarePixels;
+        const pxY = y * squarePixels;
+        ctx.fillRect(pxX, pxY, squarePixels, squarePixels);
         // draw hover
-        if (pixelIndex === hoverIndex) {
-          if (sketching) {
-            fillBorder(ctx, border, pxX, pxY, pixelPx, pixelPx);
-          } else {
-            fillHover(ctx, border, pxX, pxY, pixelPx, pixelPx);
-          }
+        if (squareIndex === hoverIndex) {
+          if (sketching) fillBorder(ctx, border, pxX, pxY, squarePixels, squarePixels);
+          else fillHover(ctx, border, pxX, pxY, squarePixels, squarePixels);
         }
       }
     }
+    fillBorder(ctx, border, 0, 0, spritePixels, spritePixels)
   }
 
   // get canvas and context on start
