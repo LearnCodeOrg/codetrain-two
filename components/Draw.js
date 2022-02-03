@@ -41,20 +41,18 @@ export default function Draw(props) {
 
   // called on mouse down
   function mouseDown(e) {
-    lastIndex = undefined;
+    lastSquareIndex = undefined;
     setSketching(true);
     sketch(e);
   }
 
   // called on mouse move
   function mouseMove(e) {
-    if (sketching) {
-      sketch(e);
-    }
-    // get pixel index
-    const pixelIndex = unitIndex(e, canvas, pixelPx, spriteSize);
-    // set hover index
-    setHoverIndex(pixelIndex);
+    // if sketching, sketch
+    if (sketching) sketch(e);
+    // get and set hover index
+    const squareIndex = unitIndex(e, canvas, squarePixels, spriteSquares);
+    setHoverIndex(squareIndex);
   }
 
   // called on mouse up
