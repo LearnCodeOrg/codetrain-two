@@ -7,7 +7,7 @@ import Loading from '../components/Loading';
 import { useState } from 'react';
 import {
   defaultCodes, defaultColors, defaultObjects
-} from '../util/defaultData';
+} from '../util/data';
 import dynamic from 'next/dynamic';
 
 import styles from '../styles/components/Engine.module.css';
