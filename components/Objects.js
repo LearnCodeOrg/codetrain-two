@@ -48,18 +48,18 @@ export default function Objects(props) {
       for (let y = 0; y < gridHeight; y++) {
         // get sprite index
         const spriteIndex = y * gridWidth + x;
-        // draw sprite
+        // for each square
         const sprite = objects[spriteIndex];
-        for (let px = 0; px < spriteSize; px++) {
-          for (let py = 0; py < spriteSize; py++) {
-            const pixelIndex = py * spriteSize + px;
+        for (let px = 0; px < spriteSquares; px++) {
+          for (let py = 0; py < spriteSquares; py++) {
+            // set square color
+            const pixelIndex = py * spriteSquares + px;
             const colorIndex = sprite[pixelIndex];
             ctx.fillStyle = colorIndex === -1 ? '#fff' : colors[colorIndex];
-            const squarePixels = gridPixels / spriteSize;
-            ctx.fillRect(
-              x * gridPixels + px * squarePixels, y * gridPixels + py * squarePixels,
-              squarePixels, squarePixels
-            );
+            // calculate square dimensions
+            const squareX = x * spritePixels + px * squarePixels;
+            const squareY = y * spritePixels + py * squarePixels;
+            ctx.fillRect(squareX, squareY, squarePixels, squarePixels);
           }
         }
         // get sprite position
