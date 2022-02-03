@@ -62,16 +62,16 @@ export default function Objects(props) {
             );
           }
         }
-        // draw pixels
-        const spriteX = x * gridPixels;
-        const spriteY = y * gridPixels;
+        // get sprite position
+        const spriteX = x * spritePixels;
+        const spriteY = y * spritePixels;
         // fill hover
         if (hoverIndex === spriteIndex) {
-          fillHover(ctx, border, spriteX, spriteY, gridPixels, gridPixels);
+          fillHover(ctx, border, spriteX, spriteY, spritePixels, spritePixels);
         }
         // fill border
         if (currObject === spriteIndex) {
-          fillBorder(ctx, border, spriteX, spriteY, gridPixels, gridPixels);
+          fillBorder(ctx, border, spriteX, spriteY, spritePixels, spritePixels);
         }
       }
     }
