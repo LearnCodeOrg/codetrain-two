@@ -4,12 +4,12 @@ import { unitIndex } from '../util/mouse';
 
 import styles from '../styles/components/Draw.module.css';
 
-let lastIndex;
+let lastSquareIndex;
 let canvas, ctx;
 
-const pixelPx = 16;
-const spriteSize = 8;
-const spritePx = spriteSize * pixelPx;
+const squarePixels = 16;
+const spriteSquares = 8;
+const spritePixels = spriteSquares * squarePixels;
 
 const border = 2;
 
@@ -118,8 +118,8 @@ export default function Draw(props) {
         onMouseMove={mouseMove}
         onMouseUp={mouseUp}
         onMouseLeave={mouseLeave}
-        width={spritePx}
-        height={spritePx}
+        width={spritePixels}
+        height={spritePixels}
       />
     </div>
   );
