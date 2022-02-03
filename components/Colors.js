@@ -88,11 +88,14 @@ export default function Colors(props) {
         onMouseMove={hover}
         onMouseLeave={clearHover}
       />
-      <input
-        type="color"
-        value={colors[currColor]}
-        onChange={e => updateColor(e.target.value)}
-      />
+      <label className={styles.colorlabel}>
+        Update Color
+        <input
+          type="color"
+          value={colors[currColor]}
+          onChange={e => updateColor(e.target.value)}
+        />
+      </label>
     </div>
   );
 }
