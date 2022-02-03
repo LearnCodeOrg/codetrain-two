@@ -58,6 +58,13 @@ export default function Colors(props) {
     }
   }
 
+  // updates current color with given value
+  function updateColor(val) {
+    const newColors = colors.slice();
+    newColors[currColor] = val;
+    setColors(newColors);
+  }
+
   // get canvas context on start
   useEffect(() => {
     canvas = canvasRef.current;
@@ -67,7 +74,7 @@ export default function Colors(props) {
   // draw on data change
   useEffect(() => {
     draw();
-  }, [hoverIndex, currColor]);
+  }, [hoverIndex, currColor, colors]);
 
   return (
     <div>
@@ -80,6 +87,11 @@ export default function Colors(props) {
         onMouseDown={select}
         onMouseMove={hover}
         onMouseLeave={clearHover}
+      />
+      <input
+        type="color"
+        value={colors[currColor]}
+        onChange={e => updateColor(e.target.value)}
       />
     </div>
   );
