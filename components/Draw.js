@@ -23,19 +23,18 @@ export default function Draw(props) {
 
   // sketches canvas with given mouse data
   function sketch(e) {
-    // calculate pixel index
-    const pixelIndex = unitIndex(e, canvas, pixelPx, spriteSize);
-    // return if last position
-    if (pixelIndex === lastIndex) return;
-    // set last position
-    lastIndex = pixelIndex;
+    // calculate square index
+    const squareIndex = unitIndex(e, canvas, squarePixels, spriteSquares);
+    // check last square position
+    if (squareIndex === lastSquareIndex) return;
+    lastSquareIndex = squareIndex;
     // update objects
     const newObjects = objects.slice();
     const newObject = objects[currObject].slice();
     // return if same color
-    if (newObject[pixelIndex] === currColor) return;
+    if (newObject[squareIndex] === currColor) return;
     // update objects
-    newObject[pixelIndex] = currColor;
+    newObject[squareIndex] = currColor;
     newObjects[currObject] = newObject;
     setObjects(newObjects);
   }
