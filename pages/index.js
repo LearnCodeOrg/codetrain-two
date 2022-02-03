@@ -2,7 +2,7 @@ import Logo from '../components/Logo';
 import Header from '../components/Header';
 
 import { getAuth, signOut } from 'firebase/auth';
-import signInWithGoogle from '../util/signInWithGoogle';
+import signIn from '../util/signIn';
 
 import styles from '../styles/pages/Index.module.css';
 
@@ -28,7 +28,7 @@ export default function Index() {
             </button> :
             <button
               className="textbutton"
-              onClick={signInWithGoogle}
+              onClick={signIn}
             >
               Sign In
             </button>
