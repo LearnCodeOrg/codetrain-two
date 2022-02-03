@@ -1,1 +1,2 @@
-export const spriteSize = 8;
+export const objectCount = 16;
+export const spriteSquares = 8;

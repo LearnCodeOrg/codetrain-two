@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { spriteSize } from '../util/units'
+import { spriteSquares } from '../util/units'
 import { fillBorder, fillHover } from '../util/fill';
 import { unitIndex } from '../util/mouse';
 

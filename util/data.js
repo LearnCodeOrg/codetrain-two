@@ -1,4 +1,4 @@
-export const objectCount = 16;
+import { objectCount } from './units';
 
 export const defaultColors = [
   "#dfdfdf",

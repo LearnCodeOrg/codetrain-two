@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
 import { fillBorder, fillHover } from '../util/fill';
 import { unitIndex } from '../util/mouse';
+import { spriteSquares } from '../util/units';
 
 import styles from '../styles/components/Draw.module.css';
 
@@ -8,7 +9,6 @@ let lastSquareIndex;
 let canvas, ctx;
 
 const squarePixels = 16;
-const spriteSquares = 8;
 const spritePixels = spriteSquares * squarePixels;
 
 const border = 2;
