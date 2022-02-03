@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import getGameSrc from '../util/getGameSrc';
 
+import styles from '../styles/components/GameFrame.module.css';
+
 const mapPixels = 256;
 
 export default function GameFrame(props) {
@@ -29,7 +31,7 @@ export default function GameFrame(props) {
   }, []);
 
   return (
-    <div>
+    <div className={styles.container}>
       <iframe
         ref={screenRef}
         title="game"
@@ -40,7 +42,7 @@ export default function GameFrame(props) {
         frameBorder="0"
       />
       <div>
-        <button onClick={() => setSource(null)}>
+        <button className="textbutton" onClick={() => setSource(null)}>
           Replay
         </button>
       </div>
