@@ -10,9 +10,10 @@ let ctx;
 
 const gridHeight = 4;
 const gridWidth = 4;
-const gridPixels = 32;
-const canvasWidth = gridWidth * gridPixels;
-const canvasHeight = gridHeight * gridPixels;
+const spritePixels = 32;
+const squarePixels = Math.round(spritePixels / spriteSquares);
+const canvasWidth = gridWidth * spritePixels;
+const canvasHeight = gridHeight * spritePixels;
 
 const border = 4;
 
@@ -85,7 +86,7 @@ export default function Objects(props) {
 
   // hover over objects
   function hover(e) {
-    const spriteIndex = unitIndex(e, canvas, gridPixels, gridWidth);
+    const spriteIndex = unitIndex(e, canvas, spritePixels, gridWidth);
     setHoverIndex(spriteIndex);
   }
 
