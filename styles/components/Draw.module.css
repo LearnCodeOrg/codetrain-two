@@ -1,5 +1,12 @@
 .container > canvas {
   cursor: pointer;
+  display: flex;
+  margin-bottom: 4px;
+}
+
+.container > h1 {
+  margin: 0;
+  font-size: 16px;
 }
 
 .tools {
@@ -9,12 +16,11 @@
 
 .tools > button {
   width: 32px;
-  height: 32px;
-  border: 2px solid #222;
   background: #efefef;
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 2px solid #222;
 }
 
 .tools > button:hover {
@@ -22,8 +28,7 @@
 }
 
 .tools > button.selected {
-  height: 36px;
-  padding-bottom: 4px;
+  border-bottom: 6px solid #222;
 }
 
 .tools > button > img {
