@@ -21,6 +21,29 @@ export default function Draw(props) {
 
   const canvasRef = useRef();
 
+  // flood fills given object starting at given index
+  function floodFill(object, squareIndex, startColor, endColor) {
+    // update color
+    if (object[squareIndex] !== startColor) return;
+    object[squareIndex] = endColor;
+    // recurse up
+    if (squareIndex >= spriteSquares) {
+      floodFill(object, squareIndex - spriteSquares, startColor, endColor);
+    }
+    // recurse down
+    if (squareIndex < spriteSquares * spriteSquares - spriteSquares) {
+      floodFill(object, squareIndex + spriteSquares, startColor, endColor);
+    }
+    // recurse left
+    if (squareIndex % spriteSquares > 0) {
+      floodFill(object, squareIndex - 1, startColor, endColor);
+    }
+    // recurse right
+    if (squareIndex % spriteSquares < spriteSquares - 1) {
+      floodFill(object, squareIndex + 1, startColor, endColor);
+    }
+  }
+
   // sketches canvas with given mouse data
   function sketch(e) {
     // calculate square index
