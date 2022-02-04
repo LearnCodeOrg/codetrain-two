@@ -116,17 +116,29 @@ export default function Draw(props) {
         width={spritePixels}
         height={spritePixels}
       />
-      <div>
-        <button onClick={() => setTool('pencil')}>
+      <div className={styles.tools}>
+        <button
+          className={tool === 'pencil' ? styles.selected : undefined}
+          onClick={() => setTool('pencil')}
+        >
           <img src="/icons/pencil.png" />
         </button>
-        <button onClick={() => setTool('eraser')}>
+        <button
+          className={tool === 'eraser' ? styles.selected : undefined}
+          onClick={() => setTool('eraser')}
+        >
           <img src="/icons/eraser.png" />
         </button>
-        <button onClick={() => setTool('bucket')}>
+        <button
+          className={tool === 'bucket' ? styles.selected : undefined}
+          onClick={() => setTool('bucket')}
+        >
           <img src="/icons/bucket.png" />
         </button>
-        <button onClick={() => setTool('clear')}>
+        <button
+          className={tool === 'clear' ? styles.selected : undefined}
+          onClick={() => setTool('clear')}
+        >
           <img src="/icons/clear.png" />
         </button>
       </div>
