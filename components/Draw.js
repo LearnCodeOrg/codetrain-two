@@ -18,6 +18,7 @@ export default function Draw(props) {
 
   const [hoverIndex, setHoverIndex] = useState(-1);
   const [sketching, setSketching] = useState(false);
+  const [tool, setTool] = useState('pencil');
 
   const canvasRef = useRef();
 
@@ -65,10 +66,24 @@ export default function Draw(props) {
     // update objects
     const newObjects = objects.slice();
     const newObject = objects[currObject].slice();
-    // return if same color
-    if (newObject[squareIndex] === currColor) return;
+    // pencil tool
+    if (tool === 'pencil') {
+      // return if same color
+      if (newObject[squareIndex] === currColor) return;
+      // update objects
+      newObject[squareIndex] = currColor;
+    // eraser tool
+    } else if (tool === 'eraser') {
+      newObject[squareIndex] = -1;
+    // bucket tool
+    } else if (tool === 'bucket') {
+      // return if same color
+      const squareColor = newObject[squareIndex];
+      if (squareColor === currColor) return;
+      // flood fill
+      floodFill(newObject, squareIndex, squareColor, currColor);
+    }
     // update objects
-    newObject[squareIndex] = currColor;
     newObjects[currObject] = newObject;
     setObjects(newObjects);
   }
