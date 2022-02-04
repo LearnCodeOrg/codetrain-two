@@ -77,7 +77,7 @@ export default function Colors(props) {
   }, [hoverIndex, currColor, colors]);
 
   return (
-    <div>
+    <div className={styles.container}>
       <h1>Colors</h1>
       <canvas
         className={styles.canvas}
