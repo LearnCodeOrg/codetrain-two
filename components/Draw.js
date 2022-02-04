@@ -46,6 +46,17 @@ export default function Draw(props) {
 
   // sketches canvas with given mouse data
   function sketch(e) {
+    // clear tool
+    if (tool === 'clear') {
+      // confirm clear
+      if (!window.confirm('Clear sketch?')) return;
+      // update objects
+      const newObjects = objects.slice();
+      newObjects[currObject] = Array(spriteSquares * spriteSquares).fill(-1);
+      setObjects(newObjects);
+      setSketching(false);
+      return;
+    }
     // calculate square index
     const squareIndex = unitIndex(e, canvas, squarePixels, spriteSquares);
     // check last square position
