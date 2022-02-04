@@ -32,7 +32,7 @@ export default function Objects(props) {
 
   // selects object based on given mouse data
   function select(e) {
-    const spriteIndex = unitIndex(e, canvas, gridPixels, gridWidth);
+    const spriteIndex = unitIndex(e, canvas, spritePixels, gridWidth);
     if (spriteIndex === currObject) return;
     setCurrObject(spriteIndex);
   }

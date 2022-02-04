@@ -21,6 +21,11 @@ button {
   cursor: pointer;
 }
 
+.errormarker {
+   position: absolute;
+   background-color: #ff0000;
+}
+
 .textbutton {
   font-family: 'retro', monospace;
   background: #efefef;

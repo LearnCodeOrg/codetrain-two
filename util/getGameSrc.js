@@ -27,7 +27,6 @@ export default function getGameSrc(props) {
     const $$ = {
       ctx: __canvas__.getContext('2d'),
       codes: ${JSON.stringify(codes)},
-      gameObjects = ${JSON.stringify(gameObjects)},
       getCodeFunction: (gameObject, index) => {
         return (
           (function() {
