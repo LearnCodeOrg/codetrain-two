@@ -1,3 +1,33 @@
 .container > canvas {
   cursor: pointer;
 }
+
+.tools {
+  display: flex;
+  align-items: flex-end;
+}
+
+.tools > button {
+  width: 32px;
+  height: 32px;
+  border: 2px solid #222;
+  background: #efefef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tools > button:hover {
+  background: #ddd;
+}
+
+.tools > button.selected {
+  height: 36px;
+  padding-bottom: 4px;
+}
+
+.tools > button > img {
+  image-rendering: pixelated;
+  width: 24px;
+  height: 24px;
+}
