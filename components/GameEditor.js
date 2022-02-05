@@ -57,6 +57,20 @@ export default function GameEditor() {
           onMouseLeave={mouseLeave}
         />
       }
+      {
+        playing ?
+        <button
+          className="textbutton"
+          onClick={() => setPlaying(false)}>
+          Stop
+        </button> :
+        <button
+          className="textbutton"
+          onClick={() => setPlaying(true)}
+        >
+          Play
+        </button>
+      }
     </div>
   );
 }
