@@ -6,7 +6,11 @@ import styles from '../styles/components/GameEditor.module.css';
 
 let canvas, ctx;
 
-export default function GameEditor() {
+const mapPixels = 256;
+
+export default function GameEditor(props) {
+  const { codes } = props;
+
   const canvasRef = useRef();
 
   const [sketching, setSketching] = useState(false);
@@ -45,7 +49,7 @@ export default function GameEditor() {
   }, []);
 
   return (
-    <div>
+    <div className={styles.container}>
       {
         playing ?
         <GameFrame /> :
@@ -55,6 +59,8 @@ export default function GameEditor() {
           onMouseMove={mouseMove}
           onMouseUp={mouseUp}
           onMouseLeave={mouseLeave}
+          width={mapPixels}
+          height={mapPixels}
         />
       }
       {

@@ -1,7 +1,7 @@
 import Objects from '../components/Objects';
 import Draw from '../components/Draw';
 import Colors from '../components/Colors';
-import GameFrame from '../components/GameFrame';
+import GameEditor from '../components/GameEditor';
 import Loading from '../components/Loading';
 
 import { useState } from 'react';
@@ -58,7 +58,7 @@ export default function Engine() {
         />
       </div>
       <div>
-        <GameFrame
+        <GameEditor
           codes={codes}
         />
       </div>
