@@ -1,3 +1,5 @@
+import GameFrame from './GameFrame';
+
 import { useEffect, useRef, useState } from 'react';
 
 import styles from '../styles/components/GameEditor.module.css';
@@ -8,6 +10,7 @@ export default function GameEditor() {
   const canvasRef = useRef();
 
   const [sketching, setSketching] = useState(false);
+  const [playing, setPlaying] = useState(false);
 
   // sketches canvas
   function sketch(e) {
@@ -43,13 +46,17 @@ export default function GameEditor() {
 
   return (
     <div>
-      <canvas
-        ref={canvasRef}
-        onMouseDown={mouseDown}
-        onMouseMove={mouseMove}
-        onMouseUp={mouseUp}
-        onMouseLeave={mouseLeave}
-      />
+      {
+        playing ?
+        <GameFrame /> :
+        <canvas
+          ref={canvasRef}
+          onMouseDown={mouseDown}
+          onMouseMove={mouseMove}
+          onMouseUp={mouseUp}
+          onMouseLeave={mouseLeave}
+        />
+      }
     </div>
   );
 }
