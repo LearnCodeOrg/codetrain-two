@@ -13,26 +13,3 @@
   display: flex;
   align-items: flex-end;
 }
-
-.tools > button {
-  width: 32px;
-  background: #efefef;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid #222;
-}
-
-.tools > button:hover {
-  background: #ddd;
-}
-
-.tools > button.selected {
-  border-bottom: 6px solid #222;
-}
-
-.tools > button > img {
-  image-rendering: pixelated;
-  width: 24px;
-  height: 24px;
-}
