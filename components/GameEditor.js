@@ -1,3 +1,4 @@
+import IconButton from './IconButton';
 import GameFrame from './GameFrame';
 
 import { useEffect, useRef, useState } from 'react';
@@ -63,20 +64,11 @@ export default function GameEditor(props) {
           height={mapPixels}
         />
       }
-      {
-        playing ?
-        <button
-          className="textbutton"
-          onClick={() => setPlaying(false)}>
-          Stop
-        </button> :
-        <button
-          className="textbutton"
-          onClick={() => setPlaying(true)}
-        >
-          Play
-        </button>
-      }
+      <IconButton
+        onClick={() => setPlaying(val => !val)}
+        icon={playing ? 'pause' : 'play'}
+        down={!playing}
+      />
     </div>
   );
 }
