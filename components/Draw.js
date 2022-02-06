@@ -1,3 +1,5 @@
+import IconButton from './IconButton';
+
 import { useRef, useState, useEffect } from 'react';
 import { fillBorder, fillHover } from '../util/fill';
 import { unitIndex } from '../util/mouse';
@@ -167,14 +169,13 @@ export default function Draw(props) {
       />
       <div className={styles.tools}>
         {
-          ['pencil', 'eraser', 'bucket', 'clear'].map(t =>
-            <button
-              className={tool === t ? styles.selected : undefined}
-              onClick={() => setTool(t)}
-              key={t}
-            >
-              <img src={`/icons/${t}.png`} />
-            </button>
+          ['pencil', 'eraser', 'bucket', 'clear'].map(type =>
+            <IconButton
+              onClick={() => setTool(type)}
+              icon={type}
+              down={tool === type}
+              key={type}
+            />
           )
         }
       </div>
