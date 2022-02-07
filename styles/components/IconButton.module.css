@@ -17,6 +17,10 @@
   height: 24px;
 }
 
-.button.down {
+.button.down, .button.auto {
   border-bottom: 6px solid #222;
+}
+
+.button.auto:active {
+  border-bottom: 2px solid #222;
 }
