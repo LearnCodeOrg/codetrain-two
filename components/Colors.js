@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { fillBorder, fillHover } from '../util/fill';
-import { unitIndex } from '../util/mouse';
+import { mouseIndex } from '../util/mouse';
 
 import styles from '../styles/components/Colors.module.css';
 
@@ -23,13 +23,13 @@ export default function Colors(props) {
 
   // selects color
   function select(e) {
-    const spriteIndex = unitIndex(e, canvas, gridPixels, gridWidth);
+    const spriteIndex = mouseIndex(e, canvas, gridPixels, gridWidth);
     setCurrColor(spriteIndex);
   }
 
   // hovers mouse
   function hover(e) {
-    const spriteIndex = unitIndex(e, canvas, gridPixels, gridWidth);
+    const spriteIndex = mouseIndex(e, canvas, gridPixels, gridWidth);
     setHoverIndex(spriteIndex);
   }
 

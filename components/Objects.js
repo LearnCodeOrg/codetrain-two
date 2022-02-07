@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { spriteSquares } from '../util/units'
 import { fillBorder, fillHover } from '../util/fill';
-import { unitIndex } from '../util/mouse';
+import { mouseIndex } from '../util/mouse';
 
 import styles from '../styles/components/Objects.module.css';
 
@@ -32,7 +32,7 @@ export default function Objects(props) {
 
   // selects object based on given mouse data
   function select(e) {
-    const spriteIndex = unitIndex(e, canvas, spritePixels, gridWidth);
+    const spriteIndex = mouseIndex(e, canvas, spritePixels, gridWidth);
     if (spriteIndex === currObject) return;
     setCurrObject(spriteIndex);
   }
@@ -86,7 +86,7 @@ export default function Objects(props) {
 
   // hover over objects
   function hover(e) {
-    const spriteIndex = unitIndex(e, canvas, spritePixels, gridWidth);
+    const spriteIndex = mouseIndex(e, canvas, spritePixels, gridWidth);
     setHoverIndex(spriteIndex);
   }
 

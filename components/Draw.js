@@ -2,7 +2,7 @@ import IconButton from './IconButton';
 
 import { useRef, useState, useEffect } from 'react';
 import { fillBorder, fillHover } from '../util/fill';
-import { unitIndex } from '../util/mouse';
+import { mouseIndex } from '../util/mouse';
 import { spriteSquares } from '../util/units';
 
 import styles from '../styles/components/Draw.module.css';
@@ -61,7 +61,7 @@ export default function Draw(props) {
       return;
     }
     // calculate square index
-    const squareIndex = unitIndex(e, canvas, squarePixels, spriteSquares);
+    const squareIndex = mouseIndex(e, canvas, squarePixels, spriteSquares);
     // check last square position
     if (squareIndex === lastSquareIndex) return;
     lastSquareIndex = squareIndex;
@@ -102,7 +102,7 @@ export default function Draw(props) {
     // if sketching, sketch
     if (sketching) sketch(e);
     // get and set hover index
-    const squareIndex = unitIndex(e, canvas, squarePixels, spriteSquares);
+    const squareIndex = mouseIndex(e, canvas, squarePixels, spriteSquares);
     setHoverIndex(squareIndex);
   }
 
