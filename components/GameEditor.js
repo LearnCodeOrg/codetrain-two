@@ -56,6 +56,8 @@ export default function GameEditor(props) {
         playing ?
         <GameFrame
           onError={onError}
+          refresh={refresh}
+          setRefresh={setRefresh}
           {...props}
         /> :
         <canvas

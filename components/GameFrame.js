@@ -8,6 +8,8 @@ import styles from '../styles/components/GameFrame.module.css';
 const mapPixels = 256;
 
 export default function GameFrame(props) {
+  const { refresh, setRefresh } = props;
+
   const screenRef = useRef();
 
   // get game source
@@ -26,6 +28,14 @@ export default function GameFrame(props) {
       focus();
     }
   }, [source]);
+
+  // clear source on refresh
+  useEffect(() => {
+    if (refresh) {
+      setRefresh(false);
+      setSource(null);
+    }
+  }, [refresh]);
 
   // focus frame on start
   useEffect(() => {
