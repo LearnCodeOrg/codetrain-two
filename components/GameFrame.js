@@ -1,3 +1,5 @@
+import IconButton from './IconButton';
+
 import { useEffect, useRef, useState } from 'react';
 import getGameSrc from '../util/getGameSrc';
 
@@ -42,9 +44,11 @@ export default function GameFrame(props) {
         frameBorder="0"
       />
       <div>
-        <button className="textbutton" onClick={() => setSource(null)}>
-          Replay
-        </button>
+        <IconButton
+          onClick={() => setSource(null)}
+          icon="replay"
+          auto
+        />
       </div>
     </div>
   );
