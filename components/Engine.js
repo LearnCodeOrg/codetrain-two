@@ -30,6 +30,11 @@ export default function Engine() {
     setCodes(newCodes);
   }
 
+  // called when game editor throws error
+  function onError(e) {
+    console.log(e);
+  }
+
   return (
     <div className={styles.container}>
       <CodeEditor
@@ -60,6 +65,7 @@ export default function Engine() {
       <div>
         <GameEditor
           codes={codes}
+          onError={onError}
         />
       </div>
     </div>

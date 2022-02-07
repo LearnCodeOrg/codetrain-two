@@ -1,7 +1,7 @@
 const mapPixels = 256;
 
 export default function getGameSrc(props) {
-  const { codes, gameObjects } = props;
+  const { codes, gameObjects, onError } = props;
 
   return (
 `<html>
@@ -27,6 +27,7 @@ export default function getGameSrc(props) {
     const $$ = {
       ctx: __canvas__.getContext('2d'),
       codes: ${JSON.stringify(codes)},
+      onError: ${onError},
       getCodeFunction: (gameObject, index) => {
         return (
           (function() {
@@ -36,7 +37,7 @@ export default function getGameSrc(props) {
         );
       },
       throwError: e => {
-        console.log(e);
+        $$.onError(e);
       }
     };
     function __start__() {
@@ -44,7 +45,7 @@ export default function getGameSrc(props) {
         try {
           $$.spriteCodes.forEach(code => code.update());
         } catch (e) {
-          throwError(e);
+          $$.throwError(e);
         }
         requestAnimationFrame(gameLoop);
       }
@@ -55,7 +56,7 @@ export default function getGameSrc(props) {
         $$.spriteCodes.forEach(code => code.start());
         requestAnimationFrame(gameLoop);
       } catch (e) {
-        throwError(e);
+        $$.throwError(e);
       }
     }
   </script>

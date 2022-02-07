@@ -10,7 +10,7 @@ let canvas, ctx;
 const mapPixels = 256;
 
 export default function GameEditor(props) {
-  const { codes } = props;
+  const { onError } = props;
 
   const canvasRef = useRef();
 
@@ -53,7 +53,10 @@ export default function GameEditor(props) {
     <div className={styles.container}>
       {
         playing ?
-        <GameFrame /> :
+        <GameFrame
+          onError={onError}
+          {...props}
+        /> :
         <canvas
           ref={canvasRef}
           onMouseDown={mouseDown}
