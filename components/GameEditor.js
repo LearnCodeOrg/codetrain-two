@@ -70,19 +70,21 @@ export default function GameEditor(props) {
           height={mapPixels}
         />
       }
-      <IconButton
-        onClick={() => setPlaying(val => !val)}
-        icon={playing ? 'pause' : 'play'}
-        down={!playing}
-      />
-      {
-        playing &&
+      <div className={styles.toolbar}>
         <IconButton
-          onClick={() => setRefresh(true)}
-          icon="replay"
-          auto
+          onClick={() => setPlaying(val => !val)}
+          icon={playing ? 'pause' : 'play'}
+          down={!playing}
         />
-      }
+        {
+          playing &&
+          <IconButton
+            onClick={() => setRefresh(true)}
+            icon="replay"
+            auto
+          />
+        }
+      </div>
     </div>
   );
 }
