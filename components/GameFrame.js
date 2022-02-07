@@ -43,13 +43,6 @@ export default function GameFrame(props) {
         height={mapPixels}
         frameBorder="0"
       />
-      <div>
-        <IconButton
-          onClick={() => setSource(null)}
-          icon="replay"
-          auto
-        />
-      </div>
     </div>
   );
 }

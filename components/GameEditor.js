@@ -16,6 +16,7 @@ export default function GameEditor(props) {
 
   const [sketching, setSketching] = useState(false);
   const [playing, setPlaying] = useState(false);
+  const [refresh, setRefresh] = useState(false);
 
   // sketches canvas
   function sketch(e) {
@@ -72,6 +73,14 @@ export default function GameEditor(props) {
         icon={playing ? 'pause' : 'play'}
         down={!playing}
       />
+      {
+        playing &&
+        <IconButton
+          onClick={() => setRefresh(true)}
+          icon="replay"
+          auto
+        />
+      }
     </div>
   );
 }
