@@ -5,10 +5,8 @@ import getGameSrc from '../util/getGameSrc';
 
 import styles from '../styles/components/GameFrame.module.css';
 
-const mapPixels = 256;
-
 export default function GameFrame(props) {
-  const { refresh, setRefresh } = props;
+  const { refresh, setRefresh, mapPixels } = props;
 
   const screenRef = useRef();
 
