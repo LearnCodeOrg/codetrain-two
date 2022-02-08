@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
+import { mouseIndex } from '../util/mouse';
+import { fillHover } from '../util/fill';
 import { mapSprites, spriteSquares } from '../util/units';
 
 import styles from '../styles/components/GameEditor.module.css';
@@ -52,6 +54,27 @@ export default function GameEditor(props) {
     canvas = canvasRef.current;
     ctx = canvas.getContext('2d');
   }, []);
+
+  // draws editor to canvas
+  function draw() {
+    // clear canvas
+    ctx.fillStyle = '#fff';
+    ctx.fillRect(0, 0, mapPixels, mapPixels);
+    // if hovering
+    if (hoverIndex !== -1) {
+      // draw hover
+      const squareX = hoverIndex % mapSquares;
+      const squareY = Math.floor(hoverIndex / mapSquares);
+      const pixelX = (squareX * squarePixels) - halfSpritePixels;
+      const pixelY = (squareY * squarePixels) - halfSpritePixels;
+      fillHover(ctx, squarePixels, pixelX, pixelY, spritePixels, spritePixels);
+    }
+  }
+
+  // draw on data update
+  useEffect(() => {
+    draw();
+  }, [hoverIndex]);
 
   return (
     <canvas
