@@ -1,4 +1,4 @@
-.container > iframe {
+.frame {
   border: 2px solid #000;
   box-sizing: content-box;
 }

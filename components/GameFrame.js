@@ -43,16 +43,15 @@ export default function GameFrame(props) {
   }, []);
 
   return (
-    <div className={styles.container}>
-      <iframe
-        ref={screenRef}
-        title="game"
-        sandbox="allow-scripts"
-        srcDoc={source}
-        width={mapPixels}
-        height={mapPixels}
-        frameBorder="0"
-      />
-    </div>
+    <iframe
+      className={styles.frame}
+      ref={screenRef}
+      title="game"
+      sandbox="allow-scripts"
+      srcDoc={source}
+      width={mapPixels}
+      height={mapPixels}
+      frameBorder="0"
+    />
   );
 }
