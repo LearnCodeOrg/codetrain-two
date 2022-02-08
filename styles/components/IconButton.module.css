@@ -18,7 +18,7 @@
   height: 24px;
 }
 
-.button.down, .button.auto:not(:active) {
+.button:not(:active):not(.down) {
   border-bottom: 6px solid #222;
   margin-top: 0;
 }

@@ -33,7 +33,7 @@ export default function GameView(props) {
         <IconButton
           onClick={() => setPlaying(val => !val)}
           icon={playing ? 'pause' : 'play'}
-          down={!playing}
+          down={playing}
         />
         {
           playing &&

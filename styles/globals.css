@@ -30,16 +30,16 @@ button {
   font-family: 'retro', monospace;
   background: #efefef;
   border: 2px solid #222;
-  border-bottom: 4px solid #222;
+  margin-top: 4px;
 }
 
 .textbutton:hover {
   background: #ddd;
 }
 
-.textbutton:active {
-  margin-top: 2px;
-  border-bottom: 2px solid #222;
+.textbutton:not(:active) {
+  margin-top: 0;
+  border-bottom: 6px solid #222;
 }
 
 .flexfill {
