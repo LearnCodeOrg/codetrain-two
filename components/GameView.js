@@ -60,15 +60,7 @@ export default function GameView(props) {
           setRefresh={setRefresh}
           {...props}
         /> :
-        <canvas
-          ref={canvasRef}
-          onMouseDown={mouseDown}
-          onMouseMove={mouseMove}
-          onMouseUp={mouseUp}
-          onMouseLeave={mouseLeave}
-          width={mapPixels}
-          height={mapPixels}
-        />
+        <GameEditor />
       }
       <div className={styles.toolbar}>
         <IconButton
