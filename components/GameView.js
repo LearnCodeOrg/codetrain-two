@@ -3,13 +3,13 @@ import GameFrame from './GameFrame';
 
 import { useEffect, useRef, useState } from 'react';
 
-import styles from '../styles/components/GameEditor.module.css';
+import styles from '../styles/components/GameView.module.css';
 
 let canvas, ctx;
 
 const mapPixels = 256;
 
-export default function GameEditor(props) {
+export default function GameView(props) {
   const { onError } = props;
 
   const canvasRef = useRef();

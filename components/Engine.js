@@ -1,7 +1,7 @@
 import Objects from '../components/Objects';
 import Draw from '../components/Draw';
 import Colors from '../components/Colors';
-import GameEditor from '../components/GameEditor';
+import GameView from '../components/GameView';
 import Loading from '../components/Loading';
 
 import { useState } from 'react';
@@ -63,7 +63,7 @@ export default function Engine() {
         />
       </div>
       <div>
-        <GameEditor
+        <GameView
           codes={codes}
           onError={onError}
         />
