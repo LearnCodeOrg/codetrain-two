@@ -5,6 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 4px;
 }
 
 .button:hover {
@@ -17,10 +18,7 @@
   height: 24px;
 }
 
-.button.down, .button.auto {
+.button.down, .button.auto:not(:active) {
   border-bottom: 6px solid #222;
-}
-
-.button.auto:active {
-  border-bottom: 2px solid #222;
+  margin-top: 0;
 }
