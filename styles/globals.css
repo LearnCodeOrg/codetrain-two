@@ -55,3 +55,10 @@ button {
   font-family: 'retro';
   src: url('/fonts/retro.ttf');
 }
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+	padding: 0;
+}
+input[type="color"]::-webkit-color-swatch {
+	border: none;
+}
