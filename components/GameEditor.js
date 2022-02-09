@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { mouseIndex } from '../util/mouse';
+import { mouseIndex, mousePosition } from '../util/mouse';
 import { fillHover } from '../util/fill';
 import { mapSprites, spriteSquares } from '../util/units';
 
@@ -17,6 +17,7 @@ export default function GameEditor(props) {
 
   const [sketching, setSketching] = useState(false);
   const [hoverIndex, setHoverIndex] = useState(-1);
+  const [gameObjects, setGameObjects] = useState([]);
 
   const canvasRef = useRef();
 
@@ -29,6 +30,13 @@ export default function GameEditor(props) {
   function mouseDown(e) {
     setSketching(true);
     sketch(e);
+    // get mouse position
+    const [mouseX, mouseY] = mousePosition(e, canvas);
+    const pixelX = Math.floor(mouseX / squarePixels) - halfSpriteSquares;
+    const pixelY = Math.floor(mouseY / squarePixels) - halfSpriteSquares;
+    // append new gameobject
+    const newGameObject = { x: pixelX, y: pixelY };
+    setGameObjects(val => [...val, newGameObject]);
   }
 
   // called on mouse move
