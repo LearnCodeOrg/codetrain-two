@@ -13,6 +13,7 @@ export default function GameEditor(props) {
   const spritePixels = Math.round(mapPixels / mapSprites);
   const halfSpritePixels = Math.round(spritePixels / 2);
   const squarePixels = Math.round(spritePixels / spriteSquares);
+  const halfSpriteSquares = Math.round(spriteSquares / 2);
   const mapSquares = Math.round(mapPixels / squarePixels);
 
   const [sketching, setSketching] = useState(false);
@@ -77,12 +78,19 @@ export default function GameEditor(props) {
       const pixelY = (squareY * squarePixels) - halfSpritePixels;
       fillHover(ctx, squarePixels, pixelX, pixelY, spritePixels, spritePixels);
     }
+    // draw gameobjects
+    ctx.fillStyle = '#000';
+    for (const gameObject of gameObjects) {
+      const pixelX = gameObject.x * squarePixels;
+      const pixelY = gameObject.y * squarePixels;
+      ctx.fillRect(pixelX, pixelY, spritePixels, spritePixels);
+    }
   }
 
   // draw on data update
   useEffect(() => {
     draw();
-  }, [hoverIndex]);
+  }, [hoverIndex, gameObjects]);
 
   return (
     <canvas
