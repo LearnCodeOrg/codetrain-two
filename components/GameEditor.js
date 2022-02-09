@@ -42,8 +42,20 @@ export default function GameEditor(props) {
 
   // called on mouse move
   function mouseMove(e) {
+    // sketch
     if (sketching) sketch(e);
-    const squareIndex = mouseIndex(e, canvas, squarePixels, mapSquares);
+    // get square position
+    let [mouseX, mouseY] = mousePosition(e, canvas);
+    let squareX = Math.floor(mouseX / squarePixels);
+    let squareY = Math.floor(mouseY / squarePixels);
+    // clamp square position
+    if (squareX < halfSpriteSquares) squareX = halfSpriteSquares;
+    else if (squareX > mapSquares - halfSpriteSquares) squareX = mapSquares - halfSpriteSquares;
+    if (squareY < halfSpriteSquares) squareY = halfSpriteSquares;
+    else if (squareY > mapSquares - halfSpriteSquares) squareY = mapSquares - halfSpriteSquares;
+    // calculate square index
+    const squareIndex = squareY * mapSquares + squareX;
+    // set hover index
     setHoverIndex(squareIndex);
   }
 
