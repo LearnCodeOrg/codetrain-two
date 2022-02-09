@@ -32,11 +32,10 @@ export default function GameEditor(props) {
     setSketching(true);
     sketch(e);
     // get mouse position
-    const [mouseX, mouseY] = mousePosition(e, canvas);
-    const pixelX = Math.floor(mouseX / squarePixels) - halfSpriteSquares;
-    const pixelY = Math.floor(mouseY / squarePixels) - halfSpriteSquares;
+    const squareX = hoverIndex % mapSquares - halfSpriteSquares;
+    const squareY = Math.floor(hoverIndex / mapSquares) - halfSpriteSquares;
     // append new gameobject
-    const newGameObject = { x: pixelX, y: pixelY };
+    const newGameObject = { x: squareX, y: squareY };
     setGameObjects(val => [...val, newGameObject]);
   }
 
