@@ -8,7 +8,7 @@ import styles from '../styles/components/GameEditor.module.css';
 let canvas, ctx;
 
 export default function GameEditor(props) {
-  const { mapPixels, objects, currObject } = props;
+  const { mapPixels, colors, objects, currObject } = props;
 
   const spritePixels = Math.round(mapPixels / mapSprites);
   const halfSpritePixels = Math.round(spritePixels / 2);
@@ -101,7 +101,7 @@ export default function GameEditor(props) {
   // draw on data update
   useEffect(() => {
     draw();
-  }, [hoverIndex, gameObjects]);
+  }, [hoverIndex, colors, objects, gameObjects]);
 
   return (
     <canvas
