@@ -8,7 +8,7 @@ import styles from '../styles/components/GameEditor.module.css';
 let canvas, ctx;
 
 export default function GameEditor(props) {
-  const { mapPixels } = props;
+  const { mapPixels, objects, currObject } = props;
 
   const spritePixels = Math.round(mapPixels / mapSprites);
   const halfSpritePixels = Math.round(spritePixels / 2);
@@ -35,7 +35,7 @@ export default function GameEditor(props) {
     const squareX = hoverIndex % mapSquares - halfSpriteSquares;
     const squareY = Math.floor(hoverIndex / mapSquares) - halfSpriteSquares;
     // append new gameobject
-    const newGameObject = { x: squareX, y: squareY };
+    const newGameObject = { x: squareX, y: squareY, object: currObject };
     setGameObjects(val => [...val, newGameObject]);
   }
 

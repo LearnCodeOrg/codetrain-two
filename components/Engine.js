@@ -66,6 +66,8 @@ export default function Engine() {
         <GameView
           codes={codes}
           onError={onError}
+          objects={objects}
+          currObject={currObject}
         />
       </div>
     </div>

@@ -9,7 +9,7 @@ import styles from '../styles/components/GameView.module.css';
 const mapPixels = 256;
 
 export default function GameView(props) {
-  const { onError } = props;
+  const { onError, objects, currObject } = props;
 
   const [playing, setPlaying] = useState(false);
   const [refresh, setRefresh] = useState(false);
@@ -27,6 +27,8 @@ export default function GameView(props) {
         /> :
         <GameEditor
           mapPixels={mapPixels}
+          objects={objects}
+          currObject={currObject}
         />
       }
       <div className={styles.toolbar}>
