@@ -16,7 +16,7 @@ export default function GameEditor(props) {
   const halfSpriteSquares = Math.round(spriteSquares / 2);
   const mapSquares = Math.round(mapPixels / squarePixels);
 
-  const [sketching, setSketching] = useState(false);
+  const [currGameObject, setCurrGameObject] = useState(-1);
   const [hoverIndex, setHoverIndex] = useState(-1);
   const [gameObjects, setGameObjects] = useState([]);
 
@@ -29,20 +29,20 @@ export default function GameEditor(props) {
 
   // called on mouse down
   function mouseDown(e) {
-    setSketching(true);
     sketch(e);
     // get mouse position
     const squareX = hoverIndex % mapSquares - halfSpriteSquares;
     const squareY = Math.floor(hoverIndex / mapSquares) - halfSpriteSquares;
     // append new gameobject
     const newGameObject = { x: squareX, y: squareY, object: currObject };
+    setCurrGameObject(gameObjects.length);
     setGameObjects(val => [...val, newGameObject]);
   }
 
   // called on mouse move
   function mouseMove(e) {
     // sketch
-    if (sketching) sketch(e);
+    if (currGameObject !== -1) sketch(e);
     // get square position
     let [mouseX, mouseY] = mousePosition(e, canvas);
     let squareX = Math.floor(mouseX / squarePixels);
@@ -60,12 +60,12 @@ export default function GameEditor(props) {
 
   // called on mouse up
   function mouseUp(e) {
-    setSketching(false);
+    setCurrGameObject(-1);
   }
 
   // called on mouse leave
   function mouseLeave(e) {
-    setSketching(false);
+    setCurrGameObject(-1);
     setHoverIndex(-1);
   }
 
@@ -105,7 +105,7 @@ export default function GameEditor(props) {
       const pixelX = (squareX * squarePixels) - halfSpritePixels;
       const pixelY = (squareY * squarePixels) - halfSpritePixels;
       // fill border if sketching
-      if (sketching) {
+      if (currGameObject !== -1) {
         fillBorder(ctx, squarePixels, pixelX, pixelY, spritePixels, spritePixels);
       // fill hover if hovering
       } else {
@@ -117,7 +117,7 @@ export default function GameEditor(props) {
   // draw on data update
   useEffect(() => {
     draw();
-  }, [hoverIndex, colors, objects, gameObjects, sketching]);
+  }, [hoverIndex, colors, objects, gameObjects, currGameObject]);
 
   return (
     <canvas
