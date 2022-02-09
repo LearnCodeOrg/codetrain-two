@@ -80,15 +80,6 @@ export default function GameEditor(props) {
     // clear canvas
     ctx.fillStyle = '#fff';
     ctx.fillRect(0, 0, mapPixels, mapPixels);
-    // if hovering
-    if (hoverIndex !== -1) {
-      // draw hover
-      const squareX = hoverIndex % mapSquares;
-      const squareY = Math.floor(hoverIndex / mapSquares);
-      const pixelX = (squareX * squarePixels) - halfSpritePixels;
-      const pixelY = (squareY * squarePixels) - halfSpritePixels;
-      fillHover(ctx, squarePixels, pixelX, pixelY, spritePixels, spritePixels);
-    }
     // draw gameobjects
     for (const gameObject of gameObjects) {
       const object = objects[gameObject.object];
@@ -105,6 +96,15 @@ export default function GameEditor(props) {
           ctx.fillRect(pixelX + x * squarePixels, pixelY + y * squarePixels, squarePixels, squarePixels);
         }
       }
+    }
+    // if hovering
+    if (hoverIndex !== -1) {
+      // draw hover
+      const squareX = hoverIndex % mapSquares;
+      const squareY = Math.floor(hoverIndex / mapSquares);
+      const pixelX = (squareX * squarePixels) - halfSpritePixels;
+      const pixelY = (squareY * squarePixels) - halfSpritePixels;
+      fillHover(ctx, squarePixels, pixelX, pixelY, spritePixels, spritePixels);
     }
   }
 
