@@ -90,11 +90,21 @@ export default function GameEditor(props) {
       fillHover(ctx, squarePixels, pixelX, pixelY, spritePixels, spritePixels);
     }
     // draw gameobjects
-    ctx.fillStyle = '#000';
     for (const gameObject of gameObjects) {
+      const object = objects[gameObject.object];
       const pixelX = gameObject.x * squarePixels;
       const pixelY = gameObject.y * squarePixels;
-      ctx.fillRect(pixelX, pixelY, spritePixels, spritePixels);
+      // for each square
+      for (let x = 0; x < spriteSquares; x++) {
+        for (let y = 0; y < spriteSquares; y++) {
+          const squareIndex = y * spriteSquares + x;
+          const colorIndex = object[squareIndex];
+          if (colorIndex === -1) continue;
+          const color = colors[colorIndex];
+          ctx.fillStyle = color;
+          ctx.fillRect(pixelX + x * squarePixels, pixelY + y * squarePixels, squarePixels, squarePixels);
+        }
+      }
     }
   }
 
