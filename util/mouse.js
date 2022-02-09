@@ -1,8 +1,13 @@
 // returns mouse position rounded to given unit
 export function mousePosition(e, container) {
   // get mouse position
-  const mouseX = e.clientX - container.offsetLeft + window.scrollX;
-  const mouseY = e.clientY - container.offsetTop + window.scrollY;
+  let mouseX = e.clientX - container.offsetLeft + window.scrollX;
+  let mouseY = e.clientY - container.offsetTop + window.scrollY;
+  // clamp mouse position
+  if (mouseX < 0) mouseX = 0;
+  else if (mouseX > container.width - 1) mouseX = container.width - 1;
+  if (mouseY < 0) mouseY = 0;
+  else if (mouseY > container.height - 1) mouseY = container.height - 1;
   // return mouse position
   return [mouseX, mouseY];
 }
