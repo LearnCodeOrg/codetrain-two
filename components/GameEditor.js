@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { mouseIndex, mousePosition } from '../util/mouse';
-import { fillHover } from '../util/fill';
+import { fillBorder, fillHover } from '../util/fill';
 import { mapSprites, spriteSquares } from '../util/units';
 
 import styles from '../styles/components/GameEditor.module.css';
@@ -104,14 +104,20 @@ export default function GameEditor(props) {
       const squareY = Math.floor(hoverIndex / mapSquares);
       const pixelX = (squareX * squarePixels) - halfSpritePixels;
       const pixelY = (squareY * squarePixels) - halfSpritePixels;
-      fillHover(ctx, squarePixels, pixelX, pixelY, spritePixels, spritePixels);
+      // fill border if sketching
+      if (sketching) {
+        fillBorder(ctx, squarePixels, pixelX, pixelY, spritePixels, spritePixels);
+      // fill hover if hovering
+      } else {
+        fillHover(ctx, squarePixels, pixelX, pixelY, spritePixels, spritePixels);
+      }
     }
   }
 
   // draw on data update
   useEffect(() => {
     draw();
-  }, [hoverIndex, colors, objects, gameObjects]);
+  }, [hoverIndex, colors, objects, gameObjects, sketching]);
 
   return (
     <canvas
