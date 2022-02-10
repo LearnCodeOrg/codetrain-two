@@ -22,6 +22,21 @@ export default function GameEditor(props) {
 
   const canvasRef = useRef();
 
+  // return clamped square position
+  function getClampedPos(e) {
+    // get mouse position
+    const [mouseX, mouseY] = mousePosition(e, canvas);
+    let newX = Math.floor(mouseX / squarePixels) - halfSpriteSquares;
+    let newY = Math.floor(mouseY / squarePixels) - halfSpriteSquares;
+    // clamp mouse position
+    if (newX < 0) newX = 0;
+    else if (newX > mapSquares - spriteSquares) newX = mapSquares - spriteSquares;
+    if (newY < 0) newY = 0;
+    else if (newY > mapSquares - spriteSquares) newY = mapSquares - spriteSquares;
+    // return new position
+    return [newX, newY];
+  }
+
   // sketches canvas
   function sketch(e) {
     // get mouse position
