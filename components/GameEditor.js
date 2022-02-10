@@ -33,6 +33,19 @@ export default function GameEditor(props) {
     else if (newX > mapSquares - spriteSquares) newX = mapSquares - spriteSquares;
     if (newY < 0) newY = 0;
     else if (newY > mapSquares - spriteSquares) newY = mapSquares - spriteSquares;
+    // if gameobjects
+    if (gameObjects.length) {
+      // get clicked object
+      const clickedObject = gameObjects[gameObjects.length - 1];
+      const { x, y, ...obj } = clickedObject;
+      const newGameObjects = gameObjects.slice();
+      const heldIndex = gameObjects.indexOf(clickedObject);
+      // move clicked object
+      newGameObjects.splice(heldIndex, 1);
+      newGameObjects.push({ x: newX, y: newY, ...obj });
+      setGameObjects(newGameObjects);
+      return;
+    }
   }
 
   // called on mouse down
