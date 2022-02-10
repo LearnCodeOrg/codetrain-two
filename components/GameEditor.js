@@ -40,13 +40,8 @@ export default function GameEditor(props) {
     const [mouseX, mouseY] = mousePosition(e, canvas);
     let newX = Math.floor(mouseX / squarePixels) - halfSpriteSquares;
     let newY = Math.floor(mouseY / squarePixels) - halfSpriteSquares;
-    // clamp mouse position
-    if (newX < 0) newX = 0;
-    else if (newX > mapSquares - spriteSquares) newX = mapSquares - spriteSquares;
-    if (newY < 0) newY = 0;
-    else if (newY > mapSquares - spriteSquares) newY = mapSquares - spriteSquares;
-    // return new position
-    return [newX, newY];
+    // return clamped position
+    return clampXY(newX, newY, 0, mapSquares - spriteSquares);
   }
 
   // sketches canvas
@@ -112,12 +107,9 @@ export default function GameEditor(props) {
     let squareX = Math.floor(mouseX / squarePixels);
     let squareY = Math.floor(mouseY / squarePixels);
     // clamp square position
-    if (squareX < halfSpriteSquares) squareX = halfSpriteSquares;
-    else if (squareX > mapSquares - halfSpriteSquares) squareX = mapSquares - halfSpriteSquares;
-    if (squareY < halfSpriteSquares) squareY = halfSpriteSquares;
-    else if (squareY > mapSquares - halfSpriteSquares) squareY = mapSquares - halfSpriteSquares;
+    let [clampedSquareX, clampedSquareY] = clampXY(squareX, squareY, halfSpriteSquares, mapSquares - halfSpriteSquares);
     // calculate square index
-    const squareIndex = squareY * mapSquares + squareX;
+    const squareIndex = clampedSquareY * mapSquares + clampedSquareX;
     // set hover index
     setHoverIndex(squareIndex);
   }
