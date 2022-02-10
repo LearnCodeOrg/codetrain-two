@@ -39,15 +39,8 @@ export default function GameEditor(props) {
 
   // sketches canvas
   function sketch(e) {
-    // get mouse position
-    const [mouseX, mouseY] = mousePosition(e, canvas);
-    let newX = Math.floor(mouseX / squarePixels) - halfSpriteSquares;
-    let newY = Math.floor(mouseY / squarePixels) - halfSpriteSquares;
-    // clamp mouse position
-    if (newX < 0) newX = 0;
-    else if (newX > mapSquares - spriteSquares) newX = mapSquares - spriteSquares;
-    if (newY < 0) newY = 0;
-    else if (newY > mapSquares - spriteSquares) newY = mapSquares - spriteSquares;
+    // get clamped position
+    const [newX, newY] = getClampedPos(e);
     // if gameobjects
     if (gameObjects.length) {
       // get clicked object
@@ -67,15 +60,8 @@ export default function GameEditor(props) {
   function mouseDown(e) {
     // start sketching
     setSketching(true);
-    // get mouse position
-    const [mouseX, mouseY] = mousePosition(e, canvas);
-    let newX = Math.floor(mouseX / squarePixels) - halfSpriteSquares;
-    let newY = Math.floor(mouseY / squarePixels) - halfSpriteSquares;
-    // clamp mouse position
-    if (newX < 0) newX = 0;
-    else if (newX > mapSquares - spriteSquares) newX = mapSquares - spriteSquares;
-    if (newY < 0) newY = 0;
-    else if (newY > mapSquares - spriteSquares) newY = mapSquares - spriteSquares;
+    // get clamped position
+    const [newX, newY] = getClampedPos(e);
     // get mouse position
     const squareX = hoverIndex % mapSquares - halfSpriteSquares;
     const squareY = Math.floor(hoverIndex / mapSquares) - halfSpriteSquares;
