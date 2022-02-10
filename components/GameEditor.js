@@ -22,6 +22,18 @@ export default function GameEditor(props) {
 
   const canvasRef = useRef();
 
+  // clamps given val between min and max
+  function clamp(val, min, max) {
+    return val < min ? min : val > max ? max : val;
+  }
+
+  // clamps given x and y values between min and max
+  function clampXY(x, y, min, max) {
+    const newX = clamp(x, min, max);
+    const newY = clamp(y, min, max);
+    return [newX, newY];
+  }
+
   // return clamped square position
   function getClampedPos(e) {
     // get mouse position
