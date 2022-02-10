@@ -16,7 +16,7 @@ export default function GameEditor(props) {
   const halfSpriteSquares = Math.round(spriteSquares / 2);
   const mapSquares = Math.round(mapPixels / squarePixels);
 
-  const [currGameObject, setCurrGameObject] = useState(-1);
+  const [sketching, setSketching] = useState(false);
   const [hoverIndex, setHoverIndex] = useState(-1);
   const [gameObjects, setGameObjects] = useState([]);
 
@@ -35,14 +35,13 @@ export default function GameEditor(props) {
     const squareY = Math.floor(hoverIndex / mapSquares) - halfSpriteSquares;
     // append new gameobject
     const newGameObject = { x: squareX, y: squareY, object: currObject };
-    setCurrGameObject(gameObjects.length);
     setGameObjects(val => [...val, newGameObject]);
   }
 
   // called on mouse move
   function mouseMove(e) {
     // sketch
-    if (currGameObject !== -1) sketch(e);
+    if (sketching) sketch(e);
     // get square position
     let [mouseX, mouseY] = mousePosition(e, canvas);
     let squareX = Math.floor(mouseX / squarePixels);
@@ -60,12 +59,12 @@ export default function GameEditor(props) {
 
   // called on mouse up
   function mouseUp(e) {
-    setCurrGameObject(-1);
+    setSketching(false);
   }
 
   // called on mouse leave
   function mouseLeave(e) {
-    setCurrGameObject(-1);
+    setSketching(false);
     setHoverIndex(-1);
   }
 
@@ -105,7 +104,7 @@ export default function GameEditor(props) {
       const pixelX = (squareX * squarePixels) - halfSpritePixels;
       const pixelY = (squareY * squarePixels) - halfSpritePixels;
       // fill border if sketching
-      if (currGameObject !== -1) {
+      if (sketching) {
         fillBorder(ctx, squarePixels, pixelX, pixelY, spritePixels, spritePixels);
       // fill hover if hovering
       } else {
@@ -117,7 +116,7 @@ export default function GameEditor(props) {
   // draw on data update
   useEffect(() => {
     draw();
-  }, [hoverIndex, colors, objects, gameObjects, currGameObject]);
+  }, [hoverIndex, colors, objects, gameObjects, sketching]);
 
   return (
     <canvas
