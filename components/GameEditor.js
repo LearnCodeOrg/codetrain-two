@@ -62,6 +62,14 @@ export default function GameEditor(props) {
     setSketching(true);
     // get clamped position
     const [newX, newY] = getClampedPos(e);
+    // get clicked objects
+    const [mouseX, mouseY] = mousePosition(e, canvas);
+    const clicked = gameObjects.filter(obj => (
+      obj.x * squarePixels >= mouseX - spritePixels &&
+      obj.x * squarePixels <= mouseX &&
+      obj.y * squarePixels >= mouseY - spritePixels &&
+      obj.y * squarePixels <= mouseY
+    )).reverse();
     // get mouse position
     const squareX = hoverIndex % mapSquares - halfSpriteSquares;
     const squareY = Math.floor(hoverIndex / mapSquares) - halfSpriteSquares;
