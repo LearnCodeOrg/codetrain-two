@@ -70,6 +70,19 @@ export default function GameEditor(props) {
       obj.y * squarePixels >= mouseY - spritePixels &&
       obj.y * squarePixels <= mouseY
     )).reverse();
+    // if clicked object
+    if (clicked.length) {
+      // get clicked object
+      const clickedObject = clicked[0];
+      const { x, y, ...obj } = clickedObject;
+      const newGameObjects = gameObjects.slice();
+      const heldIndex = gameObjects.indexOf(clickedObject);
+      // move clicked object
+      newGameObjects.splice(heldIndex, 1);
+      newGameObjects.push({ x: newX, y: newY, ...obj });
+      setGameObjects(newGameObjects);
+      return;
+    }
     // get mouse position
     const squareX = hoverIndex % mapSquares - halfSpriteSquares;
     const squareY = Math.floor(hoverIndex / mapSquares) - halfSpriteSquares;
