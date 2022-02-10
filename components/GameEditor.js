@@ -80,7 +80,8 @@ export default function GameEditor(props) {
     ctx.fillStyle = '#fff';
     ctx.fillRect(0, 0, mapPixels, mapPixels);
     // draw gameobjects
-    for (const gameObject of gameObjects) {
+    for (let i = 0; i < gameObjects.length; i++) {
+      const gameObject = gameObjects[i];
       const object = objects[gameObject.object];
       const pixelX = gameObject.x * squarePixels;
       const pixelY = gameObject.y * squarePixels;
@@ -94,6 +95,10 @@ export default function GameEditor(props) {
           ctx.fillStyle = color;
           ctx.fillRect(pixelX + x * squarePixels, pixelY + y * squarePixels, squarePixels, squarePixels);
         }
+      }
+      // fill hover if last object
+      if (i === gameObjects.length - 1) {
+        fillHover(ctx, squarePixels, pixelX, pixelY, spritePixels, spritePixels);
       }
     }
     // if hovering
