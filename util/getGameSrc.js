@@ -27,14 +27,10 @@ export default function getGameSrc(props) {
     const $$ = {
       ctx: __canvas__.getContext('2d'),
       codes: ${JSON.stringify(codes)},
+      gameObjects: ${JSON.stringify(gameObjects)},
       onError: ${onError},
       getCodeFunction: (gameObject, index) => {
-        return (
-          (function() {
-            eval($$.codes[gameObject.objectIndex]);
-            return eval(\`new GameObject\${gameObject.objectIndex}\`);
-          })()
-        );
+        return eval($$.codes[gameObject.object]);
       },
       throwError: e => {
         $$.onError(e);
