@@ -50,6 +50,17 @@ export default function getGameSrc(props) {
         // for each squaree
         for (let x = 0; x < $$.spriteSquares; x++) {
           for (let y = 0; y < $$.spriteSquares; y++) {
+            // set fill color
+            const squareIndex = y * $$.spriteSquares + x;
+            const colorIndex = object[squareIndex];
+            if (colorIndex === -1) continue;
+            const color = $$.colors[colorIndex];
+            $$.ctx.fillStyle = color;
+            // get pixel position
+            let pixelX = (squareX * $$.squarePixels) + (x * $$.squarePixels);
+            let pixelY = (squareY * $$.squarePixels) + (y * $$.squarePixels);
+            // fill square
+            $$.ctx.fillRect(pixelX, pixelY, $$.squarePixels, $$.squarePixels);
           }
         }
       }
