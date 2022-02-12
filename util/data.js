@@ -8,14 +8,14 @@ export const defaultColors = [
 ];
 
 const defaultObject = [
-  -1, -1, -1, -1, -1, -1, -1, -1,
-  -1, -1, -1, -1, -1, -1, -1, -1,
-  -1, -1, 3, 3, 3, 3, -1, -1,
-  -1, -1, 3, 3, 3, 3, -1, -1,
-  -1, -1, 3, 3, 3, 3, -1, -1,
-  -1, -1, 3, 3, 3, 3, -1, -1,
-  -1, -1, -1, -1, -1, -1, -1, -1,
-  -1, -1, -1, -1, -1, -1, -1, -1
+  0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 3, 3, 3, 3, 0, 0,
+  0, 0, 3, 3, 3, 3, 0, 0,
+  0, 0, 3, 3, 3, 3, 0, 0,
+  0, 0, 3, 3, 3, 3, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0
 ];
 
 export const defaultObjects = Array(objectCount).fill(0).map((val, i) =>
@@ -25,10 +25,6 @@ export const defaultObjects = Array(objectCount).fill(0).map((val, i) =>
 export const defaultCodes = Array(objectCount).fill(0).map((val, i) => (
 `// GameObject${i}
 class GameObject${i} extends GameObject {
-  constructor() {
-    // runs when object constructed
-    super();
-  }
   start() {
     // runs after all objects constructed
   }
@@ -37,6 +33,6 @@ class GameObject${i} extends GameObject {
   }
 }
 
-return new GameObject${i}();
+return GameObject${i};
 `
 ));
