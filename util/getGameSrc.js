@@ -37,6 +37,16 @@ export default function getGameSrc(props) {
       }
     };
     function __start__() {
+      // draws canvas
+      function draw() {
+        // for each object
+        for (const gameObject of $$.gameObjects) {
+          // draw object
+          const { x, y } = gameObject;
+          const object = $$.objects[gameObject.object];
+          drawObject(object, x, y);
+        }
+      }
       function gameLoop(time) {
         try {
           $$.spriteCodes.forEach(code => code.update());
