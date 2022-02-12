@@ -38,7 +38,7 @@ export default function getGameSrc(props) {
       gameObjects: ${JSON.stringify(gameObjects)},
       onError: ${onError},
       getCodeFunction: (gameObject, index) => {
-        return eval($$.codes[gameObject.object]);
+        return new (new Function($$.codes[gameObject.object])())();
       },
       throwError: e => {
         $$.onError(e);
@@ -74,7 +74,9 @@ export default function getGameSrc(props) {
           drawObject(object, x, y);
         }
       }
+      // runs game loop
       function gameLoop(time) {
+        // run update
         try {
           $$.spriteCodes.forEach(code => code.update());
         } catch (e) {
@@ -82,13 +84,17 @@ export default function getGameSrc(props) {
         }
         // draw canvas
         draw();
+        // loop
         requestAnimationFrame(gameLoop);
       }
       try {
+        // construct code functions
         $$.spriteCodes = $$.gameObjects.map((gameObject, index) =>
           $$.getCodeFunction(gameObject, index)
         );
+        // run start
         $$.spriteCodes.forEach(code => code.start());
+        // loop
         requestAnimationFrame(gameLoop);
       } catch (e) {
         $$.throwError(e);

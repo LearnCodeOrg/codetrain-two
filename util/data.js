@@ -24,7 +24,7 @@ export const defaultObjects = Array(objectCount).fill(0).map((val, i) =>
 
 export const defaultCodes = Array(objectCount).fill(0).map((val, i) => (
 `// GameObject${i}
-class GameObject${i} extends GameObject {
+return class GameObject${i} extends GameObject {
   start() {
     // runs after all objects constructed
   }
@@ -32,7 +32,5 @@ class GameObject${i} extends GameObject {
     // runs once every frame
   }
 }
-
-return GameObject${i};
 `
 ));
