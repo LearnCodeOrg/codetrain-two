@@ -1,7 +1,11 @@
+import { mapSprites, spriteSquares } from './units';
+
 const mapPixels = 256;
+const spritePixels = Math.round(mapPixels / mapSprites);
+const squarePixels = Math.round(spritePixels / spriteSquares);
 
 export default function getGameSrc(props) {
-  const { codes, gameObjects, onError } = props;
+  const { colors, codes, objects, gameObjects, onError } = props;
 
   return (
 `<html>
@@ -26,7 +30,11 @@ export default function getGameSrc(props) {
     }
     const $$ = {
       ctx: __canvas__.getContext('2d'),
+      spriteSquares: ${spriteSquares},
+      squarePixels: ${squarePixels},
+      colors: ${JSON.stringify(colors)},
       codes: ${JSON.stringify(codes)},
+      objects: ${JSON.stringify(objects)},
       gameObjects: ${JSON.stringify(gameObjects)},
       onError: ${onError},
       getCodeFunction: (gameObject, index) => {
