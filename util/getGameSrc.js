@@ -45,6 +45,14 @@ export default function getGameSrc(props) {
       }
     };
     function __start__() {
+      // draws given object at given position
+      function drawObject(object, squareX, squareY) {
+        // for each squaree
+        for (let x = 0; x < $$.spriteSquares; x++) {
+          for (let y = 0; y < $$.spriteSquares; y++) {
+          }
+        }
+      }
       // draws canvas
       function draw() {
         // for each object
@@ -61,6 +69,8 @@ export default function getGameSrc(props) {
         } catch (e) {
           $$.throwError(e);
         }
+        // draw canvas
+        draw();
         requestAnimationFrame(gameLoop);
       }
       try {
