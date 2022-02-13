@@ -8,7 +8,10 @@ import styles from '../styles/components/GameEditor.module.css';
 let canvas, ctx;
 
 export default function GameEditor(props) {
-  const { mapPixels, colors, objects, currObject } = props;
+  const {
+    mapPixels, colors, objects, currObject,
+    gameObjects, setGameObjects
+  } = props;
 
   const spritePixels = Math.round(mapPixels / mapSprites);
   const halfSpritePixels = Math.round(spritePixels / 2);
@@ -18,7 +21,6 @@ export default function GameEditor(props) {
 
   const [sketching, setSketching] = useState(false);
   const [hoverIndex, setHoverIndex] = useState(-1);
-  const [gameObjects, setGameObjects] = useState([]);
 
   const canvasRef = useRef();
 

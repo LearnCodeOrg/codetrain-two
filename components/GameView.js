@@ -13,6 +13,7 @@ export default function GameView(props) {
 
   const [playing, setPlaying] = useState(false);
   const [refresh, setRefresh] = useState(false);
+  const [gameObjects, setGameObjects] = useState([]);
 
   return (
     <div className={styles.container}>
@@ -23,6 +24,7 @@ export default function GameView(props) {
           refresh={refresh}
           setRefresh={setRefresh}
           mapPixels={mapPixels}
+          gameObjects={gameObjects}
           {...props}
         /> :
         <GameEditor
@@ -30,6 +32,8 @@ export default function GameView(props) {
           colors={colors}
           objects={objects}
           currObject={currObject}
+          gameObjects={gameObjects}
+          setGameObjects={setGameObjects}
         />
       }
       <div className={styles.toolbar}>
