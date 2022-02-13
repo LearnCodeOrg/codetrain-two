@@ -38,7 +38,7 @@ export default function getGameSrc(props) {
       gameObjects: ${JSON.stringify(gameObjects)},
       onError: ${onError},
       getCodeFunction: (gameObject, index) => {
-        return new (new Function($$.codes[gameObject.object])())();
+        return new (new Function($$.codes[gameObject.object])())(index);
       },
       throwError: e => {
         $$.onError(e);
