@@ -37,6 +37,7 @@ export default function getGameSrc(props) {
       objects: ${JSON.stringify(objects)},
       gameObjects: ${JSON.stringify(gameObjects)},
       onError: ${onError},
+      pressedKeys: {},
       getCodeFunction: (gameObject, index) => {
         return new (new Function($$.codes[gameObject.object])())(index);
       },
@@ -44,6 +45,16 @@ export default function getGameSrc(props) {
         $$.onError(e);
       }
     };
+    // listen for key down
+    window.addEventListener('keydown', e => {
+      const keyName = e.key.toLowerCase();
+      $$.pressedKeys[keyName] = true;
+    });
+    // listen for key up
+    window.addEventListener('keyup', e => {
+      const keyName = e.key.toLowerCase();
+      $$.pressedKeys[keyName] = false;
+    });
     function __start__() {
       // draws given object at given position
       function drawObject(object, squareX, squareY) {
