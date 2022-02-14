@@ -15,6 +15,15 @@ export default function GameView(props) {
   const [refresh, setRefresh] = useState(false);
   const [gameObjects, setGameObjects] = useState([]);
 
+  // deletes current gameobject
+  function deleteGameObject() {
+    // confirm delete
+    if (!window.confirm('Delete object?')) return;
+    // delete current object
+    const newGameObjects = gameObjects.slice(0, -1);
+    setGameObjects(newGameObjects);
+  }
+
   return (
     <div className={styles.container}>
       {
@@ -43,11 +52,17 @@ export default function GameView(props) {
           down={playing}
         />
         {
+          (!playing && !!gameObjects.length) &&
+          <IconButton
+            onClick={deleteGameObject}
+            icon="clear"
+          />
+        }
+        {
           playing &&
           <IconButton
             onClick={() => setRefresh(true)}
             icon="replay"
-            auto
           />
         }
       </div>
