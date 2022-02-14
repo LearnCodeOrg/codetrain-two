@@ -66,6 +66,16 @@ export default function getGameSrc(props) {
       const keyName = key.toLowerCase();
       return $$.pressedKeys[keyName];
     }
+    // returns whether given key pressed
+    function isKey(key) {
+      // handle invalid key
+      if (typeof key !== 'string' || !key.length) {
+        throw new TypeError(\`Invalid key \${key}\`);
+      }
+      // handle key name
+      const keyName = key.toLowerCase();
+      return $$.pressedKeys[keyName] && !$$.lastPressedKeys[keyName];
+    }
     function __start__() {
       // draws given object at given position
       function drawObject(object, squareX, squareY) {
