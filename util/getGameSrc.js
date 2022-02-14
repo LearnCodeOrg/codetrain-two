@@ -56,6 +56,16 @@ export default function getGameSrc(props) {
       const keyName = e.key.toLowerCase();
       $$.pressedKeys[keyName] = false;
     });
+    // returns whether given key down
+    function isKeyDown(key) {
+      // handle invalid key
+      if (typeof key !== 'string' || !key.length) {
+        throw new TypeError(\`Invalid key \${key}\`);
+      }
+      // handle key name
+      const keyName = key.toLowerCase();
+      return $$.pressedKeys[keyName];
+    }
     function __start__() {
       // draws given object at given position
       function drawObject(object, squareX, squareY) {
