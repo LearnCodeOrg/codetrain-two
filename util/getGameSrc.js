@@ -37,6 +37,7 @@ export default function getGameSrc(props) {
       objects: ${JSON.stringify(objects)},
       gameObjects: ${JSON.stringify(gameObjects)},
       onError: ${onError},
+      lastPressedKeys: {},
       pressedKeys: {},
       getCodeFunction: (gameObject, index) => {
         return new (new Function($$.codes[gameObject.object])())(index);
@@ -95,7 +96,9 @@ export default function getGameSrc(props) {
         }
         // draw canvas
         draw();
-        // loop
+        // update keys
+        $$.lastPressedKeys = Object.assign({}, $$.pressedKeys);
+        // continue loop
         requestAnimationFrame(gameLoop);
       }
       try {
@@ -105,7 +108,7 @@ export default function getGameSrc(props) {
         );
         // run start
         $$.spriteCodes.forEach(code => code.start());
-        // loop
+        // start loop
         requestAnimationFrame(gameLoop);
       } catch (e) {
         $$.throwError(e);
