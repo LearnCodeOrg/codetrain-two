@@ -120,13 +120,6 @@ export default function getGameSrc(props) {
         // continue loop
         requestAnimationFrame(gameLoop);
       }
-        // run start
-        $$.spriteCodes.forEach(code => code.start());
-        // start loop
-        requestAnimationFrame(gameLoop);
-      } catch (e) {
-        $$.throwError(e);
-      }
       // construct code functions
       $$.spriteCodes = $$.gameObjects.map((gameObject, i) => {
         try {
@@ -135,6 +128,16 @@ export default function getGameSrc(props) {
           $$.onError(e, i);
         }
       });
+      // run start functions
+      $$.spriteCodes.forEach((code, i) => {
+        try {
+          code.start();
+        } catch(e) {
+          $$.onError(e, i);
+        }
+      });
+      // start loop
+      requestAnimationFrame(gameLoop);
     }
   </script>
 </html>
