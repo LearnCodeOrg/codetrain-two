@@ -41,9 +41,6 @@ export default function getGameSrc(props) {
       pressedKeys: {},
       getCodeFunction: (gameObject, index) => {
         return new (new Function($$.codes[gameObject.object])())(index);
-      },
-      throwError: e => {
-        $$.onError(e);
       }
     };
     // listen for key down
@@ -109,11 +106,13 @@ export default function getGameSrc(props) {
       // runs game loop
       function gameLoop(time) {
         // run update
-        try {
-          $$.spriteCodes.forEach(code => code.update());
-        } catch (e) {
-          $$.throwError(e);
-        }
+        $$.spriteCodes.forEach((code, i) => {
+          try {
+            code.update();
+          } catch (e) {
+            $$.onError(e, i);
+          }
+        });
         // draw canvas
         draw();
         // update keys
