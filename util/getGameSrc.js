@@ -37,6 +37,7 @@ export default function getGameSrc(props) {
       objects: ${JSON.stringify(objects)},
       gameObjects: ${JSON.stringify(gameObjects)},
       onError: ${onError},
+      objectCodes: [],
       lastPressedKeys: {},
       pressedKeys: {},
       getCodeFunction: (gameObject, index) => {
@@ -76,7 +77,7 @@ export default function getGameSrc(props) {
     function __start__() {
       // draws given object at given position
       function drawObject(object, squareX, squareY) {
-        // for each squaree
+        // for each square
         for (let x = 0; x < $$.spriteSquares; x++) {
           for (let y = 0; y < $$.spriteSquares; y++) {
             // set fill color
@@ -106,13 +107,15 @@ export default function getGameSrc(props) {
       // runs game loop
       function gameLoop(time) {
         // run update
-        $$.spriteCodes.forEach((code, i) => {
+        for (let i = 0; i < $$.objectCodes.length; i++) {
+          const code = $$.objectCodes[i];
           try {
             code.update();
           } catch (e) {
             $$.onError(e, i);
+            return;
           }
-        });
+        }
         // draw canvas
         draw();
         // update keys
@@ -121,21 +124,26 @@ export default function getGameSrc(props) {
         requestAnimationFrame(gameLoop);
       }
       // construct code functions
-      $$.spriteCodes = $$.gameObjects.map((gameObject, i) => {
+      for (let i = 0; i < $$.gameObjects.length; i++) {
+        const gameObject = $$.gameObjects[i];
         try {
-          return $$.getCodeFunction(gameObject, i);
+          const code = $$.getCodeFunction(gameObject, i);
+          $$.objectCodes.push(code);
         } catch(e) {
           $$.onError(e, i);
+          return;
         }
-      });
+      }
       // run start functions
-      $$.spriteCodes.forEach((code, i) => {
+      for (let i = 0; i < $$.objectCodes.length; i++) {
+        const code = $$.objectCodes[i];
         try {
           code.start();
         } catch(e) {
           $$.onError(e, i);
+          return;
         }
-      });
+      }
       // start loop
       requestAnimationFrame(gameLoop);
     }
