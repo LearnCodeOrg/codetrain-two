@@ -83,9 +83,22 @@ export default function getGameSrc(props) {
         // create error text
         const p = document.createElement('p');
         p.className = 'error';
-        p.innerText = \`Object \${i} (line \${lineNumber} col \${colNumber}):\\n\${error.stack.split("\\n")[0]}\\n\`;
-        document.body.appendChild(p);
-        window.parent.onError(error, i, lineNumber, colNumber);
+        // if error position found
+        if (errorPosition) {
+          // get error row and col
+          const errorRow = parseInt(errorPosition[0]) - 2;
+          const errorCol = parseInt(errorPosition[1]);
+          // append canvas text
+          p.innerText = \`Object \${i} (line \${errorRow} col \${errorCol}):\\n\${error.stack.split("\\n")[0]}\\n\`;
+          document.body.appendChild(p);
+          window.parent.onError(error, i, errorRow, errorCol);
+        // if no error position found
+        } else {
+          // append canvas text
+          p.innerText = \`Object \${i}:\\n\${error.stack.split("\\n")[0]}\\n\`;
+          document.body.appendChild(p);
+          window.parent.onError(error, i);
+        }
       },
       lastPressedKeys: {},
       pressedKeys: {},
