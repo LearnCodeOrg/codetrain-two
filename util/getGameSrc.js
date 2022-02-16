@@ -33,6 +33,14 @@ export default function getGameSrc(props) {
         else if (dir === 'left') $$.gameObjects[this.index].x -= $$.spriteSquares;
         else if (dir === 'right') $$.gameObjects[this.index].x += $$.spriteSquares;
       }
+      moveTiles(x, y) {
+        $$.gameObjects[this.index].x += x * $$.spriteSquares;
+        $$.gameObjects[this.index].y += y * $$.spriteSquares;
+      }
+      movePixels(x, y) {
+        $$.gameObjects[this.index].x += x;
+        $$.gameObjects[this.index].y += y;
+      }
     }
     const $$ = {
       ctx: __canvas__.getContext('2d'),
