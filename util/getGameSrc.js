@@ -66,12 +66,18 @@ export default function getGameSrc(props) {
       objectCodes: [],
       sounds: {},
       onError: (error, i) => {
-        // get error line and column
-        const errorLine = error.stack.split('\\n')[1];
-        const anonymousIndex = errorLine.indexOf('<anonymous>') + 11;
-        const position = errorLine.slice(anonymousIndex + 1, -1).split(':');
-        const lineNumber = parseInt(position[0]) - 2;
-        const colNumber = parseInt(position[1]);
+        // search for error position in stack
+        const errorLines = error.stack.split('\\n').slice(1);
+        let errorPosition;
+        // for each error line
+        for (const errorLine of errorLines) {
+          // get anonymous index and skip if none
+          const anonymousIndex = errorLine.indexOf('<anonymous>:');
+          if (anonymousIndex === -1) continue;
+          // get error position and break
+          errorPosition = errorLine.slice(anonymousIndex + 12, -1).split(':');
+          break;
+        }
         // clear canvas
         $$.ctx.clearRect(0, 0, $$.mapPixels, $$.mapPixels);
         // create error text
