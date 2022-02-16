@@ -64,6 +64,7 @@ export default function getGameSrc(props) {
       objects: ${JSON.stringify(objects)},
       gameObjects: ${JSON.stringify(gameObjects)},
       objectCodes: [],
+      sounds: {},
       onError: (error, i) => {
         // get error line and column
         const errorLine = error.stack.split('\\n')[1];
@@ -119,6 +120,18 @@ export default function getGameSrc(props) {
     // get object by index
     function getObject(index) {
       return $$.objectCodes[index];
+    }
+    // adds sound to index
+    function addSound(name, url) {
+      const audio = document.createElement('audio');
+      audio.src = url;
+      $$.sounds[name] = audio;
+    }
+    // plays sound from index
+    function playSound(name) {
+      const sound = $$.sounds[name];
+      if (!sound) throw new ReferenceError(\`\${name} is not a sound\`);
+      else sound.play();
     }
     function __start__() {
       // draws given object at given position
