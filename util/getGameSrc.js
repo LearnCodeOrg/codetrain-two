@@ -27,6 +27,12 @@ export default function getGameSrc(props) {
     class GameObject {
       start() {}
       update() {}
+      move(dir) {
+        if (dir === 'up') $$.gameObjects[this.index].y -= $$.spriteSquares;
+        else if (dir === 'down') $$.gameObjects[this.index].y += $$.spriteSquares;
+        else if (dir === 'left') $$.gameObjects[this.index].x -= $$.spriteSquares;
+        else if (dir === 'right') $$.gameObjects[this.index].x += $$.spriteSquares;
+      }
     }
     const $$ = {
       ctx: __canvas__.getContext('2d'),
