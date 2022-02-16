@@ -19,6 +19,18 @@ export default function CodeEditor(props) {
       }}
       width="500px"
       height="500px"
+      markers={
+        (props.marker && props.marker.object === props.currObject) ?
+        [{
+          startRow: props.marker.row - 1,
+          startCol: props.marker.col - 1,
+          endRow: props.marker.row,
+          endCol: 0,
+          className: 'errormarker',
+          type: 'text'
+        }] :
+        []
+      }
       {...props}
     />
   );
