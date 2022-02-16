@@ -26,8 +26,8 @@ export default function Engine() {
 
   // updates code with given value
   function updateCode(val) {
-    // clear marker
-    setMarker(undefined);
+    // clear marker if current object
+    if (marker && marker.object === currObject) setMarker(undefined);
     // update codes
     const newCodes = codes.slice();
     newCodes[currObject] = val;
@@ -35,9 +35,16 @@ export default function Engine() {
   }
 
   // called when game editor throws error
-  function onError(e) {
-    console.log(e);
+  function onError(e, i, row, col) {
+    setCurrObject(i);
+    // set marker if row and col
+    if (row && col) setMarker({ row, col, object: i });
   }
+
+  // set error function as global
+  useEffect(() => {
+    window.onError = onError;
+  }, []);
 
   return (
     <div className={styles.container}>
