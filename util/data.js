@@ -26,8 +26,7 @@ export const defaultCodes = Array(objectCount).fill(0).map((val, i) => (
 `// GameObject${i}
 return class GameObject${i} extends GameObject {
   constructor(index) {
-    super();
-    this.index = index;
+    super(index);
     // runs before objects constructed
   }
   start() {
@@ -35,6 +34,10 @@ return class GameObject${i} extends GameObject {
   }
   update() {
     // runs once every frame
+    if (isKey('w')) this.move('up');
+    if (isKey('a')) this.move('left');
+    if (isKey('s')) this.move('down');
+    if (isKey('d')) this.move('right');
   }
 }
 `

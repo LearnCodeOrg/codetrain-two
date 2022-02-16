@@ -25,6 +25,9 @@ export default function getGameSrc(props) {
   </style>
   <script>
     class GameObject {
+      constructor(index) {
+        this.index = index;
+      }
       start() {}
       update() {}
       move(dir) {
