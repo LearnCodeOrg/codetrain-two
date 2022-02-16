@@ -56,6 +56,7 @@ export default function getGameSrc(props) {
     }
     const $$ = {
       ctx: __canvas__.getContext('2d'),
+      mapPixels: ${mapPixels},
       spriteSquares: ${spriteSquares},
       squarePixels: ${squarePixels},
       colors: ${JSON.stringify(colors)},
@@ -70,11 +71,14 @@ export default function getGameSrc(props) {
         const position = errorLine.slice(anonymousIndex + 1, -1).split(':');
         const lineNumber = parseInt(position[0]) - 2;
         const colNumber = parseInt(position[1]);
+        // clear canvas
+        $$.ctx.clearRect(0, 0, $$.mapPixels, $$.mapPixels);
         // create error text
         const p = document.createElement('p');
         p.className = 'error';
         p.innerText = \`Object \${i} (line \${lineNumber} col \${colNumber}):\\n\${error.stack.split("\\n")[0]}\\n\`;
         document.body.appendChild(p);
+        window.parent.onError(error, i, lineNumber, colNumber);
       },
       lastPressedKeys: {},
       pressedKeys: {},
@@ -112,6 +116,10 @@ export default function getGameSrc(props) {
       const keyName = key.toLowerCase();
       return $$.pressedKeys[keyName] && !$$.lastPressedKeys[keyName];
     }
+    // get object by index
+    function getObject(index) {
+      return $$.objectCodes[index];
+    }
     function __start__() {
       // draws given object at given position
       function drawObject(object, squareX, squareY) {
@@ -134,6 +142,8 @@ export default function getGameSrc(props) {
       }
       // draws canvas
       function draw() {
+        // clear canvas
+        $$.ctx.clearRect(0, 0, $$.mapPixels, $$.mapPixels);
         // for each object
         for (const gameObject of $$.gameObjects) {
           // draw object
