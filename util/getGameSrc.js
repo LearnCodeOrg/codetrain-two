@@ -22,6 +22,15 @@ export default function getGameSrc(props) {
       overflow: hidden;
       background: #fff;
     }
+    .error {
+      margin: 10px;
+      position: absolute;
+      top: 0;
+      color: red;
+      font-size: 12px;
+      font-family:
+        'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+    }
   </style>
   <script>
     class GameObject {
@@ -53,8 +62,14 @@ export default function getGameSrc(props) {
       codes: ${JSON.stringify(codes)},
       objects: ${JSON.stringify(objects)},
       gameObjects: ${JSON.stringify(gameObjects)},
-      onError: ${onError},
       objectCodes: [],
+      onError: (error, i) => {
+        // create error text
+        const p = document.createElement('p');
+        p.className = 'error';
+        p.innerText = error.stack;
+        document.body.appendChild(p);
+      },
       lastPressedKeys: {},
       pressedKeys: {},
       getCodeFunction: (gameObject, index) => {
