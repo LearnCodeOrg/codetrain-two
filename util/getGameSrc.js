@@ -64,10 +64,16 @@ export default function getGameSrc(props) {
       gameObjects: ${JSON.stringify(gameObjects)},
       objectCodes: [],
       onError: (error, i) => {
+        // get error line and column
+        const errorLine = error.stack.split('\\n')[1];
+        const anonymousIndex = errorLine.indexOf('<anonymous>') + 11;
+        const position = errorLine.slice(anonymousIndex + 1, -1).split(':');
+        const lineNumber = parseInt(position[0]) - 2;
+        const colNumber = parseInt(position[1]);
         // create error text
         const p = document.createElement('p');
         p.className = 'error';
-        p.innerText = error.stack;
+        p.innerText = \`Object \${i} (line \${lineNumber} col \${colNumber}):\\n\${error.stack.split("\\n")[0]}\\n\`;
         document.body.appendChild(p);
       },
       lastPressedKeys: {},
