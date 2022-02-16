@@ -112,7 +112,9 @@ export default function getGameSrc(props) {
           try {
             code.update();
           } catch (e) {
-            $$.onError(e, i);
+            // throw error with object
+            const object = $$.gameObjects[i].object;
+            $$.onError(e, object);
             return;
           }
         }
@@ -130,7 +132,9 @@ export default function getGameSrc(props) {
           const code = $$.getCodeFunction(gameObject, i);
           $$.objectCodes.push(code);
         } catch(e) {
-          $$.onError(e, i);
+          // throw error with object
+          const object = gameObject.object;
+          $$.onError(e, object);
           return;
         }
       }
@@ -140,7 +144,9 @@ export default function getGameSrc(props) {
         try {
           code.start();
         } catch(e) {
-          $$.onError(e, i);
+          // throw error with object
+          const object = $$.gameObjects[i].object;
+          $$.onError(e, object);
           return;
         }
       }
