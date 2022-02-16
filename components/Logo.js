@@ -12,7 +12,8 @@ export default function Logo() {
     <img
       className={styles.img}
       src={src}
-      onMouseEnter={() => setSrc(logoalt)}
+      onMouseDown={() => setSrc(logoalt)}
+      onMouseUp={() => setSrc(logo)}
       onMouseLeave={() => setSrc(logo)}
       width="48"
       height="24"

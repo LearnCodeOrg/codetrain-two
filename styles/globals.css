@@ -24,6 +24,7 @@ button {
 .errormarker {
    position: absolute;
    background-color: #ff0000;
+   z-index: 10;
 }
 
 .textbutton {
