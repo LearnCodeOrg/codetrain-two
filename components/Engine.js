@@ -4,7 +4,7 @@ import Colors from '../components/Colors';
 import GameView from '../components/GameView';
 import Loading from '../components/Loading';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   defaultCodes, defaultColors, defaultObjects
 } from '../util/data';
@@ -22,9 +22,13 @@ export default function Engine() {
   const [codes, setCodes] = useState(defaultCodes);
   const [colors, setColors] = useState(defaultColors);
   const [objects, setObjects] = useState(defaultObjects);
+  const [marker, setMarker] = useState(undefined);
 
   // updates code with given value
   function updateCode(val) {
+    // clear marker
+    setMarker(undefined);
+    // update codes
     const newCodes = codes.slice();
     newCodes[currObject] = val;
     setCodes(newCodes);
@@ -40,6 +44,8 @@ export default function Engine() {
       <CodeEditor
         value={codes[currObject]}
         onChange={val => updateCode(val)}
+        marker={marker}
+        currObject={currObject}
       />
       <div>
         <Objects
