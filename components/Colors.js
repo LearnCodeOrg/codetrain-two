@@ -88,7 +88,7 @@ export default function Colors(props) {
         onMouseMove={hover}
         onMouseLeave={clearHover}
       />
-      <p>Update Color</p>
+      <p>Update</p>
       <input
         className={styles.colorinput}
         type="color"

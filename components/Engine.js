@@ -47,7 +47,7 @@ export default function Engine() {
         marker={marker}
         currObject={currObject}
       />
-      <div>
+      <div className={styles.draw}>
         <Objects
           objects={objects}
           colors={colors}
