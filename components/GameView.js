@@ -3,13 +3,14 @@ import GameEditor from './GameEditor';
 import GameFrame from './GameFrame';
 
 import { useState } from 'react';
+import getGameSrc from '../util/getGameSrc';
 
 import styles from '../styles/components/GameView.module.css';
 
 const mapPixels = 256;
 
 export default function GameView(props) {
-  const { onError, colors, objects, currObject } = props;
+  const { onError, colors, codes, objects, currObject } = props;
 
   const [playing, setPlaying] = useState(false);
   const [refresh, setRefresh] = useState(false);
@@ -22,6 +23,15 @@ export default function GameView(props) {
     // delete current object
     const newGameObjects = gameObjects.slice(0, -1);
     setGameObjects(newGameObjects);
+  }
+
+  // downloads game as html file
+  function downloadGame() {
+    const gameSrc = getGameSrc({ colors, codes, objects, gameObjects });
+    const link = document.createElement('a');
+    link.download = 'game.html';
+    link.href = `data:text/html;charset=utf-8,${encodeURIComponent(gameSrc)}`;
+    link.click();
   }
 
   return (
@@ -50,6 +60,10 @@ export default function GameView(props) {
           onClick={() => setPlaying(val => !val)}
           icon={playing ? 'pause' : 'play'}
           down={playing}
+        />
+        <IconButton
+          onClick={downloadGame}
+          icon="download"
         />
         {
           (!playing && !!gameObjects.length) &&
