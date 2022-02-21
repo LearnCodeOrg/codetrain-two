@@ -3,6 +3,8 @@ import GameEditor from './GameEditor';
 import GameFrame from './GameFrame';
 
 import { useState } from 'react';
+import { getAuth } from 'firebase/auth';
+import { getFirestore, collection, addDoc } from 'firebase/firestore';
 import getGameSrc from '../util/getGameSrc';
 
 import styles from '../styles/components/GameView.module.css';
@@ -11,6 +13,9 @@ const mapPixels = 256;
 
 export default function GameView(props) {
   const { onError, colors, codes, objects, currObject } = props;
+
+  const auth = getAuth();
+  const db = getFirestore();
 
   const [playing, setPlaying] = useState(false);
   const [refresh, setRefresh] = useState(false);
@@ -32,6 +37,19 @@ export default function GameView(props) {
     link.download = 'game.html';
     link.href = `data:text/html;charset=utf-8,${encodeURIComponent(gameSrc)}`;
     link.click();
+  }
+
+  // saves game to firebase
+  async function saveGame() {
+    const project = {
+      colors: JSON.stringify(colors),
+      codes: JSON.stringify(codes),
+      objects: JSON.stringify(objects),
+      gameObjects: JSON.stringify(gameObjects),
+      uid: auth.currentUser.uid
+    };
+    const projectsRef = collection(db, 'projects-two');
+    await addDoc(projectsRef, project);
   }
 
   return (
