@@ -5,8 +5,6 @@ const spritePixels = Math.round(mapPixels / mapSprites);
 const squarePixels = Math.round(spritePixels / spriteSquares);
 
 export default function getGameSrc(props) {
-  const { colors, codes, objects, gameObjects, onError } = props;
-
   return (
 `<html>
   <body onload="__start__()">
@@ -59,10 +57,10 @@ export default function getGameSrc(props) {
       mapPixels: ${mapPixels},
       spriteSquares: ${spriteSquares},
       squarePixels: ${squarePixels},
-      colors: ${JSON.stringify(colors)},
-      codes: ${JSON.stringify(codes)},
-      objects: ${JSON.stringify(objects)},
-      gameObjects: ${JSON.stringify(gameObjects)},
+      colors: ${JSON.stringify(props.colors)},
+      codes: ${JSON.stringify(props.codes)},
+      objects: ${JSON.stringify(props.objects)},
+      gameObjects: ${JSON.stringify(props.gameObjects)},
       objectCodes: [],
       sounds: {},
       onError: (error, i) => {
