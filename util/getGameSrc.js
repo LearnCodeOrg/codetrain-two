@@ -4,7 +4,16 @@ const mapPixels = 256;
 const spritePixels = Math.round(mapPixels / mapSprites);
 const squarePixels = Math.round(spritePixels / spriteSquares);
 
+const properties = ['colors', 'codes', 'objects', 'gameObjects'];
+
 export default function getGameSrc(props) {
+  // check for all properties
+  for (const prop of properties) {
+    if (props[prop] === undefined) {
+      throw new TypeError(`${prop} not passed to gameSrc`);
+    }
+  }
+
   return (
 `<html>
   <body onload="__start__()">
