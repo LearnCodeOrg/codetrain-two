@@ -43,6 +43,12 @@ button {
   border-bottom: 6px solid #222;
 }
 
+.textinput {
+  font-family: 'retro', monospace;
+  width: 128px;
+  border: 2px solid #222;
+}
+
 .flexfill {
   flex-grow: 1;
 }

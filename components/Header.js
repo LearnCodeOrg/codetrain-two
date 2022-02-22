@@ -16,6 +16,9 @@ export default function Header() {
         <a className={styles.link}>Create</a>
       </Link>
       <Link href="/docs">
+        <a className={styles.link}>Projects</a>
+      </Link>
+      <Link href="/docs">
         <a className={styles.link}>Docs</a>
       </Link>
     </div>
