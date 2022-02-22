@@ -1,6 +1,7 @@
 import IconButton from './IconButton';
 import GameEditor from './GameEditor';
 import GameFrame from './GameFrame';
+import Dialog from '@mui/material/Dialog';
 
 import { useState } from 'react';
 import { getAuth } from 'firebase/auth';
@@ -20,6 +21,8 @@ export default function GameView(props) {
   const [playing, setPlaying] = useState(false);
   const [refresh, setRefresh] = useState(false);
   const [gameObjects, setGameObjects] = useState([]);
+
+  const [saving, setSaving] = useState(false);
 
   // deletes current gameobject
   function deleteGameObject() {
@@ -54,6 +57,8 @@ export default function GameView(props) {
 
   return (
     <div className={styles.container}>
+      <Dialog open={saving} onClose={() => setSaving(false)}>
+      </Dialog>
       {
         playing ?
         <GameFrame
@@ -82,6 +87,12 @@ export default function GameView(props) {
         <IconButton
           onClick={downloadGame}
           icon="download"
+        />
+        <IconButton
+          onClick={() => {
+            setSaving(true);
+          }}
+          icon="save"
         />
         {
           (!playing && !!gameObjects.length) &&
