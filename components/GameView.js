@@ -2,6 +2,7 @@ import IconButton from './IconButton';
 import GameEditor from './GameEditor';
 import GameFrame from './GameFrame';
 import Dialog from '@mui/material/Dialog';
+import DialogContent from '@mui/material/DialogContent';
 
 import { useState } from 'react';
 import { getAuth } from 'firebase/auth';
@@ -58,6 +59,22 @@ export default function GameView(props) {
   return (
     <div className={styles.container}>
       <Dialog open={saving} onClose={() => setSaving(false)}>
+        <DialogContent>
+          <form
+            onSubmit={e => {
+              e.preventDefault();
+              saveProject();
+            }}
+          >
+            Save Project
+            <input
+              required
+            />
+            <button className="textbutton">
+              Save
+            </button>
+          </form>
+        </DialogContent>
       </Dialog>
       {
         playing ?
