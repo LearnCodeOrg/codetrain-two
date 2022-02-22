@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Header from '../components/Header';
 
 import { getAuth } from 'firebase/auth';
@@ -15,6 +16,22 @@ export default function Projects() {
     const projectsRef = collection(db, 'projects-two');
     const projectsQuery = query(projectsRef, where('uid', '==', uid));
     const [projects] = useCollectionData(projectsQuery, { idField: 'id' });
+
+    return (
+      <div>
+        {
+          !projects ?
+          <p>Loading...</p> :
+          projects.map(project =>
+            <div key={project.id}>
+              <Link href={`/project/${project.id}`}>
+                <a>{project.title}</a>
+              </Link>
+            </div>
+          )
+        }
+      </div>
+    );
   }
 
   return (
