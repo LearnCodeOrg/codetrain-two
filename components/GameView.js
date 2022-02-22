@@ -64,6 +64,7 @@ export default function GameView(props) {
       <Dialog open={saving} onClose={() => setSaving(false)}>
         <DialogContent>
           <form
+            className={styles.saveform}
             onSubmit={e => {
               e.preventDefault();
               saveProject();
@@ -71,8 +72,10 @@ export default function GameView(props) {
           >
             Save Project
             <input
+              className="textinput"
               value={title}
               onChange={e => setTitle(e.target.value)}
+              placeholder="Title"
               required
             />
             <button className="textbutton">

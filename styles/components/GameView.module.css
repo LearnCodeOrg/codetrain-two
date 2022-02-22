@@ -1,3 +1,13 @@
 .toolbar {
   display: flex;
 }
+
+.saveform {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.saveform > input {
+  margin: 10px 0;
+}
