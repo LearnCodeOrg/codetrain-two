@@ -24,6 +24,7 @@ export default function GameView(props) {
   const [gameObjects, setGameObjects] = useState([]);
 
   const [saving, setSaving] = useState(false);
+  const [title, setTitle] = useState('');
 
   // deletes current gameobject
   function deleteGameObject() {
@@ -43,14 +44,16 @@ export default function GameView(props) {
     link.click();
   }
 
-  // saves game to firebase
-  async function saveGame() {
+  // saves project to firebase
+  async function saveProject() {
+    setSaving(false);
     const project = {
       colors: JSON.stringify(colors),
       codes: JSON.stringify(codes),
       objects: JSON.stringify(objects),
       gameObjects: JSON.stringify(gameObjects),
-      uid: auth.currentUser.uid
+      uid: auth.currentUser.uid,
+      title: title
     };
     const projectsRef = collection(db, 'projects-two');
     await addDoc(projectsRef, project);
@@ -68,6 +71,8 @@ export default function GameView(props) {
           >
             Save Project
             <input
+              value={title}
+              onChange={e => setTitle(e.target.value)}
               required
             />
             <button className="textbutton">
@@ -107,6 +112,7 @@ export default function GameView(props) {
         />
         <IconButton
           onClick={() => {
+            setTitle('');
             setSaving(true);
           }}
           icon="save"
