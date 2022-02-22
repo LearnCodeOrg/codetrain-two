@@ -152,6 +152,18 @@ export default function getGameSrc(props) {
       if (!sound) throw new ReferenceError(\`\${name} is not a sound\`);
       else sound.play();
     }
+    // creates object at given position
+    function createObject(object, x, y) {
+      // construct object
+      const gameObject = { object, x, y };
+      const index = $$.gameObjects.length;
+      // push new object
+      $$.gameObjects.push(gameObject);
+      const code = $$.getCodeFunction(gameObject, index);
+      code.start();
+      $$.objectCodes.push(code);
+      return code;
+    }
     // deletes object with given index
     function deleteObject(index) {
       // splice object
