@@ -152,6 +152,14 @@ export default function getGameSrc(props) {
       if (!sound) throw new ReferenceError(\`\${name} is not a sound\`);
       else sound.play();
     }
+    // deletes object with given index
+    function deleteObject(index) {
+      // splice object
+      $$.gameObjects.splice(index, 1);
+      $$.objectCodes.splice(index, 1);
+      // update code indexes
+      $$.objectCodes.forEach((code, i) => code.index = i);
+    }
     function __start__() {
       // draws given object at given position
       function drawObject(object, squareX, squareY) {
