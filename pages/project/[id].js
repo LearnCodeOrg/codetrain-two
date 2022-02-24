@@ -1,3 +1,7 @@
+import Header from '../../components/Header';
+import Engine from '../../components/Engine';
+
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
 
@@ -25,8 +29,14 @@ export default function Project() {
     if (id) getProjectData();
   }, [id]);
 
+  // return if loading
+  if (data === undefined) return <p>Loading...</p>;
+  if (!data) return <p>Project not found</p>;
+
   return (
     <div>
+      <Header />
+      <Engine {...data} />
     </div>
   );
 }
