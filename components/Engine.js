@@ -16,13 +16,24 @@ const CodeEditor = dynamic(import('../components/CodeEditor'), {
   loading: function Load() { return <Loading /> }, ssr: false
 });
 
-export default function Engine() {
+export default function Engine(props) {
   const [currObject, setCurrObject] = useState(0);
   const [currColor, setCurrColor] = useState(0);
-  const [codes, setCodes] = useState(defaultCodes);
-  const [colors, setColors] = useState(defaultColors);
-  const [objects, setObjects] = useState(defaultObjects);
+
   const [marker, setMarker] = useState(undefined);
+
+  const [codes, setCodes] = useState(
+    props.codes ? JSON.parse(props.codes) : defaultCodes
+  );
+  const [colors, setColors] = useState(
+    props.colors ? JSON.parse(props.colors) : defaultColors
+  );
+  const [objects, setObjects] = useState(
+    props.objects ? JSON.parse(props.objects) : defaultObjects
+  );
+  const [gameObjects, setGameObjects] = useState(
+    props.gameObjects ? JSON.parse(props.gameObjects) : []
+  );
 
   // updates code with given value
   function updateCode(val) {
@@ -82,6 +93,8 @@ export default function Engine() {
           colors={colors}
           objects={objects}
           currObject={currObject}
+          gameObjects={gameObjects}
+          setGameObjects={setGameObjects}
         />
       </div>
     </div>
