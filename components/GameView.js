@@ -133,10 +133,18 @@ export default function GameView(props) {
         />
         {
           (!playing && !!gameObjects.length) &&
-          <IconButton
-            onClick={deleteGameObject}
-            icon="clear"
-          />
+          <>
+            <IconButton
+              onClick={deleteGameObject}
+              icon="clear"
+            />
+            <input
+              className="textinput"
+              placeholder="Object ID"
+              value={gameObjects[gameObjects.length - 1].id}
+              onChange={e => updateObjectId(e.target.value)}
+            />
+          </>
         }
         {
           playing &&
