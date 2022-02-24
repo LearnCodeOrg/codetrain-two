@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
-import { mouseIndex, mousePosition } from '../util/mouse';
+import { mousePosition } from '../util/mouse';
 import { fillBorder, fillHover } from '../util/fill';
 import { mapSprites, spriteSquares } from '../util/units';
+import randomWords from 'random-words';
 
 import styles from '../styles/components/GameEditor.module.css';
 
@@ -96,7 +97,8 @@ export default function GameEditor(props) {
     const squareX = hoverIndex % mapSquares - halfSpriteSquares;
     const squareY = Math.floor(hoverIndex / mapSquares) - halfSpriteSquares;
     // append new gameobject
-    const newGameObject = { x: squareX, y: squareY, object: currObject };
+    const id = randomWords({ exactly: 1, minLength: 3, maxLength: 5 })[0];
+    const newGameObject = { x: squareX, y: squareY, object: currObject, id };
     setGameObjects(val => [...val, newGameObject]);
   }
 
