@@ -59,6 +59,17 @@ export default function GameView(props) {
     await addDoc(projectsRef, project);
   }
 
+  // updates id of current object with given value
+  function updateObjectId(newId) {
+    // get current object
+    const { id, ...heldObject } = gameObjects[gameObjects.length - 1];
+    const newGameObjects = gameObjects.slice();
+    // splice new object into gameobjects
+    const newGameObject = { id: newId, ...heldObject };
+    newGameObjects.splice(gameObjects.length - 1, 1, newGameObject);
+    setGameObjects(newGameObjects);
+  }
+
   return (
     <div className={styles.container}>
       <Dialog open={saving} onClose={() => setSaving(false)}>
