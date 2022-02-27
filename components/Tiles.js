@@ -42,6 +42,20 @@ export default function Tiles(props) {
     // clear canvas
     ctx.fillStyle = '#fff';
     ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+    // for each sprite
+    ctx.fillStyle = '#000';
+    for (let x = 0; x < gridWidth; x++) {
+      for (let y = 0; y < gridHeight; y++) {
+        // get sprite index
+        const spriteIndex = y * gridWidth + x;
+        // for each square
+        const sprite = tiles[spriteIndex];
+        for (let px = 0; px < spriteSquares; px++) {
+          for (let py = 0; py < spriteSquares; py++) {
+          }
+        }
+      }
+    }
     // draw border
     fillBorder(ctx, border, 0, 0, canvasWidth, canvasHeight);
   }
