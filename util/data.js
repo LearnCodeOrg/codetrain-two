@@ -18,8 +18,23 @@ const defaultObject = [
   0, 0, 0, 0, 0, 0, 0, 0
 ];
 
+const defaultTile = [
+  0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0
+];
+
 export const defaultObjects = Array(objectCount).fill(0).map((val, i) =>
   defaultObject
+);
+
+export const defaultTiles = Array(objectCount).fill(0).map((val, i) =>
+  defaultTile
 );
 
 export const defaultCodes = Array(objectCount).fill(0).map((val, i) => (
