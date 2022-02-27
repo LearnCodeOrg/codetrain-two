@@ -1,4 +1,5 @@
 import Objects from '../components/Objects';
+import Tiles from '../components/Tiles';
 import Draw from '../components/Draw';
 import Colors from '../components/Colors';
 import GameView from '../components/GameView';
@@ -6,7 +7,7 @@ import Loading from '../components/Loading';
 
 import { useEffect, useState } from 'react';
 import {
-  defaultCodes, defaultColors, defaultObjects
+  defaultCodes, defaultColors, defaultObjects, defaultTiles
 } from '../util/data';
 import dynamic from 'next/dynamic';
 
@@ -18,6 +19,7 @@ const CodeEditor = dynamic(import('../components/CodeEditor'), {
 
 export default function Engine(props) {
   const [currObject, setCurrObject] = useState(0);
+  const [currTile, setCurrTile] = useState(0);
   const [currColor, setCurrColor] = useState(0);
 
   const [marker, setMarker] = useState(undefined);
@@ -30,6 +32,9 @@ export default function Engine(props) {
   );
   const [objects, setObjects] = useState(
     props.objects ? JSON.parse(props.objects) : defaultObjects
+  );
+  const [tiles, setTiles] = useState(
+    props.tiles ? JSON.parse(props.tiles) : defaultTiles
   );
   const [gameObjects, setGameObjects] = useState(
     props.gameObjects ? JSON.parse(props.gameObjects) : []
@@ -72,6 +77,12 @@ export default function Engine(props) {
           currObject={currObject}
           setCurrObject={setCurrObject}
         />
+        <Tiles
+          tiles={tiles}
+          colors={colors}
+          currTile={currTile}
+          setCurrTile={setCurrTile}
+        />
         <Colors
           colors={colors}
           setColors={setColors}
@@ -79,11 +90,14 @@ export default function Engine(props) {
           setCurrColor={setCurrColor}
         />
         <Draw
+          colors={colors}
           objects={objects}
           setObjects={setObjects}
-          colors={colors}
+          tiles={tiles}
+          setTiles={setTiles}
           currColor={currColor}
           currObject={currObject}
+          currTile={currTile}
         />
       </div>
       <div>
