@@ -1,4 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
+import { spriteSquares } from '../util/units'
+import { fillBorder, fillHover } from '../util/fill';
 import { mouseIndex } from '../util/mouse';
 
 import styles from '../styles/components/Tiles.module.css';
@@ -29,6 +31,15 @@ export default function Tiles(props) {
     setCurrTile(spriteIndex);
   }
 
+  // draws canvas
+  function draw() {
+  }
+
+  // draw when curr tile changes
+  useEffect(() => {
+    draw();
+  }, [currTile, hoverIndex, colors, tiles]);
+
   // hover over tiles
   function hover(e) {
     const spriteIndex = mouseIndex(e, canvas, spritePixels, gridWidth);
@@ -37,6 +48,7 @@ export default function Tiles(props) {
 
   return (
     <div className={styles.container}>
+      <h1>Tiles</h1>
       <canvas
         ref={canvasRef}
         width={canvasWidth}
