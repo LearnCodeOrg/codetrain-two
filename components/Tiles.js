@@ -1,4 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
+import { mouseIndex } from '../util/mouse';
+
 import styles from '../styles/components/Tiles.module.css';
 
 let canvas;
@@ -11,6 +13,8 @@ export default function Tiles(props) {
   const { tiles, colors, currTile, setCurrTile } = props;
 
   const canvasRef = useRef();
+
+  const [hoverIndex, setHoverIndex] = useState(-1);
 
   // get canvas context on start
   useEffect(() => {
@@ -25,6 +29,12 @@ export default function Tiles(props) {
     setCurrTile(spriteIndex);
   }
 
+  // hover over tiles
+  function hover(e) {
+    const spriteIndex = mouseIndex(e, canvas, spritePixels, gridWidth);
+    setHoverIndex(spriteIndex);
+  }
+
   return (
     <div className={styles.container}>
       <canvas
@@ -32,6 +42,8 @@ export default function Tiles(props) {
         width={canvasWidth}
         height={canvasHeight}
         onMouseDown={select}
+        onMouseMove={hover}
+        onMouseLeave={() => setHoverIndex(-1)}
       />
     </div>
   );
