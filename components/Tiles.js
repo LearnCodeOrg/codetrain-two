@@ -52,6 +52,14 @@ export default function Tiles(props) {
         const sprite = tiles[spriteIndex];
         for (let px = 0; px < spriteSquares; px++) {
           for (let py = 0; py < spriteSquares; py++) {
+            // set square color
+            const pixelIndex = py * spriteSquares + px;
+            const colorIndex = sprite[pixelIndex];
+            ctx.fillStyle = colorIndex === -1 ? '#fff' : colors[colorIndex];
+            // calculate square dimensions
+            const squareX = x * spritePixels + px * squarePixels;
+            const squareY = y * spritePixels + py * squarePixels;
+            ctx.fillRect(squareX, squareY, squarePixels, squarePixels);
           }
         }
       }
