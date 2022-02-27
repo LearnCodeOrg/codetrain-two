@@ -62,6 +62,17 @@ export default function Tiles(props) {
             ctx.fillRect(squareX, squareY, squarePixels, squarePixels);
           }
         }
+        // get sprite position
+        const spriteX = x * spritePixels;
+        const spriteY = y * spritePixels;
+        // fill hover
+        if (hoverIndex === spriteIndex) {
+          fillHover(ctx, border, spriteX, spriteY, spritePixels, spritePixels);
+        }
+        // fill border
+        if (currTile === spriteIndex) {
+          fillBorder(ctx, border, spriteX, spriteY, spritePixels, spritePixels);
+        }
       }
     }
     // draw border
