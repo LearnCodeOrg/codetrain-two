@@ -1,0 +1,12 @@
+.projects {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.projects > div {
+  width: 200px;
+  height: 200px;
+  margin: 20px;
+  background: #efefef;
+}

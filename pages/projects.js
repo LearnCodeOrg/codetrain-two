@@ -18,7 +18,7 @@ export default function Projects() {
     const [projects] = useCollectionData(projectsQuery, { idField: 'id' });
 
     return (
-      <div>
+      <div className={styles.projects}>
         {
           !projects ?
           <p>Loading...</p> :
