@@ -16,7 +16,7 @@ export default function Tiles(props) {
     ctx = canvas.getContext('2d');
   }, []);
   return (
-    <div>
+    <div className={styles.container}>
       <canvas
         ref={canvasRef}
         width={canvasWidth}
