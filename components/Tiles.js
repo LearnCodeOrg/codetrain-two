@@ -8,8 +8,14 @@ import styles from '../styles/components/Tiles.module.css';
 let canvas;
 let ctx;
 
+const gridHeight = 4;
+const gridWidth = 4;
+const spritePixels = 32;
+const squarePixels = Math.round(spritePixels / spriteSquares);
 const canvasWidth = gridWidth * spritePixels;
 const canvasHeight = gridHeight * spritePixels;
+
+const border = 4;
 
 export default function Tiles(props) {
   const { tiles, colors, currTile, setCurrTile } = props;
@@ -33,6 +39,11 @@ export default function Tiles(props) {
 
   // draws canvas
   function draw() {
+    // clear canvas
+    ctx.fillStyle = '#fff';
+    ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+    // draw border
+    fillBorder(ctx, border, 0, 0, canvasWidth, canvasHeight);
   }
 
   // draw when curr tile changes
