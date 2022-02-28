@@ -19,7 +19,7 @@ const CodeEditor = dynamic(import('../components/CodeEditor'), {
 
 export default function Engine(props) {
   const [currObject, setCurrObject] = useState(0);
-  const [currTile, setCurrTile] = useState(0);
+  const [currTile, setCurrTile] = useState(-1);
   const [currColor, setCurrColor] = useState(0);
 
   const [marker, setMarker] = useState(undefined);
@@ -39,6 +39,16 @@ export default function Engine(props) {
   const [gameObjects, setGameObjects] = useState(
     props.gameObjects ? JSON.parse(props.gameObjects) : []
   );
+
+  // clear object on tile change
+  useEffect(() => {
+    if (currTile !== -1 && currObject !== -1) setCurrObject(-1);
+  }, [currTile]);
+
+  // clear tile on object change
+  useEffect(() => {
+    if (currObject !== -1 && currTile !== -1) setCurrTile(-1);
+  }, [currObject]);
 
   // updates code with given value
   function updateCode(val) {
