@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { mousePosition } from '../util/mouse';
+import { mousePosition, mouseIndex } from '../util/mouse';
 import { fillBorder, fillHover } from '../util/fill';
 import { mapSprites, spriteSquares } from '../util/units';
 import randomWords from 'random-words';
@@ -10,8 +10,11 @@ let canvas, ctx;
 
 export default function GameEditor(props) {
   const {
-    mapPixels, colors, objects, currObject,
-    gameObjects, setGameObjects
+    mapPixels, colors,
+    objects, currObject,
+    tiles, currTile,
+    gameObjects, setGameObjects,
+    gameTiles, setGameTiles
   } = props;
 
   const spritePixels = Math.round(mapPixels / mapSprites);
@@ -219,7 +222,7 @@ export default function GameEditor(props) {
   // draw on data update
   useEffect(() => {
     draw();
-  }, [hoverIndex, colors, objects, gameObjects, sketching]);
+  }, [hoverIndex, colors, objects, gameObjects, gameTiles, sketching, tiles]);
 
   return (
     <canvas
