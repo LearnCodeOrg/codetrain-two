@@ -140,6 +140,21 @@ export default function GameEditor(props) {
     // clear canvas
     ctx.fillStyle = '#fff';
     ctx.fillRect(0, 0, mapPixels, mapPixels);
+    // for each tile
+    for (let x = 0; x < mapSprites; x++) {
+      for (let y = 0; y < mapSprites; y++) {
+        // get game tile
+        const gameTileIndex = y * mapSprites + x;
+        const gameTile = gameTiles[gameTileIndex];
+        // get tile
+        const tile = tiles[gameTile];
+        // for each square
+        for (let px = 0; px < spriteSquares; px++) {
+          for (let py = 0; py < spriteSquares; py++) {
+          }
+        }
+      }
+    }
     // draw gameobjects
     for (let i = 0; i < gameObjects.length; i++) {
       const gameObject = gameObjects[i];
