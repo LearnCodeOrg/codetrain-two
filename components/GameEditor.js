@@ -68,6 +68,18 @@ export default function GameEditor(props) {
 
   // called on mouse down
   function mouseDown(e) {
+    // if tile selected
+    if (currObject === -1) {
+      // get tile index
+      const tileIndex = mouseIndex(e, canvas, spritePixels, mapSprites);
+      // return if same tile
+      if (gameTiles[tileIndex] === currTile) return;
+      // set new tile
+      const newGameTiles = gameTiles.slice();
+      newGameTiles[tileIndex] = currTile;
+      setGameTiles(newGameTiles);
+      return;
+    }
     // start sketching
     setSketching(true);
     // get clamped position
