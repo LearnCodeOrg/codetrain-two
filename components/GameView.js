@@ -14,14 +14,19 @@ import styles from '../styles/components/GameView.module.css';
 const mapPixels = 256;
 
 export default function GameView(props) {
-  const { onError, colors, codes, objects, currObject } = props;
+  const {
+    onError, colors, codes,
+    objects, currObject,
+    tiles, currTile,
+    gameObjects, setGameObjects,
+    gameTiles, setGameTiles
+  } = props;
 
   const auth = getAuth();
   const db = getFirestore();
 
   const [playing, setPlaying] = useState(false);
   const [refresh, setRefresh] = useState(false);
-  const [gameObjects, setGameObjects] = useState([]);
 
   const [saving, setSaving] = useState(false);
   const [title, setTitle] = useState('');
@@ -110,8 +115,12 @@ export default function GameView(props) {
           colors={colors}
           objects={objects}
           currObject={currObject}
+          tiles={tiles}
+          currTile={currTile}
           gameObjects={gameObjects}
           setGameObjects={setGameObjects}
+          gameTiles={gameTiles}
+          setGameTiles={setGameTiles}
         />
       }
       <div className={styles.toolbar}>
