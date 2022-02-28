@@ -4,7 +4,11 @@ const mapPixels = 256;
 const spritePixels = Math.round(mapPixels / mapSprites);
 const squarePixels = Math.round(spritePixels / spriteSquares);
 
-const properties = ['colors', 'codes', 'objects', 'gameObjects'];
+const properties = [
+  'colors', 'codes',
+  'objects', 'tiles',
+  'gameObjects', 'gameTiles'
+];
 
 export default function getGameSrc(props) {
   // check for all properties
@@ -64,12 +68,15 @@ export default function getGameSrc(props) {
     const $$ = {
       ctx: __canvas__.getContext('2d'),
       mapPixels: ${mapPixels},
+      mapSprites: ${mapSprites},
       spriteSquares: ${spriteSquares},
       squarePixels: ${squarePixels},
       colors: ${JSON.stringify(props.colors)},
       codes: ${JSON.stringify(props.codes)},
       objects: ${JSON.stringify(props.objects)},
+      tiles: ${JSON.stringify(props.tiles)},
       gameObjects: ${JSON.stringify(props.gameObjects)},
+      gameTiles: ${JSON.stringify(props.gameTiles)},
       objectCodes: [],
       sounds: {},
       onError: (error, i) => {
@@ -203,6 +210,16 @@ export default function getGameSrc(props) {
       function draw() {
         // clear canvas
         $$.ctx.clearRect(0, 0, $$.mapPixels, $$.mapPixels);
+        // for each tile
+        for (let x = 0; x < $$.mapSprites; x++) {
+          for (let y = 0; y < $$.mapSprites; y++) {
+            // draw tile
+            const gameTileIndex = y * $$.mapSprites + x;
+            const tileIndex = $$.gameTiles[gameTileIndex];
+            const tile = $$.tiles[tileIndex];
+            drawObject(tile, x * $$.spriteSquares, y * $$.spriteSquares);
+          }
+        }
         // for each object
         for (const gameObject of $$.gameObjects) {
           // draw object
