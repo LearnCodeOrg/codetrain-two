@@ -151,6 +151,16 @@ export default function GameEditor(props) {
         // for each square
         for (let px = 0; px < spriteSquares; px++) {
           for (let py = 0; py < spriteSquares; py++) {
+            // get color index
+            const squareIndex = py * spriteSquares + px;
+            const colorIndex = tile[squareIndex];
+            // set color
+            ctx.fillStyle = colors[colorIndex];
+            // get pixel position
+            const pixelX = x * spritePixels + px * squarePixels;
+            const pixelY = y * spritePixels + py * squarePixels;
+            // fill square
+            ctx.fillRect(pixelX, pixelY, squarePixels, squarePixels);
           }
         }
       }
