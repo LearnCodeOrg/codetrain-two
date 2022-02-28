@@ -75,28 +75,28 @@ export default function Draw(props) {
     if (squareIndex === lastSquareIndex) return;
     lastSquareIndex = squareIndex;
     // update objects
-    const newObjects = objects.slice();
-    const newObject = objects[currObject].slice();
+    const newSprites = sprites.slice();
+    const newSprite = sprites[currSprite].slice();
     // pencil tool
     if (tool === 'pencil') {
       // return if same color
-      if (newObject[squareIndex] === currColor) return;
+      if (newSprite[squareIndex] === currColor) return;
       // update objects
-      newObject[squareIndex] = currColor;
+      newSprite[squareIndex] = currColor;
     // eraser tool
     } else if (tool === 'eraser') {
-      newObject[squareIndex] = -1;
+      newSprite[squareIndex] = -1;
     // bucket tool
     } else if (tool === 'bucket') {
       // return if same color
-      const squareColor = newObject[squareIndex];
+      const squareColor = newSprite[squareIndex];
       if (squareColor === currColor) return;
       // flood fill
-      floodFill(newObject, squareIndex, squareColor, currColor);
+      floodFill(newSprite, squareIndex, squareColor, currColor);
     }
     // update objects
-    newObjects[currObject] = newObject;
-    setObjects(newObjects);
+    newSprites[currSprite] = newSprite;
+    setSprites(newSprites);
   }
 
   // called on mouse down
@@ -129,14 +129,14 @@ export default function Draw(props) {
   // draws canvas
   function draw() {
     ctx.clearRect(0, 0, spritePixels, spritePixels);
-    // get current object
-    const object = objects[currObject];
+    // get current sprite
+    const sprite = sprites[currSprite];
     // for each pixel
     for (let x = 0; x < spriteSquares; x++) {
       for (let y = 0; y < spriteSquares; y++) {
         // set fill color
         const squareIndex = y * spriteSquares + x;
-        const colorIndex = object[squareIndex];
+        const colorIndex = sprite[squareIndex];
         const color = colorIndex === -1 ? '#fff' : colors[colorIndex];
         ctx.fillStyle = color;
         // fill rect
