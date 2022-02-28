@@ -54,9 +54,16 @@ export default function Draw(props) {
       // confirm clear
       if (!window.confirm('Clear sketch?')) return;
       // update objects
-      const newObjects = objects.slice();
-      newObjects[currObject] = Array(spriteSquares * spriteSquares).fill(-1);
-      setObjects(newObjects);
+      if (currObject !== -1) {
+        const newObjects = objects.slice();
+        newObjects[currObject] = Array(spriteSquares * spriteSquares).fill(-1);
+        setObjects(newObjects);
+      // update tiles
+      } else {
+        const newTiles = tiles.slice();
+        newTiles[currTile] = Array(spriteSquares * spriteSquares).fill(-1);
+        setTiles(newTiles);
+      }
       setSketching(false);
       return;
     }
