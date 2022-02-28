@@ -7,7 +7,9 @@ import Loading from '../components/Loading';
 
 import { useEffect, useState } from 'react';
 import {
-  defaultCodes, defaultColors, defaultObjects, defaultTiles
+  defaultCodes, defaultColors,
+  defaultObjects, defaultTiles,
+  defaultGameObjects, defaultGameTiles
 } from '../util/data';
 import dynamic from 'next/dynamic';
 
@@ -37,8 +39,11 @@ export default function Engine(props) {
     props.tiles ? JSON.parse(props.tiles) : defaultTiles
   );
   const [gameObjects, setGameObjects] = useState(
-    props.gameObjects ? JSON.parse(props.gameObjects) : []
+    props.gameObjects ? JSON.parse(props.gameObjects) : defaultGameObjects
   );
+  const [gameTiles, setGameTiles] = useState(
+    props.gameTiles ? JSON.parse(props.gameTiles) : defaultGameTiles
+  )
 
   // clear object on tile change
   useEffect(() => {
@@ -115,10 +120,10 @@ export default function Engine(props) {
           codes={codes}
           onError={onError}
           colors={colors}
-          objects={objects}
-          currObject={currObject}
-          gameObjects={gameObjects}
-          setGameObjects={setGameObjects}
+          objects={objects} currObject={currObject}
+          tiles={tiles} currTile={currTile}
+          gameObjects={gameObjects} setGameObjects={setGameObjects}
+          gameTiles={gameTiles} setGameTiles={setGameTiles}
         />
       </div>
     </div>
