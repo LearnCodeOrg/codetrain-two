@@ -16,13 +16,22 @@ const spritePixels = spriteSquares * squarePixels;
 const border = 2;
 
 export default function Draw(props) {
-  const { objects, setObjects, colors, currColor, currObject } = props;
+  const {
+    colors, currColor,
+    objects, setObjects, currObject,
+    tiles, setTiles, currTile
+  } = props;
 
   const [hoverIndex, setHoverIndex] = useState(-1);
   const [sketching, setSketching] = useState(false);
   const [tool, setTool] = useState('pencil');
 
   const canvasRef = useRef();
+
+  // get sprite modifiers
+  const sprites = currObject === -1 ? tiles : objects;
+  const setSprites = currObject === -1 ? setTiles : setObjects;
+  const currSprite = currObject === -1 ? currTile : currObject;
 
   // flood fills given object starting at given index
   function floodFill(object, squareIndex, startColor, endColor) {
@@ -160,7 +169,12 @@ export default function Draw(props) {
   // draw canvas when data updates
   useEffect(() => {
     draw();
-  }, [colors, objects, currObject, hoverIndex, sketching]);
+  }, [
+    colors,
+    objects, currObject,
+    tiles, currTile,
+    hoverIndex, sketching
+  ]);
 
   return (
     <div className={styles.container}>
