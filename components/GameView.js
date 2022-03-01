@@ -6,7 +6,9 @@ import DialogContent from '@mui/material/DialogContent';
 
 import { useState } from 'react';
 import { getAuth } from 'firebase/auth';
-import { getFirestore, collection, addDoc } from 'firebase/firestore';
+import {
+  getFirestore, collection, addDoc, doc, updateDoc
+} from 'firebase/firestore';
 import getGameSrc from '../util/getGameSrc';
 
 import styles from '../styles/components/GameView.module.css';
@@ -43,7 +45,9 @@ export default function GameView(props) {
 
   // downloads game as html file
   function downloadGame() {
-    const gameSrc = getGameSrc({ colors, codes, objects, gameObjects });
+    const gameSrc = getGameSrc({
+      colors, codes, objects, gameObjects, tiles, gameTiles
+    });
     const link = document.createElement('a');
     link.download = 'game.html';
     link.href = `data:text/html;charset=utf-8,${encodeURIComponent(gameSrc)}`;
