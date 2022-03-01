@@ -14,6 +14,22 @@ export default function Docs() {
         <p>constructor() runs before the object is constructed.</p>
         <p>start() runs after all objects are constructed.</p>
         <p>update() runs once a frame after all objects are constructed.</p>
+        <pre>
+          <code>
+{`return class GameObject0 extends GameObject {
+  constructor(index) {
+    super(index);
+    // runs before objects constructed
+  }
+  start() {
+    // runs after all objects constructed
+  }
+  update() {
+    // runs once every frame
+  }
+}`}
+          </code>
+        </pre>
       </div>
     </div>
   );
