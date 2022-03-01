@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 import { useState } from 'react';
 
 import styles from '../styles/components/Logo.module.css';
@@ -9,7 +11,7 @@ export default function Logo() {
   const [src, setSrc] = useState(logo);
 
   return (
-    <img
+    <Image
       className={styles.img}
       src={src}
       onMouseDown={() => setSrc(logoalt)}
@@ -17,6 +19,8 @@ export default function Logo() {
       onMouseLeave={() => setSrc(logo)}
       width="48"
       height="24"
+      alt="logo"
+      unoptimized
     />
   );
 }
