@@ -1,3 +1,7 @@
 {
-  "extends": ["next", "next/core-web-vitals", "eslint:recommended"]
+  "extends": ["next", "next/core-web-vitals", "eslint:recommended"],
+  "rules": {
+    "react-hooks/exhaustive-deps": "off",
+    "no-unused-vars": ["error", { "ignoreRestSiblings": true, "args": "none" }]
+  }
 }
