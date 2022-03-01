@@ -194,6 +194,13 @@ export default function getGameSrc(props) {
       $$.texts[id] = { text, x, y, color, size, id };
       return $$.texts[id];
     }
+    // remove text
+    function removeText(id) {
+      if (!$$.texts[id]) {
+        throw new ReferenceError(\`\${id} is not a text\`);
+      }
+      delete $$.texts[id];
+    }
     function __start__() {
       // draws given object at given position
       function drawObject(object, squareX, squareY) {
