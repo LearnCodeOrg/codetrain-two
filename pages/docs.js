@@ -86,6 +86,10 @@ function update() {
 }`}
           </code>
         </pre>
+        <h2>Audio</h2>
+        <p>Sounds can be added and played with addSound and playSound.</p>
+        <p>addSound(name, url) registers sound with source url and given name.</p>
+        <p>playSound(name) plays sound with given name.</p>
       </div>
     </div>
   );
