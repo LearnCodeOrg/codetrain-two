@@ -34,10 +34,10 @@ export default function Docs() {
         <h1>Docs</h1>
         <p>These docs provide an overview of the Codetrain engine functionality.</p>
         <h2>Game Loop</h2>
-        <p>The GameObject class has two built-in functions, start() and update(). The constructor() function can also be used.</p>
-        <p>constructor() runs before the object is constructed.</p>
-        <p>start() runs after all objects are constructed.</p>
-        <p>update() runs once a frame after all objects are constructed.</p>
+        <Line>The `GameObject` class has two built-in functions, `start` and `update`. The `constructor` function can also be used.</Line>
+        <Line>`constructor(index)` runs before the object is constructed. `super(index)` must be called.</Line>
+        <Line>`start()` runs after all objects are constructed.</Line>
+        <Line>`update()` runs once a frame after all objects are constructed.</Line>
         <Code>
 {`return class GameObject0 extends GameObject {
   constructor(index) {
@@ -53,10 +53,10 @@ export default function Docs() {
 }`}
         </Code>
         <h2>Output</h2>
-        <p>Text can be added and removed with addText() and removeText().</p>
-        <p>addText(text, x, y, options?) creates and returns text at x, y in pixels.</p>
-        <p>options is an optional object containing size, color, and id fields.</p>
-        <p>removeText(id) removes text with given id.</p>
+        <Line>Text can be added and removed with `addText` and `removeText`.</Line>
+        <Line>`addText(text, x, y, options?)` creates and returns text at `x`, `y` in pixels.</Line>
+        <Line>`options` is an optional object containing `size`, `color`, and `id` fields.</Line>
+        <Line>`removeText(id)` removes text with given `id`.</Line>
         <Code>
 {`// create score text
 addText('Score: 0', 0, 0, 'score');
@@ -68,9 +68,9 @@ addText('Score: 1', 0, 0, 'score');
 removeText('score');`}
         </Code>
         <h2>Input</h2>
-        <p>Keyboard input can be taken with isKeyDown() and isKey().</p>
-        <p>isKeyDown(key) returns whether given key is down.</p>
-        <p>isKey(key) returns whether given key was pressed in the last frame.</p>
+        <Line>Keyboard input can be taken with `isKeyDown` and `isKey`.</Line>
+        <Line>`isKeyDown(key)` returns whether given `key` is down.</Line>
+        <Line>`isKey(key)` returns whether given `key` was pressed in the last frame.</Line>
         <Code>
 {`update() {
   // triggers when q pressed down
@@ -81,10 +81,10 @@ removeText('score');`}
 }`}
         </Code>
         <h2>Movement</h2>
-        <p>Objects can be moved with move(), moveTiles(), and movePixels().</p>
-        <p>move(dir) moves object one tile up, down, left, or right.</p>
-        <p>moveTiles(x, y) moves object by x, y in tiles.</p>
-        <p>movePixels(x, y) moves object by x, y in pixels.</p>
+        <Line>Objects can be moved with `move`, `moveTiles`, and `movePixels`.</Line>
+        <Line>`move(dir)` moves object one tile up, down, left, or right.</Line>
+        <Line>`moveTiles(x, y)` moves object by `x`, `y` in tiles.</Line>
+        <Line>`movePixels(x, y)` moves object by `x`, `y` in pixels.</Line>
         <Code>
 {`// tiled object movement
 function update() {
@@ -103,9 +103,9 @@ function update() {
 }`}
         </Code>
         <h2>Audio</h2>
-        <p>Sounds can be added and played with addSound and playSound.</p>
-        <p>addSound(name, url) registers sound with source url and given name.</p>
-        <p>playSound(name) plays sound with given name.</p>
+        <Line>Sounds can be added and played with `addSound` and `playSound`.</Line>
+        <Line>`addSound(name, url)` registers sound with source `url` and given `name`.</Line>
+        <Line>`playSound(name)` plays sound with given `name`.</Line>
         <Code>
 {`// add powerup sound
 addSound('powerup', 'https://codetrain.org/sounds/powerup.mp3');
