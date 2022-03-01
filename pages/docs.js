@@ -47,6 +47,10 @@ addText('Score: 1', 0, 0, 'score');
 removeText('score');`}
           </code>
         </pre>
+        <h2>Input</h2>
+        <p>Keyboard input can be taken with isKeyDown() and isKey().</p>
+        <p>isKeyDown(key) returns whether given key is down.</p>
+        <p>isKey(key) returns whether given key was pressed in the last frame.</p>
       </div>
     </div>
   );
