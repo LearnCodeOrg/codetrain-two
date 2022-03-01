@@ -52,6 +52,22 @@ export default function GameEditor(props) {
 
   // sketches canvas
   function sketch(e) {
+    // sketch tiles
+    if (currObject === -1) {
+      // get mouse position
+      const [mouseX, mouseY] = mousePosition(e, canvas);
+      // get x and y in map units
+      const tileX = clamp(Math.floor(mouseX / spritePixels), 0, mapSprites - 1);
+      const tileY = clamp(Math.floor(mouseY / spritePixels), 0, mapSprites - 1);
+      const tileIndex = tileY * mapSprites + tileX;
+      // return if same tile
+      if (gameTiles[tileIndex] === currTile) return;
+      // update tile
+      const newGameTiles = gameTiles.slice();
+      newGameTiles[tileIndex] = currTile;
+      setGameTiles(newGameTiles);
+      return;
+    }
     // get clamped position
     const [newX, newY] = getClampedPos(e);
     // if gameobjects
