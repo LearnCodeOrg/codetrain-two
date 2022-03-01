@@ -79,6 +79,7 @@ export default function getGameSrc(props) {
       gameTiles: ${JSON.stringify(props.gameTiles)},
       objectCodes: [],
       sounds: {},
+      texts: {},
       onError: (error, i) => {
         // search for error position in stack
         const errorLines = error.stack.split('\\n').slice(1);
@@ -241,6 +242,17 @@ export default function getGameSrc(props) {
           const { x, y } = gameObject;
           const object = $$.objects[gameObject.object];
           drawObject(object, x, y);
+        }
+        // for each text
+        for (const id in $$.texts) {
+          // get text values
+          const { text, x, y, color, size } = $$.texts[id];
+          const pixelX = x * $$.squarePixels;
+          const pixelY = y * $$.squarePixels + size;
+          // draw text
+          $$.ctx.fillStyle = color;
+          $$.ctx.font = \`\${size}px monospace\`;
+          $$.ctx.fillText(text, pixelX, pixelY);
         }
       }
       // runs game loop
