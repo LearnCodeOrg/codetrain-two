@@ -1,0 +1,8 @@
+.content {
+  font-family: sans-serif;
+  padding: 20px;
+}
+
+.content > h1 {
+  margin-top: 0;
+}

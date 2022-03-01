@@ -6,6 +6,8 @@ export default function Docs() {
   return (
     <div>
       <Header />
+      <div className={styles.content}>
+      </div>
     </div>
   );
 }
