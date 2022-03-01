@@ -19,7 +19,8 @@ export default function GameView(props) {
     objects, currObject,
     tiles, currTile,
     gameObjects, setGameObjects,
-    gameTiles, setGameTiles
+    gameTiles, setGameTiles,
+    id
   } = props;
 
   const auth = getAuth();
@@ -135,8 +136,11 @@ export default function GameView(props) {
         />
         <IconButton
           onClick={() => {
-            setTitle('');
-            setSaving(true);
+            if (id) saveProject();
+            else {
+              setTitle('');
+              setSaving(true);
+            }
           }}
           icon="save"
         />

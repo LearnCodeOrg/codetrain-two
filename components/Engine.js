@@ -124,6 +124,7 @@ export default function Engine(props) {
           tiles={tiles} currTile={currTile}
           gameObjects={gameObjects} setGameObjects={setGameObjects}
           gameTiles={gameTiles} setGameTiles={setGameTiles}
+          id={props.id}
         />
       </div>
     </div>
