@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 import styles from '../styles/components/IconButton.module.css';
 
 export default function IconButton(props) {
@@ -8,7 +10,12 @@ export default function IconButton(props) {
       className={down ? `${styles.button} ${styles.down}` : styles.button}
       onClick={onClick}
     >
-      <img src={`/icons/${icon}.png`} />
+      <Image
+        src={`/icons/${icon}.png`}
+        width="24"
+        height="24"
+        alt={icon}
+      />
     </button>
   );
 }

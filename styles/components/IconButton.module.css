@@ -6,16 +6,15 @@
   align-items: center;
   justify-content: center;
   margin-top: 4px;
+  padding: 1px;
 }
 
 .button:hover {
   background: #ddd;
 }
 
-.button > img {
+.button img {
   image-rendering: pixelated;
-  width: 24px;
-  height: 24px;
 }
 
 .button:not(:active):not(.down) {
