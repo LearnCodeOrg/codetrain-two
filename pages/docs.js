@@ -90,6 +90,15 @@ function update() {
         <p>Sounds can be added and played with addSound and playSound.</p>
         <p>addSound(name, url) registers sound with source url and given name.</p>
         <p>playSound(name) plays sound with given name.</p>
+        <pre>
+          <code>
+{`// add powerup sound
+addSound('powerup', 'https://codetrain.org/sounds/powerup.mp3');
+
+// play powerup sound
+playSound('powerup');`}
+          </code>
+        </pre>
       </div>
     </div>
   );
