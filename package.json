@@ -12,6 +12,7 @@
     "@emotion/styled": "^11.6.0",
     "@mui/material": "^5.2.6",
     "firebase": "^9.6.1",
+    "highlight.js": "^11.4.0",
     "next": "^12.0.9",
     "random-words": "^1.1.2",
     "react": "17.0.2",
