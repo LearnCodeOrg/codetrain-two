@@ -12,6 +12,20 @@ function Code(props) {
   );
 }
 
+function Line(props) {
+  return (
+    <p className={styles.line}>
+      {
+        props.children.split('`').map((text, i) =>
+          <span key={i}>
+            {i % 2 ? <code className="language-javascript">{text}</code> : <>{text}</>}
+          </span>
+        )
+      }
+    </p>
+  );
+}
+
 export default function Docs() {
   return (
     <div>
