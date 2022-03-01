@@ -67,6 +67,25 @@ removeText('score');`}
         <p>move(dir) moves object one tile up, down, left, or right.</p>
         <p>moveTiles(x, y) moves object by x, y in tiles.</p>
         <p>movePixels(x, y) moves object by x, y in pixels.</p>
+        <pre>
+          <code>
+{`// tiled object movement
+function update() {
+  if (isKey('w')) move('up');
+  if (isKey('a')) move('left');
+  if (isKey('s')) move('down');
+  if (isKey('d')) move('right');
+}
+
+// smooth object movement
+function update() {
+  if (isKeyDown('w')) movePixels(0, -1);
+  if (isKeyDown('a')) movePixels(-1, 0);
+  if (isKeyDown('s')) movePixels(0, 1);
+  if (isKeyDown('d')) movePixels(1, 0);
+}`}
+          </code>
+        </pre>
       </div>
     </div>
   );
