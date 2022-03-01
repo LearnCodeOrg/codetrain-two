@@ -57,12 +57,21 @@ export default function GameView(props) {
       colors: JSON.stringify(colors),
       codes: JSON.stringify(codes),
       objects: JSON.stringify(objects),
+      tiles: JSON.stringify(tiles),
       gameObjects: JSON.stringify(gameObjects),
+      gameTiles: JSON.stringify(gameTiles),
       uid: auth.currentUser.uid,
       title: title
     };
-    const projectsRef = collection(db, 'projects-two');
-    await addDoc(projectsRef, project);
+    // update project
+    if (id) {
+      const projectRef = doc(db, 'projects-two', id);
+      updateDoc(projectRef, project);
+    // create project
+    } else {
+      const projectsRef = collection(db, 'projects-two');
+      await addDoc(projectsRef, project);
+    }
   }
 
   // updates id of current object with given value
