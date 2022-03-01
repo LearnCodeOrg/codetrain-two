@@ -17,11 +17,18 @@ export default function ProjectCard() {
 
   return (
     <div>
-      <canvas
-        ref={canvasRef}
-        width={mapPixels}
-        height={mapPixels}
-      />
+      <Link href={`/project/${project.id}`}>
+        <a>{project.title}</a>
+      </Link>
+      <Link href={`/project/${project.id}`}>
+        <a>
+          <canvas
+            ref={canvasRef}
+            width={mapPixels}
+            height={mapPixels}
+          />
+        </a>
+      </Link>
     </div>
   );
 }
