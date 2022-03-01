@@ -125,6 +125,7 @@ export default function Engine(props) {
           gameObjects={gameObjects} setGameObjects={setGameObjects}
           gameTiles={gameTiles} setGameTiles={setGameTiles}
           id={props.id}
+          title={props.title}
         />
       </div>
     </div>

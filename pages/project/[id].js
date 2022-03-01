@@ -21,7 +21,7 @@ export default function Project() {
     setData(undefined);
     const projectRef = doc(db, 'projects-two', id);
     const projectDoc = await getDoc(projectRef);
-    setData(projectDoc.exists ? projectDoc.data() : null);
+    setData(projectDoc.exists ? { id, ...projectDoc.data() } : null);
   }
 
   // get project data on start

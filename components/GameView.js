@@ -32,7 +32,7 @@ export default function GameView(props) {
   const [refresh, setRefresh] = useState(false);
 
   const [saving, setSaving] = useState(false);
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState(props.title);
 
   // deletes current gameobject
   function deleteGameObject() {
