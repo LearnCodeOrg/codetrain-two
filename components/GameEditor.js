@@ -87,6 +87,8 @@ export default function GameEditor(props) {
 
   // called on mouse down
   function mouseDown(e) {
+    // start sketching
+    setSketching(true);
     // if tile selected
     if (currObject === -1) {
       // get tile index
@@ -99,8 +101,6 @@ export default function GameEditor(props) {
       setGameTiles(newGameTiles);
       return;
     }
-    // start sketching
-    setSketching(true);
     // get clamped position
     const [newX, newY] = getClampedPos(e);
     // get clicked objects
@@ -142,7 +142,9 @@ export default function GameEditor(props) {
     let squareX = Math.floor(mouseX / squarePixels);
     let squareY = Math.floor(mouseY / squarePixels);
     // clamp square position
-    let [clampedSquareX, clampedSquareY] = clampXY(squareX, squareY, halfSpriteSquares, mapSquares - halfSpriteSquares);
+    let [clampedSquareX, clampedSquareY] = clampXY(
+      squareX, squareY, halfSpriteSquares, mapSquares - halfSpriteSquares
+    );
     // calculate square index
     const squareIndex = clampedSquareY * mapSquares + clampedSquareX;
     // set hover index
@@ -210,7 +212,10 @@ export default function GameEditor(props) {
           if (colorIndex === -1) continue;
           const color = colors[colorIndex];
           ctx.fillStyle = color;
-          ctx.fillRect(pixelX + x * squarePixels, pixelY + y * squarePixels, squarePixels, squarePixels);
+          ctx.fillRect(
+            pixelX + x * squarePixels, pixelY + y * squarePixels,
+            squarePixels, squarePixels
+          );
         }
       }
       // fill hover if last object
