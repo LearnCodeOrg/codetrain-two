@@ -35,6 +35,18 @@ export default function Docs() {
         <p>addText(text, x, y, options?) creates and returns text at x, y in pixels.</p>
         <p>options is an optional object containing size, color, and id fields.</p>
         <p>removeText(id) removes text with given id.</p>
+        <pre>
+          <code>
+{`// create score text
+addText('Score: 0', 0, 0, 'score');
+
+// update score text
+addText('Score: 1', 0, 0, 'score');
+
+// remove score text
+removeText('score');`}
+          </code>
+        </pre>
       </div>
     </div>
   );
