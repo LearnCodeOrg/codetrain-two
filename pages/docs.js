@@ -30,6 +30,11 @@ export default function Docs() {
 }`}
           </code>
         </pre>
+        <h2>Output</h2>
+        <p>Text can be added and removed with addText() and removeText().</p>
+        <p>addText(text, x, y, options?) creates and returns text at x, y in pixels.</p>
+        <p>options is an optional object containing size, color, and id fields.</p>
+        <p>removeText(id) removes text with given id.</p>
       </div>
     </div>
   );
