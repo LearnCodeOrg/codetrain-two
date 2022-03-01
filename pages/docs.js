@@ -1,5 +1,10 @@
 import Header from '../components/Header';
 
+import { useEffect } from 'react';
+import hljs from 'highlight.js/lib/core';
+import javascript from 'highlight.js/lib/languages/javascript';
+import 'highlight.js/styles/monokai.css';
+
 import styles from '../styles/pages/Docs.module.css';
 
 function Code(props) {
@@ -27,6 +32,17 @@ function Line(props) {
 }
 
 export default function Docs() {
+  // initialize highlightjs on start
+  useEffect(() => {
+    // highlight blocks
+    hljs.registerLanguage('javascript', javascript);
+    hljs.highlightAll();
+    // highlight lines
+    document.querySelectorAll(`.${styles.line} > span > code`).forEach(el =>
+      hljs.highlightElement(el)
+    );
+  }, []);
+
   return (
     <div>
       <Header />
