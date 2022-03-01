@@ -51,6 +51,17 @@ removeText('score');`}
         <p>Keyboard input can be taken with isKeyDown() and isKey().</p>
         <p>isKeyDown(key) returns whether given key is down.</p>
         <p>isKey(key) returns whether given key was pressed in the last frame.</p>
+        <pre>
+          <code>
+{`update() {
+  // triggers when q pressed down
+  if (isKey('q')) console.log('Q pressed');
+
+  // triggers while q pressed down
+  if (isKeyDown('q')) console.log('Q down');
+}`}
+          </code>
+        </pre>
       </div>
     </div>
   );
