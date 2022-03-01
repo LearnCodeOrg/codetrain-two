@@ -205,16 +205,23 @@ export default function GameEditor(props) {
     // if hovering
     if (hoverIndex !== -1) {
       // draw hover
-      const squareX = hoverIndex % mapSquares;
-      const squareY = Math.floor(hoverIndex / mapSquares);
-      const pixelX = (squareX * squarePixels) - halfSpritePixels;
-      const pixelY = (squareY * squarePixels) - halfSpritePixels;
+      let hoverX = hoverIndex % mapSquares;
+      let hoverY = Math.floor(hoverIndex / mapSquares);
+      // calculate tile hover
+      if (currObject === -1) {
+        hoverX = Math.floor(hoverX / mapSprites) * mapSprites * squarePixels;
+        hoverY = Math.floor(hoverY / mapSprites) * mapSprites * squarePixels;
+      // calculate object hover
+      } else {
+        hoverX = hoverX * squarePixels - halfSpritePixels;
+        hoverY = hoverY * squarePixels - halfSpritePixels;
+      }
       // fill border if sketching
       if (sketching) {
-        fillBorder(ctx, squarePixels, pixelX, pixelY, spritePixels, spritePixels);
+        fillBorder(ctx, squarePixels, hoverX, hoverY, spritePixels, spritePixels);
       // fill hover if hovering
       } else {
-        fillHover(ctx, squarePixels, pixelX, pixelY, spritePixels, spritePixels);
+        fillHover(ctx, squarePixels, hoverX, hoverY, spritePixels, spritePixels);
       }
     }
   }
