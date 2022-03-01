@@ -2,6 +2,16 @@ import Header from '../components/Header';
 
 import styles from '../styles/pages/Docs.module.css';
 
+function Code(props) {
+  return (
+    <pre className={styles.code}>
+      <code className="language-javascript">
+        {props.children}
+      </code>
+    </pre>
+  );
+}
+
 export default function Docs() {
   return (
     <div>
@@ -14,8 +24,7 @@ export default function Docs() {
         <p>constructor() runs before the object is constructed.</p>
         <p>start() runs after all objects are constructed.</p>
         <p>update() runs once a frame after all objects are constructed.</p>
-        <pre>
-          <code>
+        <Code>
 {`return class GameObject0 extends GameObject {
   constructor(index) {
     super(index);
@@ -28,15 +37,13 @@ export default function Docs() {
     // runs once every frame
   }
 }`}
-          </code>
-        </pre>
+        </Code>
         <h2>Output</h2>
         <p>Text can be added and removed with addText() and removeText().</p>
         <p>addText(text, x, y, options?) creates and returns text at x, y in pixels.</p>
         <p>options is an optional object containing size, color, and id fields.</p>
         <p>removeText(id) removes text with given id.</p>
-        <pre>
-          <code>
+        <Code>
 {`// create score text
 addText('Score: 0', 0, 0, 'score');
 
@@ -45,14 +52,12 @@ addText('Score: 1', 0, 0, 'score');
 
 // remove score text
 removeText('score');`}
-          </code>
-        </pre>
+        </Code>
         <h2>Input</h2>
         <p>Keyboard input can be taken with isKeyDown() and isKey().</p>
         <p>isKeyDown(key) returns whether given key is down.</p>
         <p>isKey(key) returns whether given key was pressed in the last frame.</p>
-        <pre>
-          <code>
+        <Code>
 {`update() {
   // triggers when q pressed down
   if (isKey('q')) console.log('Q pressed');
@@ -60,15 +65,13 @@ removeText('score');`}
   // triggers while q pressed down
   if (isKeyDown('q')) console.log('Q down');
 }`}
-          </code>
-        </pre>
+        </Code>
         <h2>Movement</h2>
         <p>Objects can be moved with move(), moveTiles(), and movePixels().</p>
         <p>move(dir) moves object one tile up, down, left, or right.</p>
         <p>moveTiles(x, y) moves object by x, y in tiles.</p>
         <p>movePixels(x, y) moves object by x, y in pixels.</p>
-        <pre>
-          <code>
+        <Code>
 {`// tiled object movement
 function update() {
   if (isKey('w')) move('up');
@@ -84,21 +87,18 @@ function update() {
   if (isKeyDown('s')) movePixels(0, 1);
   if (isKeyDown('d')) movePixels(1, 0);
 }`}
-          </code>
-        </pre>
+        </Code>
         <h2>Audio</h2>
         <p>Sounds can be added and played with addSound and playSound.</p>
         <p>addSound(name, url) registers sound with source url and given name.</p>
         <p>playSound(name) plays sound with given name.</p>
-        <pre>
-          <code>
+        <Code>
 {`// add powerup sound
 addSound('powerup', 'https://codetrain.org/sounds/powerup.mp3');
 
 // play powerup sound
 playSound('powerup');`}
-          </code>
-        </pre>
+        </Code>
       </div>
     </div>
   );
