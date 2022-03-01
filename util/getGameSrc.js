@@ -186,6 +186,14 @@ export default function getGameSrc(props) {
       // update code indexes
       $$.objectCodes.forEach((code, i) => code.index = i);
     }
+    // create text
+    function addText(text, x, y, options) {
+      const id = options?.id ?? Math.random().toString();
+      const color = options?.color ?? 'black';
+      const size = options?.size ?? 16;
+      $$.texts[id] = { text, x, y, color, size, id };
+      return $$.texts[id];
+    }
     function __start__() {
       // draws given object at given position
       function drawObject(object, squareX, squareY) {
