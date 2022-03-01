@@ -62,6 +62,11 @@ removeText('score');`}
 }`}
           </code>
         </pre>
+        <h2>Movement</h2>
+        <p>Objects can be moved with move(), moveTiles(), and movePixels().</p>
+        <p>move(dir) moves object one tile up, down, left, or right.</p>
+        <p>moveTiles(x, y) moves object by x, y in tiles.</p>
+        <p>movePixels(x, y) moves object by x, y in pixels.</p>
       </div>
     </div>
   );
