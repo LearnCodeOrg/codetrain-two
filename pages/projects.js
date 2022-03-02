@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import ProjectCard from '../components/ProjectCard';
 import Header from '../components/Header';
 
 import { getAuth } from 'firebase/auth';
@@ -23,11 +23,10 @@ export default function Projects() {
           !projects ?
           <p>Loading...</p> :
           projects.map(project =>
-            <div key={project.id}>
-              <Link href={`/project/${project.id}`}>
-                <a>{project.title}</a>
-              </Link>
-            </div>
+            <ProjectCard
+              project={project}
+              key={project.id}
+            />
           )
         }
       </div>
