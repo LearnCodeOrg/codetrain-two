@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import { useEffect, useRef } from 'react';
 
 import styles from '../styles/components/ProjectCard.module.css';
@@ -16,10 +18,7 @@ export default function ProjectCard() {
   }, []);
 
   return (
-    <div>
-      <Link href={`/project/${project.id}`}>
-        <a>{project.title}</a>
-      </Link>
+    <div className={styles.container}>
       <Link href={`/project/${project.id}`}>
         <a>
           <canvas
@@ -27,6 +26,11 @@ export default function ProjectCard() {
             width={mapPixels}
             height={mapPixels}
           />
+        </a>
+      </Link>
+      <Link href={`/project/${project.id}`}>
+        <a>
+          <p>{project.title}</p>
         </a>
       </Link>
     </div>
