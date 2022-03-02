@@ -42,10 +42,31 @@ export default function ProjectCard(props) {
     }
   }
 
+  function drawCover() {
+    // for each tile
+    for (let y = 0; y < mapSprites; y++) {
+      for (let x = 0; x < mapSprites; x++) {
+        // get sprite
+        const spriteIndex = y * mapSprites + x;
+        const sprite = tiles[gameTiles[spriteIndex]];
+        // draw sprite
+        drawSprite(sprite, x * spritePixels, y * spritePixels);
+      }
+    }
+    // for each object
+    for (const object of gameObjects) {
+      // draw object
+      const { x, y } = object;
+      const sprite = objects[object.object];
+      drawSprite(sprite, x * squarePixels, y * squarePixels);
+    }
+  }
+
   // get canvas ref on start
   useEffect(() => {
     canvas = canvasRef.current;
     ctx = canvas.getContext('2d');
+    drawCover();
   }, []);
 
   return (
