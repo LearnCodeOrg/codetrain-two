@@ -23,6 +23,25 @@ export default function ProjectCard(props) {
 
   const canvasRef = useRef();
 
+  function drawSprite(sprite, x, y) {
+    // for each pixel
+    for (let yp = 0; yp < spriteSquares; yp++) {
+      for (let xp = 0; xp < spriteSquares; xp++) {
+        // set fill color
+        const spriteIndex = yp * spriteSquares + xp;
+        const colorIndex = sprite[spriteIndex];
+        if (colorIndex === -1) continue;
+        const color = colors[colorIndex];
+        ctx.fillStyle = color;
+        // get fill position
+        let xm = x + xp * squarePixels;
+        let ym = y + yp * squarePixels;
+        // fill pixel
+        ctx.fillRect(xm, ym, squarePixels, squarePixels);
+      }
+    }
+  }
+
   // get canvas ref on start
   useEffect(() => {
     canvas = canvasRef.current;
