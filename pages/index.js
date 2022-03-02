@@ -1,5 +1,6 @@
 import Logo from '../components/Logo';
 import Header from '../components/Header';
+import GitHubIcon from '@mui/icons-material/GitHub';
 
 import { getAuth, signOut } from 'firebase/auth';
 import signIn from '../util/signIn';
@@ -42,6 +43,14 @@ export default function Index() {
           {' ' + new Date().getFullYear()}
         </p>
       </div>
+      <a
+        className={styles.badge}
+        href="https://github.com/codeconvoy/codetrain-two"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <GitHubIcon fontSize="large" />
+      </a>
     </div>
   );
 }
