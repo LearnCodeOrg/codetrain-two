@@ -179,9 +179,9 @@ export default function GameEditor(props) {
       for (let y = 0; y < mapSprites; y++) {
         // get game tile
         const gameTileIndex = y * mapSprites + x;
-        const gameTile = gameTiles[gameTileIndex];
+        const gameTile = tiles[gameTileIndex];
         // get sprite
-        const sprite = tiles[gameTile];
+        const sprite = tileSprites[gameTile];
         // draw sprite
         drawSprite(
           ctx, sprite,
@@ -191,17 +191,17 @@ export default function GameEditor(props) {
       }
     }
     // draw gameobjects
-    for (let i = 0; i < gameObjects.length; i++) {
+    for (let i = 0; i < objects.length; i++) {
       // get sprite
-      const gameObject = gameObjects[i];
-      const sprite = objects[gameObject.object];
+      const gameObject = objects[i];
+      const sprite = objectSprites[gameObject.objectIndex];
       // get sprite position
       const pixelX = gameObject.x * squarePixels;
       const pixelY = gameObject.y * squarePixels;
       // draw sprite
-      drawSprite(ctx, sprite, pixelX, pixelY, colors, spriteSquares);
+      drawSprite(ctx, sprite, pixelX, pixelY, colors, squarePixels);
       // fill hover if last object
-      if (i === gameObjects.length - 1) {
+      if (i === objects.length - 1) {
         fillHover(ctx, squarePixels, pixelX, pixelY, spritePixels, spritePixels);
       }
     }
@@ -232,7 +232,7 @@ export default function GameEditor(props) {
   // draw on data update
   useEffect(() => {
     draw();
-  }, [hoverIndex, colors, objects, gameObjects, gameTiles, sketching, tiles]);
+  }, [hoverIndex, colors, objectSprites, objects, tiles, sketching, tileSprites]);
 
   return (
     <canvas
