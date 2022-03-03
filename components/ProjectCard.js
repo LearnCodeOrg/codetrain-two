@@ -17,10 +17,10 @@ export default function ProjectCard(props) {
 
   // parse values from saved data
   const colors = JSON.parse(project.colors);
+  const tileSprites = JSON.parse(project.tileSprites);
+  const objectSprites = JSON.parse(project.objectSprites);
   const tiles = JSON.parse(project.tiles);
   const objects = JSON.parse(project.objects);
-  const gameTiles = JSON.parse(project.gameTiles);
-  const gameObjects = JSON.parse(project.gameObjects);
 
   const canvasRef = useRef();
 
@@ -30,7 +30,7 @@ export default function ProjectCard(props) {
       for (let x = 0; x < mapSprites; x++) {
         // get sprite
         const spriteIndex = y * mapSprites + x;
-        const sprite = tiles[gameTiles[spriteIndex]];
+        const sprite = tileSprites[tiles[spriteIndex]];
         // draw sprite
         drawSprite(
           ctx, sprite,
@@ -40,14 +40,14 @@ export default function ProjectCard(props) {
       }
     }
     // for each object
-    for (const object of gameObjects) {
+    for (const object of objects) {
       // get sprite
       const { x, y } = object;
-      const sprite = objects[object.object];
+      const sprite = objectSprites[object.objectIndex];
       // draw sprite
       drawSprite(
         ctx, sprite,
-        x * spritePixels, y * spritePixels,
+        x * squarePixels, y * squarePixels,
         colors, squarePixels
       );
     }
