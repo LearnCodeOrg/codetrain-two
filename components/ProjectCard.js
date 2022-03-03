@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { spriteSquares, mapSprites, mapSquares } from '../util/units';
+import { mapSprites, mapSquares } from '../util/units';
 import { useEffect, useRef } from 'react';
 import drawSprite from '../util/drawSprite';
 
@@ -32,15 +32,24 @@ export default function ProjectCard(props) {
         const spriteIndex = y * mapSprites + x;
         const sprite = tiles[gameTiles[spriteIndex]];
         // draw sprite
-        drawSprite(sprite, x * spritePixels, y * spritePixels);
+        drawSprite(
+          ctx, sprite,
+          x * spritePixels, y * spritePixels,
+          colors, squarePixels
+        );
       }
     }
     // for each object
     for (const object of gameObjects) {
-      // draw object
+      // get sprite
       const { x, y } = object;
       const sprite = objects[object.object];
-      drawSprite(sprite, x * squarePixels, y * squarePixels);
+      // draw sprite
+      drawSprite(
+        ctx, sprite,
+        x * spritePixels, y * spritePixels,
+        colors, squarePixels
+      );
     }
   }
 
