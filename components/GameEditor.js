@@ -192,24 +192,14 @@ export default function GameEditor(props) {
     }
     // draw gameobjects
     for (let i = 0; i < gameObjects.length; i++) {
+      // get sprite
       const gameObject = gameObjects[i];
-      const object = objects[gameObject.object];
+      const sprite = objects[gameObject.object];
+      // get sprite position
       const pixelX = gameObject.x * squarePixels;
       const pixelY = gameObject.y * squarePixels;
-      // for each square
-      for (let x = 0; x < spriteSquares; x++) {
-        for (let y = 0; y < spriteSquares; y++) {
-          const squareIndex = y * spriteSquares + x;
-          const colorIndex = object[squareIndex];
-          if (colorIndex === -1) continue;
-          const color = colors[colorIndex];
-          ctx.fillStyle = color;
-          ctx.fillRect(
-            pixelX + x * squarePixels, pixelY + y * squarePixels,
-            squarePixels, squarePixels
-          );
-        }
-      }
+      // draw sprite
+      drawSprite(ctx, sprite, pixelX, pixelY, colors, spriteSquares);
       // fill hover if last object
       if (i === gameObjects.length - 1) {
         fillHover(ctx, squarePixels, pixelX, pixelY, spritePixels, spritePixels);
