@@ -4,6 +4,7 @@ import { useRef, useState, useEffect } from 'react';
 import { fillBorder, fillHover } from '../util/fill';
 import { mouseIndex } from '../util/mouse';
 import { spriteSquares } from '../util/units';
+import drawSprite from '../util/drawSprite';
 
 import styles from '../styles/components/Draw.module.css';
 
@@ -131,24 +132,13 @@ export default function Draw(props) {
     ctx.clearRect(0, 0, spritePixels, spritePixels);
     // get current sprite
     const sprite = sprites[currSprite];
-    // for each pixel
-    for (let x = 0; x < spriteSquares; x++) {
-      for (let y = 0; y < spriteSquares; y++) {
-        // set fill color
-        const squareIndex = y * spriteSquares + x;
-        const colorIndex = sprite[squareIndex];
-        const color = colorIndex === -1 ? '#fff' : colors[colorIndex];
-        ctx.fillStyle = color;
-        // fill rect
-        const pxX = x * squarePixels;
-        const pxY = y * squarePixels;
-        ctx.fillRect(pxX, pxY, squarePixels, squarePixels);
         // draw hover
         if (squareIndex === hoverIndex) {
           if (sketching) fillBorder(ctx, border, pxX, pxY, squarePixels, squarePixels);
           else fillHover(ctx, border, pxX, pxY, squarePixels, squarePixels);
         }
-      }
+    // draw sprite
+    drawSprite(ctx, sprite, 0, 0, colors, squarePixels);
     }
     fillBorder(ctx, border, 0, 0, spritePixels, spritePixels)
   }
