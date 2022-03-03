@@ -20,9 +20,12 @@ const CodeEditor = dynamic(import('../components/CodeEditor'), {
 });
 
 export default function Engine(props) {
+  const [lastCurrObject, setLastCurrObject] = useState(0);
   const [currObject, setCurrObject] = useState(0);
   const [currTile, setCurrTile] = useState(-1);
   const [currColor, setCurrColor] = useState(0);
+
+  const codeObject = currObject === -1 ? lastCurrObject : currObject;
 
   const [marker, setMarker] = useState(undefined);
 
@@ -47,7 +50,10 @@ export default function Engine(props) {
 
   // clear object on tile change
   useEffect(() => {
-    if (currTile !== -1 && currObject !== -1) setCurrObject(-1);
+    if (currTile !== -1 && currObject !== -1) {
+      setLastCurrObject(currObject);
+      setCurrObject(-1);
+    }
   }, [currTile]);
 
   // clear tile on object change
@@ -58,10 +64,10 @@ export default function Engine(props) {
   // updates code with given value
   function updateCode(val) {
     // clear marker if current object
-    if (marker && marker.object === currObject) setMarker(undefined);
+    if (marker && marker.object === codeObject) setMarker(undefined);
     // update codes
     const newCodes = codes.slice();
-    newCodes[currObject] = val;
+    newCodes[codeObject] = val;
     setCodes(newCodes);
   }
 
@@ -80,7 +86,7 @@ export default function Engine(props) {
   return (
     <div className={styles.container}>
       <CodeEditor
-        value={codes[currObject]}
+        value={codes[codeObject]}
         onChange={val => updateCode(val)}
         marker={marker}
         currObject={currObject}
