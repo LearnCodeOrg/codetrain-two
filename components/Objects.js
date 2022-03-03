@@ -19,7 +19,7 @@ const canvasHeight = gridHeight * spritePixels;
 const border = 4;
 
 export default function Objects(props) {
-  const { objects, colors, currObject, setCurrObject } = props;
+  const { objectSprites, colors, currObject, setCurrObject } = props;
 
   const canvasRef = useRef();
 
@@ -49,7 +49,7 @@ export default function Objects(props) {
       for (let y = 0; y < gridHeight; y++) {
         // get sprite
         const spriteIndex = y * gridWidth + x;
-        const sprite = objects[spriteIndex];
+        const sprite = objectSprites[spriteIndex];
         // get sprite position
         const spriteX = x * spritePixels;
         const spriteY = y * spritePixels;
@@ -72,7 +72,7 @@ export default function Objects(props) {
   // draw when curr object changes
   useEffect(() => {
     draw();
-  }, [currObject, hoverIndex, colors, objects]);
+  }, [currObject, hoverIndex, colors, objectSprites]);
 
   // hover over objects
   function hover(e) {

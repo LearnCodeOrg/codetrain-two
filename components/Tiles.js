@@ -19,7 +19,7 @@ const canvasHeight = gridHeight * spritePixels;
 const border = 4;
 
 export default function Tiles(props) {
-  const { tiles, colors, currTile, setCurrTile } = props;
+  const { tileSprites, colors, currTile, setCurrTile } = props;
 
   const canvasRef = useRef();
 
@@ -49,7 +49,7 @@ export default function Tiles(props) {
       for (let y = 0; y < gridHeight; y++) {
         // get sprite
         const spriteIndex = y * gridWidth + x;
-        const sprite = tiles[spriteIndex];
+        const sprite = tileSprites[spriteIndex];
         // get sprite position
         const spriteX = x * spritePixels;
         const spriteY = y * spritePixels;
@@ -72,7 +72,7 @@ export default function Tiles(props) {
   // draw when curr tile changes
   useEffect(() => {
     draw();
-  }, [currTile, hoverIndex, colors, tiles]);
+  }, [currTile, hoverIndex, colors, tileSprites]);
 
   // hover over tiles
   function hover(e) {
