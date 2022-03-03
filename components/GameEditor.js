@@ -3,6 +3,7 @@ import { mousePosition, mouseIndex } from '../util/mouse';
 import { fillBorder, fillHover } from '../util/fill';
 import { mapSprites, spriteSquares } from '../util/units';
 import randomWords from 'random-words';
+import drawSprite from '../util/drawSprite';
 
 import styles from '../styles/components/GameEditor.module.css';
 
@@ -179,23 +180,14 @@ export default function GameEditor(props) {
         // get game tile
         const gameTileIndex = y * mapSprites + x;
         const gameTile = gameTiles[gameTileIndex];
-        // get tile
-        const tile = tiles[gameTile];
-        // for each square
-        for (let px = 0; px < spriteSquares; px++) {
-          for (let py = 0; py < spriteSquares; py++) {
-            // get color index
-            const squareIndex = py * spriteSquares + px;
-            const colorIndex = tile[squareIndex];
-            // set color
-            ctx.fillStyle = colors[colorIndex];
-            // get pixel position
-            const pixelX = x * spritePixels + px * squarePixels;
-            const pixelY = y * spritePixels + py * squarePixels;
-            // fill square
-            ctx.fillRect(pixelX, pixelY, squarePixels, squarePixels);
-          }
-        }
+        // get sprite
+        const sprite = tiles[gameTile];
+        // draw sprite
+        drawSprite(
+          ctx, sprite,
+          x * spritePixels, y * spritePixels,
+          colors, squarePixels
+        );
       }
     }
     // draw gameobjects
