@@ -7,7 +7,7 @@ export const defaultColors = [
   "#202020"
 ];
 
-const defaultObject = [
+const defaultObjectSprite = [
   0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 3, 3, 3, 3, 0, 0,
@@ -18,7 +18,7 @@ const defaultObject = [
   0, 0, 0, 0, 0, 0, 0, 0
 ];
 
-const defaultTile = [
+const defaultTileSprite = [
   0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0,
@@ -29,12 +29,12 @@ const defaultTile = [
   0, 0, 0, 0, 0, 0, 0, 0
 ];
 
-export const defaultObjects = Array(objectCount).fill(0).map((val, i) =>
-  defaultObject
+export const defaultObjectSprites = Array(objectCount).fill(0).map(val =>
+  defaultObjectSprite
 );
 
-export const defaultTiles = Array(objectCount).fill(0).map((val, i) =>
-  defaultTile
+export const defaultTileSprites = Array(objectCount).fill(0).map(val =>
+  defaultTileSprite
 );
 
 export const defaultCodes = Array(objectCount).fill(0).map((val, i) => (
@@ -58,9 +58,9 @@ return class GameObject${i} extends GameObject {
 `
 ));
 
-export const defaultGameObjects = [];
+export const defaultObjects = [];
 
-export const defaultGameTiles = [
+export const defaultTiles = [
   0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0,
