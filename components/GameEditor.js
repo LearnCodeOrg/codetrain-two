@@ -95,18 +95,18 @@ export default function GameEditor(props) {
       // get tile index
       const tileIndex = mouseIndex(e, canvas, spritePixels, mapSprites);
       // return if same tile
-      if (gameTiles[tileIndex] === currTile) return;
+      if (tiles[tileIndex] === currTile) return;
       // set new tile
-      const newGameTiles = gameTiles.slice();
+      const newGameTiles = tiles.slice();
       newGameTiles[tileIndex] = currTile;
-      setGameTiles(newGameTiles);
+      setTiles(newGameTiles);
       return;
     }
     // get clamped position
     const [newX, newY] = getClampedPos(e);
     // get clicked objects
     const [mouseX, mouseY] = mousePosition(e, canvas);
-    const clicked = gameObjects.filter(obj => (
+    const clicked = objects.filter(obj => (
       obj.x * squarePixels >= mouseX - spritePixels &&
       obj.x * squarePixels <= mouseX &&
       obj.y * squarePixels >= mouseY - spritePixels &&
@@ -117,12 +117,12 @@ export default function GameEditor(props) {
       // get clicked object
       const clickedObject = clicked[0];
       const { x, y, ...obj } = clickedObject;
-      const newGameObjects = gameObjects.slice();
-      const heldIndex = gameObjects.indexOf(clickedObject);
+      const newGameObjects = objects.slice();
+      const heldIndex = objects.indexOf(clickedObject);
       // move clicked object
       newGameObjects.splice(heldIndex, 1);
       newGameObjects.push({ x: newX, y: newY, ...obj });
-      setGameObjects(newGameObjects);
+      setObjects(newGameObjects);
       return;
     }
     // get mouse position
@@ -130,8 +130,8 @@ export default function GameEditor(props) {
     const squareY = Math.floor(hoverIndex / mapSquares) - halfSpriteSquares;
     // append new gameobject
     const id = randomWords({ exactly: 1, minLength: 3, maxLength: 5 })[0];
-    const newGameObject = { x: squareX, y: squareY, object: currObject, id };
-    setGameObjects(val => [...val, newGameObject]);
+    const newGameObject = { x: squareX, y: squareY, objectIndex: currObject, id };
+    setObjects(val => [...val, newGameObject]);
   }
 
   // called on mouse move
