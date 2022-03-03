@@ -149,11 +149,8 @@ export default function GameView(props) {
         />
         <IconButton
           onClick={() => {
-            if (id) saveProject();
-            else {
-              setTitle('');
-              setSaving(true);
-            }
+            setTitle(props.title ?? '');
+            setSaving(true);
           }}
           icon="save"
         />
