@@ -6,8 +6,8 @@ const squarePixels = Math.round(spritePixels / spriteSquares);
 
 const properties = [
   'colors', 'codes',
-  'objects', 'tiles',
-  'gameObjects', 'gameTiles'
+  'objectSprites', 'tileSprites',
+  'objects', 'tiles'
 ];
 
 export default function getGameSrc(props) {
@@ -73,10 +73,10 @@ export default function getGameSrc(props) {
       squarePixels: ${squarePixels},
       colors: ${JSON.stringify(props.colors)},
       codes: ${JSON.stringify(props.codes)},
+      objectSprites: ${JSON.stringify(props.objectSprites)},
+      tileSprites: ${JSON.stringify(props.tileSprites)},
       objects: ${JSON.stringify(props.objects)},
       tiles: ${JSON.stringify(props.tiles)},
-      gameObjects: ${JSON.stringify(props.gameObjects)},
-      gameTiles: ${JSON.stringify(props.gameTiles)},
       objectCodes: [],
       sounds: {},
       texts: {},
@@ -118,7 +118,7 @@ export default function getGameSrc(props) {
       lastPressedKeys: {},
       pressedKeys: {},
       getCodeFunction: (gameObject, index) => {
-        return new (new Function($$.codes[gameObject.object])())(index);
+        return new (new Function($$.codes[gameObject.objectIndex])())(index);
       }
     };
     // listen for key down
