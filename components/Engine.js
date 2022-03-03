@@ -8,8 +8,8 @@ import Loading from '../components/Loading';
 import { useEffect, useState } from 'react';
 import {
   defaultCodes, defaultColors,
-  defaultObjects, defaultTiles,
-  defaultGameObjects, defaultGameTiles
+  defaultObjectSprites, defaultTileSprites,
+  defaultObjects, defaultTiles
 } from '../util/data';
 import dynamic from 'next/dynamic';
 
@@ -32,17 +32,17 @@ export default function Engine(props) {
   const [colors, setColors] = useState(
     props.colors ? JSON.parse(props.colors) : defaultColors
   );
+  const [objectSprites, setObjectSprites] = useState(
+    props.objectSprites ? JSON.parse(props.objectSprites) : defaultObjectSprites
+  );
+  const [tileSprites, setTileSprites] = useState(
+    props.tileSprites ? JSON.parse(props.tileSprites) : defaultTileSprites
+  );
   const [objects, setObjects] = useState(
     props.objects ? JSON.parse(props.objects) : defaultObjects
   );
   const [tiles, setTiles] = useState(
     props.tiles ? JSON.parse(props.tiles) : defaultTiles
-  );
-  const [gameObjects, setGameObjects] = useState(
-    props.gameObjects ? JSON.parse(props.gameObjects) : defaultGameObjects
-  );
-  const [gameTiles, setGameTiles] = useState(
-    props.gameTiles ? JSON.parse(props.gameTiles) : defaultGameTiles
   )
 
   // clear object on tile change
@@ -87,13 +87,13 @@ export default function Engine(props) {
       />
       <div className={styles.draw}>
         <Objects
-          objects={objects}
+          objectSprites={objectSprites}
           colors={colors}
           currObject={currObject}
           setCurrObject={setCurrObject}
         />
         <Tiles
-          tiles={tiles}
+          tileSprites={tileSprites}
           colors={colors}
           currTile={currTile}
           setCurrTile={setCurrTile}
@@ -106,10 +106,10 @@ export default function Engine(props) {
         />
         <Draw
           colors={colors}
-          objects={objects}
-          setObjects={setObjects}
-          tiles={tiles}
-          setTiles={setTiles}
+          objectSprites={objectSprites}
+          setObjectSprites={setObjectSprites}
+          tileSprites={tileSprites}
+          setTileSprites={setTileSprites}
           currColor={currColor}
           currObject={currObject}
           currTile={currTile}
@@ -120,10 +120,10 @@ export default function Engine(props) {
           codes={codes}
           onError={onError}
           colors={colors}
-          objects={objects} currObject={currObject}
-          tiles={tiles} currTile={currTile}
-          gameObjects={gameObjects} setGameObjects={setGameObjects}
-          gameTiles={gameTiles} setGameTiles={setGameTiles}
+          objectSprites={objectSprites} currObject={currObject}
+          tileSprites={tileSprites} currTile={currTile}
+          objects={objects} setObjects={setObjects}
+          tiles={tiles} setTiles={setTiles}
           id={props.id}
           title={props.title}
         />
