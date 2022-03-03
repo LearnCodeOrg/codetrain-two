@@ -132,13 +132,16 @@ export default function Draw(props) {
     ctx.clearRect(0, 0, spritePixels, spritePixels);
     // get current sprite
     const sprite = sprites[currSprite];
-        // draw hover
-        if (squareIndex === hoverIndex) {
-          if (sketching) fillBorder(ctx, border, pxX, pxY, squarePixels, squarePixels);
-          else fillHover(ctx, border, pxX, pxY, squarePixels, squarePixels);
-        }
     // draw sprite
     drawSprite(ctx, sprite, 0, 0, colors, squarePixels);
+    // if hovering
+    if (hoverIndex !== -1) {
+      // get hover index
+      const hoverX = (hoverIndex % spriteSquares) * squarePixels;
+      const hoverY = Math.floor(hoverIndex / spriteSquares) * squarePixels;
+      // draw hover
+      if (sketching) fillBorder(ctx, border, hoverX, hoverY, squarePixels, squarePixels);
+      else fillHover(ctx, border, hoverX, hoverY, squarePixels, squarePixels);
     }
     fillBorder(ctx, border, 0, 0, spritePixels, spritePixels)
   }
