@@ -51,18 +51,19 @@ export default function getGameSrc(props) {
       start() {}
       update() {}
       move(dir) {
-        if (dir === 'up') $$.gameObjects[this.index].y -= $$.spriteSquares;
-        else if (dir === 'down') $$.gameObjects[this.index].y += $$.spriteSquares;
-        else if (dir === 'left') $$.gameObjects[this.index].x -= $$.spriteSquares;
-        else if (dir === 'right') $$.gameObjects[this.index].x += $$.spriteSquares;
+        if (dir === 'up') $$.objects[this.index].y -= $$.spriteSquares;
+        else if (dir === 'down') $$.objects[this.index].y += $$.spriteSquares;
+        else if (dir === 'left') $$.objects[this.index].x -= $$.spriteSquares;
+        else if (dir === 'right') $$.objects[this.index].x += $$.spriteSquares;
       }
       moveTiles(x, y) {
-        $$.gameObjects[this.index].x += x * $$.spriteSquares;
-        $$.gameObjects[this.index].y += y * $$.spriteSquares;
+        $$.objects[this.index].x += x * $$.spriteSquares;
+        $$.objects[this.index].y += y * $$.spriteSquares;
       }
       movePixels(x, y) {
-        $$.gameObjects[this.index].x += x;
-        $$.gameObjects[this.index].y += y;
+        $$.objects[this.index].x += x;
+        $$.objects[this.index].y += y;
+      }
       }
     }
     const $$ = {
@@ -171,9 +172,9 @@ export default function getGameSrc(props) {
     function createObject(object, x, y) {
       // construct object
       const gameObject = { object, x, y };
-      const index = $$.gameObjects.length;
+      const index = $$.objects.length;
       // push new object
-      $$.gameObjects.push(gameObject);
+      $$.objects.push(gameObject);
       const code = $$.getCodeFunction(gameObject, index);
       code.start();
       $$.objectCodes.push(code);
@@ -182,7 +183,7 @@ export default function getGameSrc(props) {
     // deletes object with given index
     function deleteObject(index) {
       // splice object
-      $$.gameObjects.splice(index, 1);
+      $$.objects.splice(index, 1);
       $$.objectCodes.splice(index, 1);
       // update code indexes
       $$.objectCodes.forEach((code, i) => code.index = i);
