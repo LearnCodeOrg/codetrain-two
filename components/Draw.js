@@ -19,8 +19,8 @@ const border = 2;
 export default function Draw(props) {
   const {
     colors, currColor,
-    objects, setObjects, currObject,
-    tiles, setTiles, currTile
+    objectSprites, setObjectSprites, currObject,
+    tileSprites, setTileSprites, currTile
   } = props;
 
   const [hoverIndex, setHoverIndex] = useState(-1);
@@ -30,8 +30,8 @@ export default function Draw(props) {
   const canvasRef = useRef();
 
   // get sprite modifiers
-  const sprites = currObject === -1 ? tiles : objects;
-  const setSprites = currObject === -1 ? setTiles : setObjects;
+  const sprites = currObject === -1 ? tileSprites : objectSprites;
+  const setSprites = currObject === -1 ? setTileSprites : setObjectSprites;
   const currSprite = currObject === -1 ? currTile : currObject;
 
   // flood fills given object starting at given index
@@ -157,8 +157,8 @@ export default function Draw(props) {
     draw();
   }, [
     colors,
-    objects, currObject,
-    tiles, currTile,
+    objectSprites, currObject,
+    tileSprites, currTile,
     hoverIndex, sketching
   ]);
 
