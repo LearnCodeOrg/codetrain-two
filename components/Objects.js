@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import { spriteSquares } from '../util/units'
 import { fillBorder, fillHover } from '../util/fill';
 import { mouseIndex } from '../util/mouse';
+import drawSprite from '../util/drawSprite';
 
 import styles from '../styles/components/Objects.module.css';
 
@@ -46,25 +47,14 @@ export default function Objects(props) {
     ctx.fillStyle = '#000';
     for (let x = 0; x < gridWidth; x++) {
       for (let y = 0; y < gridHeight; y++) {
-        // get sprite index
+        // get sprite
         const spriteIndex = y * gridWidth + x;
-        // for each square
         const sprite = objects[spriteIndex];
-        for (let px = 0; px < spriteSquares; px++) {
-          for (let py = 0; py < spriteSquares; py++) {
-            // set square color
-            const pixelIndex = py * spriteSquares + px;
-            const colorIndex = sprite[pixelIndex];
-            ctx.fillStyle = colorIndex === -1 ? '#fff' : colors[colorIndex];
-            // calculate square dimensions
-            const squareX = x * spritePixels + px * squarePixels;
-            const squareY = y * spritePixels + py * squarePixels;
-            ctx.fillRect(squareX, squareY, squarePixels, squarePixels);
-          }
-        }
         // get sprite position
         const spriteX = x * spritePixels;
         const spriteY = y * spritePixels;
+        // draw sprite
+        drawSprite(ctx, sprite, spriteX, spriteY, colors, squarePixels);
         // fill hover
         if (hoverIndex === spriteIndex) {
           fillHover(ctx, border, spriteX, spriteY, spritePixels, spritePixels);
