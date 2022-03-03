@@ -204,8 +204,8 @@ export default function getGameSrc(props) {
       delete $$.texts[id];
     }
     function __start__() {
-      // draws given object at given position
-      function drawObject(object, squareX, squareY) {
+      // draws given sprite at given position
+      function drawSprite(object, squareX, squareY) {
         // for each square
         for (let x = 0; x < $$.spriteSquares; x++) {
           for (let y = 0; y < $$.spriteSquares; y++) {
@@ -232,16 +232,16 @@ export default function getGameSrc(props) {
           for (let y = 0; y < $$.mapSprites; y++) {
             // draw tile
             const gameTileIndex = y * $$.mapSprites + x;
-            const tileIndex = $$.gameTiles[gameTileIndex];
-            const tile = $$.tiles[tileIndex];
+            const tileIndex = $$.tiles[gameTileIndex];
+            const tile = $$.tileSprites[tileIndex];
             drawObject(tile, x * $$.spriteSquares, y * $$.spriteSquares);
           }
         }
         // for each object
-        for (const gameObject of $$.gameObjects) {
+        for (const gameObject of $$.objects) {
           // draw object
           const { x, y } = gameObject;
-          const object = $$.objects[gameObject.object];
+          const object = $$.objectSprites[gameObject.objectIndex];
           drawObject(object, x, y);
         }
         // for each text
@@ -265,7 +265,7 @@ export default function getGameSrc(props) {
             code.update();
           } catch (e) {
             // throw error with object
-            const object = $$.gameObjects[i].object;
+            const object = $$.objects[i].object;
             $$.onError(e, object);
             return;
           }
@@ -278,8 +278,8 @@ export default function getGameSrc(props) {
         requestAnimationFrame(gameLoop);
       }
       // construct code functions
-      for (let i = 0; i < $$.gameObjects.length; i++) {
-        const gameObject = $$.gameObjects[i];
+      for (let i = 0; i < $$.objects.length; i++) {
+        const gameObject = $$.objects[i];
         try {
           const code = $$.getCodeFunction(gameObject, i);
           $$.objectCodes.push(code);
@@ -297,7 +297,7 @@ export default function getGameSrc(props) {
           code.start();
         } catch(e) {
           // throw error with object
-          const object = $$.gameObjects[i].object;
+          const object = $$.objects[i].object;
           $$.onError(e, object);
           return;
         }
