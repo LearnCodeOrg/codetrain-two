@@ -2,6 +2,7 @@ import Link from 'next/link';
 
 import { spriteSquares, mapSprites, mapSquares } from '../util/units';
 import { useEffect, useRef } from 'react';
+import drawSprite from '../util/drawSprite';
 
 import styles from '../styles/components/ProjectCard.module.css';
 
@@ -22,25 +23,6 @@ export default function ProjectCard(props) {
   const gameObjects = JSON.parse(project.gameObjects);
 
   const canvasRef = useRef();
-
-  function drawSprite(sprite, x, y) {
-    // for each pixel
-    for (let yp = 0; yp < spriteSquares; yp++) {
-      for (let xp = 0; xp < spriteSquares; xp++) {
-        // set fill color
-        const spriteIndex = yp * spriteSquares + xp;
-        const colorIndex = sprite[spriteIndex];
-        if (colorIndex === -1) continue;
-        const color = colors[colorIndex];
-        ctx.fillStyle = color;
-        // get fill position
-        let xm = x + xp * squarePixels;
-        let ym = y + yp * squarePixels;
-        // fill pixel
-        ctx.fillRect(xm, ym, squarePixels, squarePixels);
-      }
-    }
-  }
 
   function drawCover() {
     // for each tile
