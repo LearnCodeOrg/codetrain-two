@@ -6,3 +6,11 @@
 .content > h1 {
   margin-top: 0;
 }
+
+.code > code {
+  border-radius: 8px;
+}
+
+.line > span > code {
+  border-radius: 8px;
+}

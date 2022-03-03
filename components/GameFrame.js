@@ -1,5 +1,3 @@
-import IconButton from './IconButton';
-
 import { useEffect, useRef, useState } from 'react';
 import getGameSrc from '../util/getGameSrc';
 

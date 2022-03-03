@@ -11,10 +11,9 @@
 }
 
 .link {
-  color: #2196f3;
   margin: 0 10px;
 }
 
 .link:hover {
-  color: #3f51b5;
+  text-decoration: underline;
 }

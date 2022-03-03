@@ -1,5 +1,6 @@
 .toolbar {
   display: flex;
+  width: 256px;
 }
 
 .saveform {
@@ -10,4 +11,9 @@
 
 .saveform > input {
   margin: 10px 0;
+}
+
+.toolbar > input {
+  margin-left: 8px;
+  width: 124px;
 }
