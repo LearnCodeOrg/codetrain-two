@@ -18,10 +18,10 @@ const mapPixels = 256;
 export default function GameView(props) {
   const {
     onError, colors, codes,
-    objects, currObject,
-    tiles, currTile,
-    gameObjects, setGameObjects,
-    gameTiles, setGameTiles,
+    objectSprites, currObject,
+    tileSprites, currTile,
+    objects, setObjects,
+    tiles, setTiles,
     id
   } = props;
 
@@ -121,20 +121,20 @@ export default function GameView(props) {
           refresh={refresh}
           setRefresh={setRefresh}
           mapPixels={mapPixels}
-          gameObjects={gameObjects}
+          objects={objects}
           {...props}
         /> :
         <GameEditor
           mapPixels={mapPixels}
           colors={colors}
-          objects={objects}
+          objectSprites={objectSprites}
           currObject={currObject}
-          tiles={tiles}
+          tileSprites={tileSprites}
           currTile={currTile}
-          gameObjects={gameObjects}
-          setGameObjects={setGameObjects}
-          gameTiles={gameTiles}
-          setGameTiles={setGameTiles}
+          objects={objects}
+          setObjects={setObjects}
+          tiles={tiles}
+          setTiles={setTiles}
         />
       }
       <div className={styles.toolbar}>
@@ -155,7 +155,7 @@ export default function GameView(props) {
           icon="save"
         />
         {
-          (!playing && !!gameObjects.length) &&
+          (!playing && !!objects.length) &&
           <>
             <IconButton
               onClick={deleteGameObject}
@@ -164,7 +164,7 @@ export default function GameView(props) {
             <input
               className="textinput"
               placeholder="Object ID"
-              value={gameObjects[gameObjects.length - 1].id}
+              value={objects[objects.length - 1].id}
               onChange={e => updateObjectId(e.target.value)}
             />
           </>
