@@ -12,10 +12,10 @@ let canvas, ctx;
 export default function GameEditor(props) {
   const {
     mapPixels, colors,
-    objects, currObject,
-    tiles, currTile,
-    gameObjects, setGameObjects,
-    gameTiles, setGameTiles
+    objectSprites, currObject,
+    tileSprites, currTile,
+    objects, setObjects,
+    tiles, setTiles
   } = props;
 
   const spritePixels = Math.round(mapPixels / mapSprites);
@@ -62,26 +62,26 @@ export default function GameEditor(props) {
       const tileY = clamp(Math.floor(mouseY / spritePixels), 0, mapSprites - 1);
       const tileIndex = tileY * mapSprites + tileX;
       // return if same tile
-      if (gameTiles[tileIndex] === currTile) return;
+      if (tiles[tileIndex] === currTile) return;
       // update tile
-      const newGameTiles = gameTiles.slice();
+      const newGameTiles = tiles.slice();
       newGameTiles[tileIndex] = currTile;
-      setGameTiles(newGameTiles);
+      setTiles(newGameTiles);
       return;
     }
     // get clamped position
     const [newX, newY] = getClampedPos(e);
-    // if gameobjects
-    if (gameObjects.length) {
+    // if gameobjectSprites
+    if (objects.length) {
       // get clicked object
-      const clickedObject = gameObjects[gameObjects.length - 1];
+      const clickedObject = objects[objects.length - 1];
       const { x, y, ...obj } = clickedObject;
-      const newGameObjects = gameObjects.slice();
-      const heldIndex = gameObjects.indexOf(clickedObject);
+      const newGameObjects = objects.slice();
+      const heldIndex = objects.indexOf(clickedObject);
       // move clicked object
       newGameObjects.splice(heldIndex, 1);
       newGameObjects.push({ x: newX, y: newY, ...obj });
-      setGameObjects(newGameObjects);
+      setObjects(newGameObjects);
       return;
     }
   }
