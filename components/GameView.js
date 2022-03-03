@@ -39,14 +39,14 @@ export default function GameView(props) {
     // confirm delete
     if (!window.confirm('Delete object?')) return;
     // delete current object
-    const newGameObjects = gameObjects.slice(0, -1);
-    setGameObjects(newGameObjects);
+    const newGameObjects = objects.slice(0, -1);
+    setObjects(newGameObjects);
   }
 
   // downloads game as html file
   function downloadGame() {
     const gameSrc = getGameSrc({
-      colors, codes, objects, gameObjects, tiles, gameTiles
+      colors, codes, objectSprites, objects, tileSprites, tiles
     });
     const link = document.createElement('a');
     link.download = 'game.html';
@@ -60,10 +60,10 @@ export default function GameView(props) {
     const project = {
       colors: JSON.stringify(colors),
       codes: JSON.stringify(codes),
+      objectSprites: JSON.stringify(objectSprites),
+      tileSprites: JSON.stringify(tileSprites),
       objects: JSON.stringify(objects),
       tiles: JSON.stringify(tiles),
-      gameObjects: JSON.stringify(gameObjects),
-      gameTiles: JSON.stringify(gameTiles),
       uid: auth.currentUser.uid,
       title: title
     };
@@ -81,12 +81,12 @@ export default function GameView(props) {
   // updates id of current object with given value
   function updateObjectId(newId) {
     // get current object
-    const { id, ...heldObject } = gameObjects[gameObjects.length - 1];
-    const newGameObjects = gameObjects.slice();
     // splice new object into gameobjects
+    const { id, ...heldObject } = objects[objects.length - 1];
+    const newGameObjects = objects.slice();
     const newGameObject = { id: newId, ...heldObject };
-    newGameObjects.splice(gameObjects.length - 1, 1, newGameObject);
-    setGameObjects(newGameObjects);
+    newGameObjects.splice(objects.length - 1, 1, newGameObject);
+    setObjects(newGameObjects);
   }
 
   return (
