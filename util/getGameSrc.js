@@ -203,6 +203,16 @@ export default function getGameSrc(props) {
       }
       delete $$.texts[id];
     }
+    // get tile at given position
+    function getTile(x, y) {
+      const tileIndex = y * $$.mapSprites + x;
+      return $$.tiles[tileIndex];
+    }
+    // set tile at given position
+    function setTile(x, y, tile) {
+      const tileIndex = y * $$.mapSprites + x;
+      $$.tiles[tileIndex] = tile;
+    }
     function __start__() {
       // draws given sprite at given position
       function drawSprite(object, squareX, squareY) {
