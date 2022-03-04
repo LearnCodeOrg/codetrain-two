@@ -64,6 +64,18 @@ export default function getGameSrc(props) {
         $$.objects[this.index].x += x;
         $$.objects[this.index].y += y;
       }
+      getTilePos() {
+        return {
+          x: Math.round($$.objects[this.index].x / $$.spriteSquares),
+          y: Math.round($$.objects[this.index].y / $$.spriteSquares)
+        };
+      }
+      getPixelPos() {
+        return {
+          x: $$.objects[this.index].x,
+          y: $$.objects[this.index].y
+        };
+      }
       getTile() {
         const tilePos = this.getTilePos();
         const tileIndex = tilePos.y * $$.mapSprites + tilePos.x;
