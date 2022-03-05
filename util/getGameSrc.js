@@ -318,8 +318,8 @@ export default function getGameSrc(props) {
           $$.objectCodes.push(code);
         } catch(e) {
           // throw error with object
-          const object = gameObject.object;
-          $$.onError(e, object);
+          const objectIndex = object.objectIndex;
+          $$.onError(e, objectIndex);
           return;
         }
       }
@@ -330,8 +330,8 @@ export default function getGameSrc(props) {
           code.start();
         } catch(e) {
           // throw error with object
-          const object = $$.objects[i].object;
-          $$.onError(e, object);
+          const objectIndex = $$.objects[i].object;
+          $$.onError(e, objectIndex);
           return;
         }
       }
