@@ -139,8 +139,10 @@ export default function getGameSrc(props) {
       },
       lastPressedKeys: {},
       pressedKeys: {},
-      getCodeFunction: (gameObject, index) => {
-        return new (new Function($$.codes[gameObject.objectIndex])())(index);
+      getCodeFunction: (object) => {
+        const objectCode = $$.codes[object.objectIndex];
+        const objectFunction = new Function(objectCode)();
+        return new objectFunction(object);
       }
     };
     // listen for key down
@@ -206,8 +208,8 @@ export default function getGameSrc(props) {
       // splice object
       $$.objects.splice(index, 1);
       $$.objectCodes.splice(index, 1);
-      // update code indexes
-      $$.objectCodes.forEach((code, i) => code.index = i);
+      // update code objects
+      $$.objectCodes.forEach((code, i) => code.self = $$.objects[i]);
     }
     // create text
     function addText(text, x, y, options) {
@@ -312,7 +314,7 @@ export default function getGameSrc(props) {
       for (let i = 0; i < $$.objects.length; i++) {
         const gameObject = $$.objects[i];
         try {
-          const code = $$.getCodeFunction(gameObject, i);
+          const code = $$.getCodeFunction(object);
           $$.objectCodes.push(code);
         } catch(e) {
           // throw error with object
