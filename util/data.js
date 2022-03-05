@@ -40,8 +40,8 @@ export const defaultTileSprites = Array(objectCount).fill(0).map(val =>
 export const defaultCodes = Array(objectCount).fill(0).map((val, i) => (
 `// GameObject${i}
 return class GameObject${i} extends GameObject {
-  constructor(index) {
-    super(index);
+  constructor(self) {
+    super(self);
     // runs before objects constructed
   }
   start() {
