@@ -267,15 +267,15 @@ export default function getGameSrc(props) {
             const gameTileIndex = y * $$.mapSprites + x;
             const tileIndex = $$.tiles[gameTileIndex];
             const tile = $$.tileSprites[tileIndex];
-            drawObject(tile, x * $$.spriteSquares, y * $$.spriteSquares);
+            drawSprite(tile, x * $$.spriteSquares, y * $$.spriteSquares);
           }
         }
         // for each object
-        for (const gameObject of $$.objects) {
+        for (const object of $$.objects) {
           // draw object
-          const { x, y } = gameObject;
-          const object = $$.objectSprites[gameObject.objectIndex];
-          drawObject(object, x, y);
+          const { x, y } = object;
+          const sprite = $$.objectSprites[object.objectIndex];
+          drawSprite(sprite, x, y);
         }
         // for each text
         for (const id in $$.texts) {
@@ -312,7 +312,7 @@ export default function getGameSrc(props) {
       }
       // construct code functions
       for (let i = 0; i < $$.objects.length; i++) {
-        const gameObject = $$.objects[i];
+        const object = $$.objects[i];
         try {
           const code = $$.getCodeFunction(object);
           $$.objectCodes.push(code);
