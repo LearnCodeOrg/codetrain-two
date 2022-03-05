@@ -51,29 +51,29 @@ export default function getGameSrc(props) {
       start() {}
       update() {}
       move(dir) {
-        if (dir === 'up') $$.objects[this.index].y -= $$.spriteSquares;
-        else if (dir === 'down') $$.objects[this.index].y += $$.spriteSquares;
-        else if (dir === 'left') $$.objects[this.index].x -= $$.spriteSquares;
-        else if (dir === 'right') $$.objects[this.index].x += $$.spriteSquares;
+        if (dir === 'up') this.self.y -= $$.spriteSquares;
+        else if (dir === 'down') this.self.y += $$.spriteSquares;
+        else if (dir === 'left') this.self.x -= $$.spriteSquares;
+        else if (dir === 'right') this.self.x += $$.spriteSquares;
       }
       moveTiles(x, y) {
-        $$.objects[this.index].x += x * $$.spriteSquares;
-        $$.objects[this.index].y += y * $$.spriteSquares;
+        this.self.x += x * $$.spriteSquares;
+        this.self.y += y * $$.spriteSquares;
       }
       movePixels(x, y) {
-        $$.objects[this.index].x += x;
-        $$.objects[this.index].y += y;
+        this.self.x += x;
+        this.self.y += y;
       }
       getTilePos() {
         return {
-          x: Math.round($$.objects[this.index].x / $$.spriteSquares),
-          y: Math.round($$.objects[this.index].y / $$.spriteSquares)
+          x: Math.round(this.self.x / $$.spriteSquares),
+          y: Math.round(this.self.y / $$.spriteSquares)
         };
       }
       getPixelPos() {
         return {
-          x: $$.objects[this.index].x,
-          y: $$.objects[this.index].y
+          x: this.self.x,
+          y: this.self.y
         };
       }
       getTile() {
