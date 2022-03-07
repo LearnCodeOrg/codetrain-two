@@ -46,11 +46,13 @@ export default function Projects() {
   return (
     <div>
       <Header />
-      {
-        auth.currentUser ?
-        <ProjectsListener /> :
-        <p>Sign in to view projects</p>
-      }
+      <div className={styles.content}>
+        {
+          auth.currentUser ?
+          <ProjectsListener /> :
+          <p>Sign in to view projects</p>
+        }
+      </div>
     </div>
   );
 }

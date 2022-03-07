@@ -1,5 +1,12 @@
+.content {
+  padding: 20px;
+}
+
+.content > p {
+  margin: 0;
+}
+
 .projects {
   display: flex;
   flex-wrap: wrap;
-  padding: 20px;
 }
