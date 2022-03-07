@@ -1,5 +1,6 @@
 import ProjectCard from '../components/ProjectCard';
 import Header from '../components/Header';
+import Link from 'next/link';
 
 import { getAuth } from 'firebase/auth';
 import { getFirestore, collection, query, where } from 'firebase/firestore';
@@ -17,11 +18,20 @@ export default function Projects() {
     const projectsQuery = query(projectsRef, where('uid', '==', uid));
     const [projects] = useCollectionData(projectsQuery, { idField: 'id' });
 
+    // return if loading projects
+    if (!projects) return <p>Loading...</p>;
+    if (!projects.length) return (
+      <>
+        <p>No projects yet</p>
+        <Link href="/create">
+          <a>Create a project</a>
+        </Link>
+      </>
+    );
+
     return (
       <div className={styles.projects}>
         {
-          !projects ?
-          <p>Loading...</p> :
           projects.map(project =>
             <ProjectCard
               project={project}
