@@ -3,6 +3,17 @@ import { getAuth } from 'firebase/auth';
 
 import styles from '../styles/components/Main.module.css';
 
+function MainAuthed(props) {
+  const { Component, pageProps } = props;
+
+  return (
+    <Component
+      currUser={currUser}
+      {...pageProps}
+    />
+  );
+}
+
 export default function Main(props) {
   const { Component, pageProps } = props;
 
@@ -19,8 +30,10 @@ export default function Main(props) {
   }, []);
 
   return (
+    authed ?
+    <MainAuthed {...pageProps} /> :
     <Component
-      authed={authed}
+      currUser={authed}
       {...pageProps}
     />
   );
