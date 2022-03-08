@@ -8,7 +8,9 @@ import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 import styles from '../styles/pages/Projects.module.css';
 
-export default function Projects() {
+export default function Projects(props) {
+  const { currUser } = props;
+
   const auth = getAuth();
   const db = getFirestore();
 
@@ -48,7 +50,9 @@ export default function Projects() {
       <Header />
       <div className={styles.content}>
         {
-          auth.currentUser ?
+          currUser === undefined ?
+          <p>Loading...</p> :
+          currUser ?
           <ProjectsListener /> :
           <p>Sign in to view projects</p>
         }
