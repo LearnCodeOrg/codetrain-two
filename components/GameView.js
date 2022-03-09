@@ -10,6 +10,7 @@ import {
   getFirestore, collection, addDoc, doc, updateDoc
 } from 'firebase/firestore';
 import getGameSrc from '../util/getGameSrc';
+import signIn from '../util/signIn';
 
 import styles from '../styles/components/GameView.module.css';
 
@@ -22,7 +23,7 @@ export default function GameView(props) {
     tileSprites, currTile,
     objects, setObjects,
     tiles, setTiles,
-    id
+    id, currUser, setupUser
   } = props;
 
   const auth = getAuth();
@@ -149,8 +150,12 @@ export default function GameView(props) {
         />
         <IconButton
           onClick={() => {
-            setTitle(props.title ?? '');
-            setSaving(true);
+            if (currUser === false) signIn(setupUser);
+            if (currUser === null) setupUser();
+            else if (currUser) {
+              setTitle(props.title ?? '');
+              setSaving(true);
+            }
           }}
           icon="save"
         />
