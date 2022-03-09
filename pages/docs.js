@@ -31,7 +31,7 @@ function Line(props) {
   );
 }
 
-export default function Docs() {
+export default function Docs(props) {
   // initialize highlightjs on start
   useEffect(() => {
     // highlight blocks
@@ -45,7 +45,7 @@ export default function Docs() {
 
   return (
     <div>
-      <Header />
+      <Header {...props} />
       <div className={styles.content}>
         <h1>Docs</h1>
         <p>These docs provide an overview of the Codetrain engine functionality.</p>

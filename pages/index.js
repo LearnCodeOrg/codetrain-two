@@ -7,12 +7,14 @@ import signIn from '../util/signIn';
 
 import styles from '../styles/pages/Index.module.css';
 
-export default function Index() {
+export default function Index(props) {
+  const { setupUser } = props;
+
   const auth = getAuth();
 
   return (
     <div className={styles.container}>
-      <Header />
+      <Header {...props} />
       <div className={styles.page}>
         <div className={styles.center}>
           <div className={styles.title}>
@@ -29,7 +31,7 @@ export default function Index() {
             </button> :
             <button
               className="textbutton"
-              onClick={signIn}
+              onClick={() => signIn(setupUser)}
             >
               Sign In
             </button>

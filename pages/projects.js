@@ -47,12 +47,12 @@ export default function Projects(props) {
 
   return (
     <div>
-      <Header />
+      <Header {...props} />
       <div className={styles.content}>
         {
           currUser === undefined ?
           <p>Loading...</p> :
-          currUser ?
+          (currUser || currUser === null) ?
           <ProjectsListener /> :
           <p>Sign in to view projects</p>
         }

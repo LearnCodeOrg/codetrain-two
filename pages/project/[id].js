@@ -7,7 +7,7 @@ import { getFirestore, doc, getDoc } from 'firebase/firestore';
 
 import styles from '../../styles/pages/Project.module.css';
 
-export default function Project() {
+export default function Project(props) {
   const [data, setData] = useState(undefined);
 
   const db = getFirestore();
@@ -35,8 +35,8 @@ export default function Project() {
 
   return (
     <div>
-      <Header />
-      <Engine {...data} />
+      <Header {...props} />
+      <Engine {...data} {...props} />
     </div>
   );
 }
