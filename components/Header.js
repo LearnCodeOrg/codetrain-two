@@ -1,9 +1,14 @@
 import Logo from './Logo';
 import Link from 'next/link';
+import HelpIcon from '@mui/icons-material/Help';
 
 import styles from '../styles/components/Header.module.css';
 
-export default function Header() {
+export default function Header(props) {
+  const { currUser, setupUser } = props;
+
+  const auth = getAuth();
+
   return (
     <div className={styles.container}>
       <Logo />
@@ -21,6 +26,12 @@ export default function Header() {
       <Link href="/docs">
         <a className={styles.link}>Docs</a>
       </Link>
+      {
+        currUser === null &&
+        <button onClick={setupUser}>
+          <HelpIcon fontSize="large" />
+        </button>
+      }
     </div>
   );
 }
