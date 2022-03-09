@@ -6,7 +6,7 @@ import { getAuth } from 'firebase/auth';
 import styles from '../styles/components/Main.module.css';
 
 export default function Main(props) {
-  const { Component, pageProps } = props;
+  const { Component, pageProps, setupUser } = props;
 
   const auth = getAuth();
 
@@ -22,8 +22,12 @@ export default function Main(props) {
 
   return (
     authed ?
-    <MainAuthed {...props} /> :
+    <MainAuthed
+      setupUser={setupUser}
+      {...props}
+    /> :
     <Component
+      setupUser={setupUser}
       currUser={authed}
       {...pageProps}
     />
