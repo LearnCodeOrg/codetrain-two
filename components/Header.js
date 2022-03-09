@@ -1,6 +1,6 @@
 import Logo from './Logo';
 import Link from 'next/link';
-import Tooltip from '@mui/material/Tooltip';
+import Tooltip from './Tooltip';
 import HelpIcon from '@mui/icons-material/Help';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -34,7 +34,7 @@ export default function Header(props) {
       </Link>
       {
         currUser === null &&
-        <Tooltip title="Setup" arrow disableInteractive>
+        <Tooltip title="Setup">
           <button onClick={setupUser}>
             <HelpIcon fontSize="large" />
           </button>
@@ -42,12 +42,12 @@ export default function Header(props) {
       }
       {
         (currUser || currUser === null) ?
-        <Tooltip title="Sign Out" arrow disableInteractive>
+        <Tooltip title="Sign Out">
           <button onClick={() => signOut(auth)}>
             <ArrowCircleRightIcon fontSize="large" />
           </button>
         </Tooltip> :
-        <Tooltip title="Sign In" arrow disableInteractive>
+        <Tooltip title="Sign In">
           <button onClick={() => signIn(setupUser)}>
             <AccountCircleIcon fontSize="large" />
           </button>
