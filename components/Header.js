@@ -1,6 +1,11 @@
 import Logo from './Logo';
 import Link from 'next/link';
 import HelpIcon from '@mui/icons-material/Help';
+import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+
+import { getAuth, signOut } from 'firebase/auth';
+import signIn from '../util/signIn';
 
 import styles from '../styles/components/Header.module.css';
 
@@ -30,6 +35,15 @@ export default function Header(props) {
         currUser === null &&
         <button onClick={setupUser}>
           <HelpIcon fontSize="large" />
+        </button>
+      }
+      {
+        (currUser || currUser === null) ?
+        <button onClick={() => signOut(auth)}>
+          <ArrowCircleRightIcon fontSize="large" />
+        </button> :
+        <button onClick={() => signIn(setupUser)}>
+          <AccountCircleIcon fontSize="large" />
         </button>
       }
     </div>
