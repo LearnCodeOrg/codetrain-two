@@ -1,7 +1,12 @@
 import { getAuth } from 'firebase/auth';
+import {
+  getFirestore, collection, query, where, getDocs, doc, setDoc
+} from 'firebase/firestore';
+
 // attempts to create user with given username
 export default async function createUser(username) {
   const auth = getAuth();
+  const db = getFirestore();
   // verify username
   if (!username) {
     alert("Please enter a username.");
@@ -26,4 +31,13 @@ export default async function createUser(username) {
     alert("Username is taken. Please try another.");
     return;
   }
+  // create user doc
+  const { uid, photoURL } = auth.currentUser;
+  const userRef = doc(usersRef, uid);
+  await setDoc(userRef, {
+    joined: new Date().getTime(),
+    photo: photoURL,
+    username: username,
+    usernameLower: username.toLowerCase()
+  });
 }
