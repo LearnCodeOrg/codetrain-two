@@ -176,8 +176,12 @@ export default function getGameSrc(props) {
       return $$.pressedKeys[keyName] && !$$.lastPressedKeys[keyName];
     }
     // get object by index
-    function getObject(index) {
-      return $$.objectCodes[index];
+    function getObject(id) {
+      // get object index
+      const objectIndex = $$.objects.findIndex(obj => obj.id === id);
+      // return object
+      if (objectIndex === -1) return null;
+      return $$.objectCodes[objectIndex];
     }
     // adds sound to index
     function addSound(name, url) {
@@ -204,10 +208,15 @@ export default function getGameSrc(props) {
       return code;
     }
     // deletes object with given index
-    function deleteObject(index) {
+    function deleteObject(id) {
+      // get object index
+      const objectIndex = $$.objects.findIndex(obj => obj.id === id);
+      if (objectIndex === -1) {
+        throw new ReferenceError(\`\${id} is not an object\`);
+      }
       // splice object
-      $$.objects.splice(index, 1);
-      $$.objectCodes.splice(index, 1);
+      $$.objects.splice(objectIndex, 1);
+      $$.objectCodes.splice(objectIndex, 1);
       // update code objects
       $$.objectCodes.forEach((code, i) => code.self = $$.objects[i]);
     }
