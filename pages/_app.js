@@ -8,6 +8,7 @@ import { initializeApp, getApps } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { firebaseConfig } from '../util/firebaseConfig';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import createUser from '../util/createUser';
 
 import '../styles/globals.css';
 
@@ -22,6 +23,11 @@ export default function App(props) {
   const [modalOpen, setModalOpen] = useState(false);
   const [username, setUsername] = useState('');
 
+  // sets up user
+  function setupUser() {
+    setUsername('');
+    setModalOpen(true);
+  }
 
   return (
     <>
@@ -32,7 +38,6 @@ export default function App(props) {
         <link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png" />
       </Head>
-      <Main {...props} />
       <Dialog open={modalOpen} onClose={() => setModalOpen(false)}>
         <DialogContent>
           <form
@@ -56,6 +61,10 @@ export default function App(props) {
           </form>
         </DialogContent>
       </Dialog>
+      <Main
+        setupUser={setupUser}
+        {...props}
+      />
     </>
   );
 }
