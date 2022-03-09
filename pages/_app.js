@@ -10,6 +10,7 @@ import { firebaseConfig } from '../util/firebaseConfig';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import createUser from '../util/createUser';
 
+import styles from '../styles/pages/App.module.css';
 import '../styles/globals.css';
 
 // initialize firebase
@@ -41,6 +42,7 @@ export default function App(props) {
       <Dialog open={modalOpen} onClose={() => setModalOpen(false)}>
         <DialogContent>
           <form
+            className={styles.setupform}
             onSubmit={e => {
               e.preventDefault();
               createUser(username);
