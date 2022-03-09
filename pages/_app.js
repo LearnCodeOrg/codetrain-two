@@ -20,6 +20,8 @@ export default function App(props) {
   useAuthState(auth);
 
   const [modalOpen, setModalOpen] = useState(false);
+  const [username, setUsername] = useState('');
+
 
   return (
     <>
@@ -33,6 +35,25 @@ export default function App(props) {
       <Main {...props} />
       <Dialog open={modalOpen} onClose={() => setModalOpen(false)}>
         <DialogContent>
+          <form
+            onSubmit={e => {
+              e.preventDefault();
+              createUser(username);
+              setModalOpen(false);
+            }}
+          >
+            Setup User
+            <input
+              className="textinput"
+              value={username}
+              onChange={e => setUsername(e.target.value)}
+              placeholder="username"
+              required
+            />
+            <button className="textbutton">
+              Create
+            </button>
+          </form>
         </DialogContent>
       </Dialog>
     </>
