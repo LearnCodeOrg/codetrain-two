@@ -11,9 +11,24 @@
 }
 
 .link {
-  margin: 0 10px;
+  margin-left: 16px;
 }
 
 .link:hover {
   text-decoration: underline;
+}
+
+.container > button {
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 16px;
+  border: 0;
+}
+
+.container > button:hover {
+  color: #2196f3;
 }
