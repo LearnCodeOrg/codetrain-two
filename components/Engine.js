@@ -3,7 +3,7 @@ import Tiles from '../components/Tiles';
 import Draw from '../components/Draw';
 import Colors from '../components/Colors';
 import GameView from '../components/GameView';
-import Loading from '../components/Loading';
+import Code from '../components/Code';
 
 import { useEffect, useState } from 'react';
 import {
@@ -11,13 +11,8 @@ import {
   defaultObjectSprites, defaultTileSprites,
   defaultObjects, defaultTiles
 } from '../util/data';
-import dynamic from 'next/dynamic';
 
 import styles from '../styles/components/Engine.module.css';
-
-const CodeEditor = dynamic(import('../components/CodeEditor'), {
-  loading: function Load() { return <Loading /> }, ssr: false
-});
 
 export default function Engine(props) {
   const [lastCurrObject, setLastCurrObject] = useState(0);
@@ -85,7 +80,7 @@ export default function Engine(props) {
 
   return (
     <div className={styles.container}>
-      <CodeEditor
+      <Code
         value={codes[codeObject]}
         onChange={val => updateCode(val)}
         marker={marker}
@@ -130,8 +125,7 @@ export default function Engine(props) {
           tileSprites={tileSprites} currTile={currTile}
           objects={objects} setObjects={setObjects}
           tiles={tiles} setTiles={setTiles}
-          id={props.id}
-          title={props.title}
+          {...props}
         />
       </div>
     </div>
