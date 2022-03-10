@@ -1,8 +1,11 @@
-import styles from '../styles/components/Code2.module.css';
+import Loading from './Loading';
 
-export default function Code2() {
-  return (
-    <div>
-    </div>
-  );
+import dynamic from 'next/dynamic';
+
+const CodeEditor = dynamic(import('../components/CodeEditor'), {
+  loading: function Load() { return <Loading /> }, ssr: false
+});
+
+export default function Code(props) {
+  return <CodeEditor {...props} />;
 }
