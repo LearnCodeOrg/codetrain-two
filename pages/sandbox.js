@@ -17,6 +17,21 @@ export default function Sandbox(props) {
     setLogs([]);
     const codeLogs = new Function(`
       const logs = [];
+      function log(text) {
+        logs.push({ type: 'text', text: text });
+      }
+      function logImage(url) {
+        logs.push({ type: 'image', url: url });
+      }
+      function prompt(text) {
+        const out = window.prompt(text);
+        log(\`> \${text} > \${out}\`);
+        return out;
+      }
+      function alert(text) {
+        window.alert(text);
+        log(\`> \${text}\`);
+      }
       ;${code};
       return logs;
     `)();
