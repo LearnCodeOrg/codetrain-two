@@ -10,6 +10,7 @@ export default function Sandbox(props) {
   const [docsHidden, setDocsHidden] = useState(false);
 
   const [code, setCode] = useState('');
+  const [logs, setLogs] = useState([]);
 
   // compiles user code
   function compile() {
@@ -66,6 +67,20 @@ export default function Sandbox(props) {
         <button onClick={clear}>
           Clear
         </button>
+          {
+            logs.map((log, i) =>
+              <div key={i}>
+                {
+                  log.type === 'text' ?
+                  <p>{log.text}</p> :
+                  log.type === 'image' ?
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={log.url} alt={log.url} /> :
+                  null
+                }
+              </div>
+            )
+          }
       </div>
     </div>
   );
