@@ -56,6 +56,25 @@ export default function SandboxEngine(props) {
     setLogs([]);
   }
 
+  // saves snippet to firebase
+  async function saveSnippet() {
+    setSaving(false);
+    const snippet = {
+      code: code,
+      uid: auth.currentUser.uid,
+      title: title
+    };
+    // update snippet
+    if (id) {
+      const snippetRef = doc(db, 'snippets', id);
+      updateDoc(snippetRef, snippet);
+    // create snippet
+    } else {
+      const snippetsRef = collection(db, 'snippets');
+      await addDoc(snippetsRef, snippet);
+    }
+  }
+
   return (
     <div>
       <Header {...props} />
