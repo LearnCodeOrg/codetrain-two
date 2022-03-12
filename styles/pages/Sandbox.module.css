@@ -1,0 +1,13 @@
+.docs {
+  width: 400px;
+  font-family: sans-serif;
+  position: relative;
+}
+
+.docscontent {
+  padding: 20px;
+}
+
+.docscontent > h2 {
+  margin: 0;
+}
