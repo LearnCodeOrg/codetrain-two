@@ -17,7 +17,6 @@ export default function Sandbox(props) {
   return (
     <div>
       <Header {...props} />
-      <p>Functions: prompt(), log(), alert()</p>
       <Code
         value={code}
         onChange={val => setCode(val)}
@@ -28,6 +27,13 @@ export default function Sandbox(props) {
       >
         Compile
       </IconButton>
+      <div className={styles.docscontent}>
+        <h2>Docs</h2>
+        <p>log(text): logs given text</p>
+        <p>logImage(url): logs given image</p>
+        <p>prompt(text): opens prompt and returns input</p>
+        <p>alert(text): opens alert</p>
+      </div>
     </div>
   );
 }
