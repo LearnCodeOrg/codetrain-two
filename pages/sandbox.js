@@ -1,6 +1,9 @@
 import IconButton from '../components/IconButton';
 import Header from '../components/Header';
 import Code from '../components/Code';
+import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
+import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
+import MatButton from '../components/MatButton';
 
 import { useState } from 'react';
 
@@ -51,18 +54,14 @@ export default function Sandbox(props) {
       }>
         {
           docsHidden ?
-          <button
-            className={styles.arrow}
+          <MatButton
             onClick={() => setDocsHidden(false)}
-          >
-            <ArrowCircleRightIcon fontSize="large" />
-          </button> :
-          <button
-            className={styles.arrow}
+            Icon={ArrowCircleRightIcon}
+          /> :
+          <MatButton
             onClick={() => setDocsHidden(true)}
-          >
-            <ArrowCircleLeftIcon fontSize="large" />
-          </button>
+            Icon={ArrowCircleLeftIcon}
+          />
         }
         <div className={styles.docscontent}>
           <h2>Docs</h2>
