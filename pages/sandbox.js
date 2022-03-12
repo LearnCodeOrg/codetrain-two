@@ -17,6 +17,7 @@ export default function Sandbox(props) {
   const [code, setCode] = useState('');
   const [logs, setLogs] = useState([]);
 
+  const [title, setTitle] = useState('');
   const [saving, setSaving] = useState(false);
 
   // compiles user code
@@ -43,6 +44,12 @@ export default function Sandbox(props) {
       return logs;
     `)();
     setLogs(codeLogs);
+  }
+
+  // saves snippet
+  function save() {
+    setTitle('');
+    setSaving(true);
   }
 
   // clears logs
@@ -90,6 +97,10 @@ export default function Sandbox(props) {
           <IconButton
             onClick={compile}
             icon="play"
+          />
+          <IconButton
+            onClick={save}
+            icon="save"
           />
         </div>
       </div>
