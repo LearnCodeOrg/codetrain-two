@@ -7,6 +7,8 @@ import { useState } from 'react';
 import styles from '../styles/pages/Sandbox.module.css';
 
 export default function Sandbox(props) {
+  const [docsHidden, setDocsHidden] = useState(false);
+
   const [code, setCode] = useState('');
 
   // compiles user code
@@ -28,6 +30,21 @@ export default function Sandbox(props) {
         Compile
       </IconButton>
       <div className={styles.docs}>
+        {
+          docsHidden ?
+          <button
+            className={styles.arrow}
+            onClick={() => setDocsHidden(false)}
+          >
+            <ArrowCircleRightIcon fontSize="large" />
+          </button> :
+          <button
+            className={styles.arrow}
+            onClick={() => setDocsHidden(true)}
+          >
+            <ArrowCircleLeftIcon fontSize="large" />
+          </button>
+        }
         <div className={styles.docscontent}>
           <h2>Docs</h2>
           <p>log(text): logs given text</p>
