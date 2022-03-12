@@ -6,7 +6,7 @@ export default function SnippetCard(props) {
   const { snippet } = props;
 
   return (
-    <div>
+    <div className={styles.container}>
       <Link href={`/snippet/${snippet.id}`}>
         <a>
           <p>{snippet.title}</p>
