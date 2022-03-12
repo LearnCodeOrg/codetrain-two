@@ -4,6 +4,8 @@ import Code from '../components/Code';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import MatButton from '../components/MatButton';
+import Dialog from '@mui/material/Dialog';
+import DialogContent from '@mui/material/DialogContent';
 
 import { useState } from 'react';
 
@@ -14,6 +16,8 @@ export default function Sandbox(props) {
 
   const [code, setCode] = useState('');
   const [logs, setLogs] = useState([]);
+
+  const [saving, setSaving] = useState(false);
 
   // compiles user code
   function compile() {
@@ -49,6 +53,10 @@ export default function Sandbox(props) {
   return (
     <div>
       <Header {...props} />
+      <Dialog open={saving} onClose={() => setSaving(false)}>
+        <DialogContent>
+        </DialogContent>
+      </Dialog>
       <div className={
         docsHidden ? `${styles.docs} ${styles.hidden}` : styles.docs
       }>
