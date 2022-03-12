@@ -14,6 +14,10 @@ export default function Sandbox(props) {
   // compiles user code
   function compile() {
     eval(code);
+
+  // clears logs
+  function clear() {
+    setLogs([]);
   }
 
   return (
@@ -56,6 +60,12 @@ export default function Sandbox(props) {
             icon="play"
           />
         </div>
+      </div>
+      <div>
+        <p>Console</p>
+        <button onClick={clear}>
+          Clear
+        </button>
       </div>
     </div>
   );
