@@ -6,11 +6,18 @@ import MatButton from '../components/MatButton';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 
+import { getAuth } from 'firebase/auth';
+import { getFirestore, doc, updateDoc, collection, addDoc } from 'firebase/firestore';
 import { useState } from 'react';
 
 import styles from '../styles/components/SandboxEngine.module.css';
 
 export default function SandboxEngine(props) {
+  const { id } = props;
+
+  const auth = getAuth();
+  const db = getFirestore();
+
   const [docsHidden, setDocsHidden] = useState(false);
 
   const [code, setCode] = useState(props.code ?? '');
@@ -77,7 +84,6 @@ export default function SandboxEngine(props) {
 
   return (
     <div>
-      <Header {...props} />
       <Dialog open={saving} onClose={() => setSaving(false)}>
         <DialogContent>
           <form
