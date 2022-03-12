@@ -1,6 +1,61 @@
+import IconButton from '../components/IconButton';
+import Code from '../components/Code';
+import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
+import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
+import MatButton from '../components/MatButton';
+import Dialog from '@mui/material/Dialog';
+import DialogContent from '@mui/material/DialogContent';
+
+import { useState } from 'react';
+
 import styles from '../styles/components/SandboxEngine.module.css';
 
-export default function SandboxEngine() {
+export default function SandboxEngine(props) {
+  const [docsHidden, setDocsHidden] = useState(false);
+
+  const [code, setCode] = useState(props.code ?? '');
+  const [logs, setLogs] = useState([]);
+
+  const [title, setTitle] = useState(props.title ?? '');
+  const [saving, setSaving] = useState(false);
+
+  // compiles user code
+  function compile() {
+    setLogs([]);
+    const codeLogs = new Function(`
+      const logs = [];
+      function log(text) {
+        logs.push({ type: 'text', text: text });
+      }
+      function logImage(url) {
+        logs.push({ type: 'image', url: url });
+      }
+      function prompt(text) {
+        const out = window.prompt(text);
+        log(\`> \${text} > \${out}\`);
+        return out;
+      }
+      function alert(text) {
+        window.alert(text);
+        log(\`> \${text}\`);
+      }
+      ;${code};
+      return logs;
+    `)();
+    setLogs(codeLogs);
+  }
+
+  // saves snippet
+  function save() {
+    setTitle(props.title ?? '');
+    setSaving(true);
+  }
+
+  // clears logs
+  function clear() {
+    setLogs([]);
+  }
+
   return (
     <div>
       <Header {...props} />
