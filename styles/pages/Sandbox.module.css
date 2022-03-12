@@ -4,6 +4,27 @@
   position: relative;
 }
 
+.docs.hidden {
+  width: 32px;
+}
+
+.docs.hidden .docscontent {
+  display: none;
+}
+
+.docs > .arrow {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: transparent;
+  border: 0;
+}
+
 .docscontent {
   padding: 20px;
 }

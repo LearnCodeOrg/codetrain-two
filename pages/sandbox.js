@@ -29,7 +29,9 @@ export default function Sandbox(props) {
       >
         Compile
       </IconButton>
-      <div className={styles.docs}>
+      <div className={
+        docsHidden ? `${styles.docs} ${styles.hidden}` : styles.docs
+      }>
         {
           docsHidden ?
           <button
