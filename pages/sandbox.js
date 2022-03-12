@@ -52,17 +52,19 @@ export default function Sandbox(props) {
       <div className={
         docsHidden ? `${styles.docs} ${styles.hidden}` : styles.docs
       }>
-        {
-          docsHidden ?
-          <MatButton
-            onClick={() => setDocsHidden(false)}
-            Icon={ArrowCircleRightIcon}
-          /> :
-          <MatButton
-            onClick={() => setDocsHidden(true)}
-            Icon={ArrowCircleLeftIcon}
-          />
-        }
+        <div>
+          {
+            docsHidden ?
+            <MatButton
+              onClick={() => setDocsHidden(false)}
+              Icon={ArrowCircleRightIcon}
+            /> :
+            <MatButton
+              onClick={() => setDocsHidden(true)}
+              Icon={ArrowCircleLeftIcon}
+            />
+          }
+        </div>
         <div className={styles.docscontent}>
           <h2>Docs</h2>
           <p>log(text): logs given text</p>
