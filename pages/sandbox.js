@@ -19,16 +19,6 @@ export default function Sandbox(props) {
   return (
     <div>
       <Header {...props} />
-      <Code
-        value={code}
-        onChange={val => setCode(val)}
-      />
-      <IconButton
-        onClick={compile}
-        icon="play"
-      >
-        Compile
-      </IconButton>
       <div className={
         docsHidden ? `${styles.docs} ${styles.hidden}` : styles.docs
       }>
@@ -53,6 +43,18 @@ export default function Sandbox(props) {
           <p>logImage(url): logs given image</p>
           <p>prompt(text): opens prompt and returns input</p>
           <p>alert(text): opens alert</p>
+        </div>
+      </div>
+      <div>
+        <Code
+          value={code}
+          onChange={val => setCode(val)}
+        />
+        <div className={styles.toolbar}>
+          <IconButton
+            onClick={compile}
+            icon="play"
+          />
         </div>
       </div>
     </div>
