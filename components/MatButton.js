@@ -6,10 +6,14 @@ export default function MatButton(props) {
   const { Icon, tooltip, onClick } = props;
 
   return (
+    tooltip ?
     <Tooltip title={tooltip}>
       <button onClick={onClick}>
         <Icon />
       </button>
-    </Tooltip>
+    </Tooltip> :
+    <button onClick={onClick}>
+      <Icon />
+    </button>
   );
 }
