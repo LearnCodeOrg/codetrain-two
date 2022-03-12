@@ -63,6 +63,7 @@ export default function Sandbox(props) {
       <Dialog open={saving} onClose={() => setSaving(false)}>
         <DialogContent>
           <form
+            className={styles.saveform}
             onSubmit={e => {
               e.preventDefault();
               saveSnippet();
