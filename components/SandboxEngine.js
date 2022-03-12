@@ -67,11 +67,17 @@ export default function SandboxEngine() {
           />
         </div>
       </div>
-      <div>
-        <p>Console</p>
-        <button onClick={clear}>
-          Clear
-        </button>
+      <div className={styles.console}>
+        <div className={styles.head}>
+          <span>Console</span>
+          <button
+            className="textbutton"
+            onClick={clear}
+          >
+            Clear
+          </button>
+        </div>
+        <div className={styles.logs}>
           {
             logs.map((log, i) =>
               <div key={i}>
@@ -86,6 +92,7 @@ export default function SandboxEngine() {
               </div>
             )
           }
+        </div>
       </div>
     </div>
   );
