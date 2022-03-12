@@ -52,7 +52,7 @@ export default function Sandbox(props) {
       <div className={
         docsHidden ? `${styles.docs} ${styles.hidden}` : styles.docs
       }>
-        <div>
+        <div className={styles.button}>
           {
             docsHidden ?
             <MatButton

@@ -12,17 +12,10 @@
   display: none;
 }
 
-.docs > .arrow {
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.docs > .button {
   position: absolute;
   top: 0;
   right: 0;
-  background: transparent;
-  border: 0;
 }
 
 .docscontent {
