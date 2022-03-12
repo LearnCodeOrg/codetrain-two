@@ -62,6 +62,24 @@ export default function Sandbox(props) {
       <Header {...props} />
       <Dialog open={saving} onClose={() => setSaving(false)}>
         <DialogContent>
+          <form
+            onSubmit={e => {
+              e.preventDefault();
+              saveSnippet();
+            }}
+          >
+            Save Snippet
+            <input
+              className="textinput"
+              value={title}
+              onChange={e => setTitle(e.target.value)}
+              placeholder="Title"
+              required
+            />
+            <button className="textbutton">
+              Save
+            </button>
+          </form>
         </DialogContent>
       </Dialog>
       <div className={
