@@ -14,7 +14,14 @@ export default function Sandbox(props) {
 
   // compiles user code
   function compile() {
-    eval(code);
+    setLogs([]);
+    const codeLogs = new Function(`
+      const logs = [];
+      ;${code};
+      return logs;
+    `)();
+    setLogs(codeLogs);
+  }
 
   // clears logs
   function clear() {
