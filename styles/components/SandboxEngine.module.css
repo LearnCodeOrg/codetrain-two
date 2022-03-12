@@ -43,3 +43,26 @@
 .saveform > input {
   margin: 10px 0;
 }
+
+.console {
+  border: 1px solid #000;
+  flex-grow: 1;
+  height: var(--page);
+  display: flex;
+  flex-direction: column;
+}
+
+.console > .head {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background: #ddd;
+}
+
+.console > .head > span {
+  margin-right: 10px;
+}
+
+.logs {
+  overflow: scroll;
+}
