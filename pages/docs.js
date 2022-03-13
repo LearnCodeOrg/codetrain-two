@@ -1,4 +1,5 @@
 import Header from '../components/Header';
+import CodeLine from '../components/CodeLine';
 
 import { useEffect } from 'react';
 import highlightJs from '../util/highlightJs';
@@ -28,10 +29,10 @@ export default function Docs(props) {
         <h1>Docs</h1>
         <p>These docs provide an overview of the Codetrain engine functionality.</p>
         <h2>Game Loop</h2>
-        <Line>The `GameObject` class has two built-in functions, `start` and `update`. The `constructor` function can also be used.</Line>
-        <Line>`constructor(index)` runs before the object is constructed. `super(index)` must be called.</Line>
-        <Line>`start()` runs after all objects are constructed.</Line>
-        <Line>`update()` runs once a frame after all objects are constructed.</Line>
+        <CodeLine>The `GameObject` class has two built-in functions, `start` and `update`. The `constructor` function can also be used.</CodeLine>
+        <CodeLine>`constructor(index)` runs before the object is constructed. `super(index)` must be called.</CodeLine>
+        <CodeLine>`start()` runs after all objects are constructed.</CodeLine>
+        <CodeLine>`update()` runs once a frame after all objects are constructed.</CodeLine>
         <Code>
 {`return class GameObject0 extends GameObject {
   constructor(index) {
@@ -47,10 +48,10 @@ export default function Docs(props) {
 }`}
         </Code>
         <h2>Output</h2>
-        <Line>Text can be added and removed with `addText` and `removeText`.</Line>
-        <Line>`addText(text, x, y, options?)` creates and returns text at `x`, `y` in pixels.</Line>
-        <Line>`options` is an optional object containing `size`, `color`, and `id` fields.</Line>
-        <Line>`removeText(id)` removes text with given `id`.</Line>
+        <CodeLine>Text can be added and removed with `addText` and `removeText`.</CodeLine>
+        <CodeLine>`addText(text, x, y, options?)` creates and returns text at `x`, `y` in pixels.</CodeLine>
+        <CodeLine>`options` is an optional object containing `size`, `color`, and `id` fields.</CodeLine>
+        <CodeLine>`removeText(id)` removes text with given `id`.</CodeLine>
         <Code>
 {`// create score text
 addText('Score: 0', 0, 0, 'score');
@@ -62,9 +63,9 @@ addText('Score: 1', 0, 0, 'score');
 removeText('score');`}
         </Code>
         <h2>Input</h2>
-        <Line>Keyboard input can be taken with `isKeyDown` and `isKey`.</Line>
-        <Line>`isKeyDown(key)` returns whether given `key` is down.</Line>
-        <Line>`isKey(key)` returns whether given `key` was pressed in the last frame.</Line>
+        <CodeLine>Keyboard input can be taken with `isKeyDown` and `isKey`.</CodeLine>
+        <CodeLine>`isKeyDown(key)` returns whether given `key` is down.</CodeLine>
+        <CodeLine>`isKey(key)` returns whether given `key` was pressed in the last frame.</CodeLine>
         <Code>
 {`update() {
   // triggers when q pressed down
@@ -75,10 +76,10 @@ removeText('score');`}
 }`}
         </Code>
         <h2>Movement</h2>
-        <Line>Objects can be moved with `move`, `moveTiles`, and `movePixels`.</Line>
-        <Line>`move(dir)` moves object one tile up, down, left, or right.</Line>
-        <Line>`moveTiles(x, y)` moves object by `x`, `y` in tiles.</Line>
-        <Line>`movePixels(x, y)` moves object by `x`, `y` in pixels.</Line>
+        <CodeLine>Objects can be moved with `move`, `moveTiles`, and `movePixels`.</CodeLine>
+        <CodeLine>`move(dir)` moves object one tile up, down, left, or right.</CodeLine>
+        <CodeLine>`moveTiles(x, y)` moves object by `x`, `y` in tiles.</CodeLine>
+        <CodeLine>`movePixels(x, y)` moves object by `x`, `y` in pixels.</CodeLine>
         <Code>
 {`// tiled object movement
 function update() {
@@ -97,9 +98,9 @@ function update() {
 }`}
         </Code>
         <h2>Audio</h2>
-        <Line>Sounds can be added and played with `addSound` and `playSound`.</Line>
-        <Line>`addSound(name, url)` registers sound with source `url` and given `name`.</Line>
-        <Line>`playSound(name)` plays sound with given `name`.</Line>
+        <CodeLine>Sounds can be added and played with `addSound` and `playSound`.</CodeLine>
+        <CodeLine>`addSound(name, url)` registers sound with source `url` and given `name`.</CodeLine>
+        <CodeLine>`playSound(name)` plays sound with given `name`.</CodeLine>
         <Code>
 {`// add powerup sound
 addSound('powerup', 'https://codetrain.org/sounds/powerup.mp3');
