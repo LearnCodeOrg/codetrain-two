@@ -1,3 +1,11 @@
+import SnippetCard from '../components/SnippetCard';
+import Header from '../components/Header';
+import Link from 'next/link';
+
+import { getAuth } from 'firebase/auth';
+import { getFirestore, collection, query, where } from 'firebase/firestore';
+import { useCollectionData } from 'react-firebase-hooks/firestore';
+
 import styles from '../styles/pages/Snippets.module.css';
 
 export default function Snippets() {
@@ -16,6 +24,19 @@ export default function Snippets() {
           <a>Create a snippet</a>
         </Link>
       </>
+    );
+
+    return (
+      <div className={styles.snippets}>
+        {
+          snippets.map(snippet =>
+            <SnippetCard
+              snippet={snippet}
+              key={snippet.id}
+            />
+          )
+        }
+      </div>
     );
   }
 
