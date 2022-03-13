@@ -8,7 +8,12 @@ import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 import styles from '../styles/pages/Snippets.module.css';
 
-export default function Snippets() {
+export default function Snippets(props) {
+  const { currUser } = props;
+
+  const auth = getAuth();
+  const db = getFirestore();
+
   function SnippetsListener() {
     const uid = auth.currentUser.uid;
     const snippetsRef = collection(db, 'snippets');
@@ -42,6 +47,16 @@ export default function Snippets() {
 
   return (
     <div>
+      <Header {...props} />
+      <div className={styles.content}>
+        {
+          currUser === undefined ?
+          <p>Loading...</p> :
+          (currUser || currUser === null) ?
+          <SnippetsListener /> :
+          <p>Sign in to view snippets</p>
+        }
+      </div>
     </div>
   );
 }
