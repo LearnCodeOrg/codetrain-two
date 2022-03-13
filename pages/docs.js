@@ -1,9 +1,7 @@
 import Header from '../components/Header';
 
 import { useEffect } from 'react';
-import hljs from 'highlight.js/lib/core';
-import javascript from 'highlight.js/lib/languages/javascript';
-import 'highlight.js/styles/monokai.css';
+import highlightJs from '../util/highlightJs';
 
 import styles from '../styles/pages/Docs.module.css';
 
@@ -32,15 +30,9 @@ function Line(props) {
 }
 
 export default function Docs(props) {
-  // initialize highlightjs on start
+  // highlight js on start
   useEffect(() => {
-    // highlight blocks
-    hljs.registerLanguage('javascript', javascript);
-    hljs.highlightAll();
-    // highlight lines
-    document.querySelectorAll(`.${styles.line} > span > code`).forEach(el =>
-      hljs.highlightElement(el)
-    );
+    highlightJs();
   }, []);
 
   return (
