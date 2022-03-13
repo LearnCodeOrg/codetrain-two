@@ -1,3 +1,7 @@
+import Header from '../../components/Header';
+import SandboxEngine from '../../components/SandboxEngine';
+
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
 
@@ -25,8 +29,14 @@ export default function Snippet(props) {
     if (id) getSnippetData();
   }, [id]);
 
+  // return if loading
+  if (data === undefined) return <p>Loading...</p>;
+  if (!data) return <p>Snippet not found</p>;
+
   return (
     <div>
+      <Header {...props} />
+      <SandboxEngine {...data} {...props} />
     </div>
   );
 }
