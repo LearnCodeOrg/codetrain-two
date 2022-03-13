@@ -17,7 +17,17 @@ export default function SelectSnippet(props) {
   );
 
   return (
-    <div>
-    </div>
+    <select
+      value={currSnippet}
+      onChange={e => {
+        const id = e.target.value;
+        if (!id) loadSnippet(null);
+        else {
+          const snippet = snippets.find(snippet => snippet.id === id);
+          loadSnippet(snippet);
+        }
+      }}
+    >
+    </select>
   );
 }
