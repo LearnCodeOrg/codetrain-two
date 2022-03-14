@@ -92,6 +92,14 @@ export default function SandboxEngine(props) {
     }
   }
 
+  // deletes snippet in firebase
+  async function deleteSnippet() {
+    if (!window.confirm('Delete snippet?')) return;
+    const snippetRef = doc(db, 'snippets', currSnippet.id);
+    await deleteDoc(snippetRef);
+    loadSnippet(null);
+  }
+
   return (
     <div>
       <Dialog open={saving} onClose={() => setSaving(false)}>
@@ -155,6 +163,13 @@ export default function SandboxEngine(props) {
             onClick={save}
             icon="save"
           />
+          {
+            currSnippet &&
+            <IconButton
+              onClick={deleteSnippet}
+              icon="clear"
+            />
+          }
         </div>
         {error && <p className={styles.error}>{error}</p>}
       </div>
