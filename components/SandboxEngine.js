@@ -1,5 +1,6 @@
 import IconButton from '../components/IconButton';
 import Code from '../components/Code';
+import CodeLine from '../components/CodeLine';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import MatButton from '../components/MatButton';
@@ -9,6 +10,8 @@ import DialogContent from '@mui/material/DialogContent';
 import { getAuth } from 'firebase/auth';
 import { getFirestore, doc, updateDoc, collection, addDoc } from 'firebase/firestore';
 import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import highlightJs from '../util/highlightJs';
 
 import styles from '../styles/components/SandboxEngine.module.css';
 
@@ -27,6 +30,11 @@ export default function SandboxEngine(props) {
 
   const [title, setTitle] = useState(props.title ?? '');
   const [saving, setSaving] = useState(false);
+
+  // highlight js on start
+  useEffect(() => {
+    highlightJs();
+  }, []);
 
   // compiles user code
   function compile() {
@@ -143,10 +151,10 @@ export default function SandboxEngine(props) {
         </div>
         <div className={styles.docscontent}>
           <h2>Docs</h2>
-          <p>log(text): logs given text</p>
-          <p>logImage(url): logs given image</p>
-          <p>prompt(text): opens prompt and returns input</p>
-          <p>alert(text): opens alert</p>
+          <CodeLine>`log(text)` logs text</CodeLine>
+          <CodeLine>`logImage(url)` logs images</CodeLine>
+          <CodeLine>`prompt(text)` opens prompt and returns input</CodeLine>
+          <CodeLine>`alert(text)` opens alert</CodeLine>
         </div>
       </div>
       <div>
