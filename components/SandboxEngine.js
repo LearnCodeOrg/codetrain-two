@@ -1,6 +1,7 @@
 import IconButton from '../components/IconButton';
 import Code from '../components/Code';
 import CodeLine from '../components/CodeLine';
+import SelectSnippet from '../components/SelectSnippet';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import MatButton from '../components/MatButton';
@@ -29,6 +30,8 @@ export default function SandboxEngine(props) {
 
   const [title, setTitle] = useState(props.title ?? '');
   const [saving, setSaving] = useState(false);
+
+  const [currSnippet, setCurrSnippet] = useState(null);
 
   // highlight js on start
   useEffect(() => {
@@ -170,6 +173,15 @@ export default function SandboxEngine(props) {
             onClick={save}
             icon="save"
           />
+          {
+            currUser ?
+            <SelectSnippet
+              currSnippet={currSnippet}
+              loadSnippet={loadSnippet}
+              {...props}
+            /> :
+            <span>Sign in to save snippets</span>
+          }
           {
             currSnippet &&
             <IconButton
