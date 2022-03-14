@@ -18,6 +18,8 @@ export default function SandboxEngine(props) {
   const auth = getAuth();
   const db = getFirestore();
 
+  const [error, setError] = useState(null);
+
   const [docsHidden, setDocsHidden] = useState(false);
 
   const [code, setCode] = useState(props.code ?? '');
@@ -68,6 +70,7 @@ export default function SandboxEngine(props) {
   // clears logs
   function clear() {
     setLogs([]);
+    setError(null);
   }
 
   // saves snippet to firebase
@@ -153,6 +156,7 @@ export default function SandboxEngine(props) {
             icon="save"
           />
         </div>
+        {error && <p className={styles.error}>{error}</p>}
       </div>
       <div className={styles.console}>
         <div className={styles.head}>

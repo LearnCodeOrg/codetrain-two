@@ -66,3 +66,8 @@
 .logs {
   overflow: scroll;
 }
+
+.error {
+  color: red;
+  font-family: sans-serif;
+}
