@@ -28,6 +28,7 @@
 
 .content {
   display: flex;
+  overflow: scroll;
 }
 
 .toolbar {
@@ -70,4 +71,13 @@
 .error {
   color: red;
   font-family: sans-serif;
+}
+
+.output {
+  padding: 10px;
+  margin: 0;
+}
+
+.output > img {
+  max-width: 256px;
 }

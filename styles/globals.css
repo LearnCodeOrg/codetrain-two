@@ -55,7 +55,7 @@ button {
 
 :root {
   --header: 80px;
-  --page: calc(100% - var(--header));
+  --page: calc(100vh - var(--header));
 }
 
 @font-face {

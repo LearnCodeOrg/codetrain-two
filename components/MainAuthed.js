@@ -15,7 +15,8 @@ export default function MainAuthed(props) {
   const [userDoc] = useDocument(userRef);
 
   const currUser = !userDoc ? undefined :
-  !userDoc.exists() ? null : userDoc.data();
+  !userDoc.exists() ? null :
+  { id: userDoc.id, ...userDoc.data() };
 
   return (
     <Component

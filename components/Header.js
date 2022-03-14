@@ -32,6 +32,9 @@ export default function Header(props) {
       <Link href="/docs">
         <a className={styles.link}>Docs</a>
       </Link>
+      <Link href="/sandbox">
+        <a className={styles.link}>Sandbox</a>
+      </Link>
       {
         currUser === null &&
         <Tooltip title="Setup">
