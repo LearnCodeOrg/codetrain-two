@@ -26,7 +26,6 @@ export default function SandboxEngine(props) {
   const [docsHidden, setDocsHidden] = useState(false);
 
   const [code, setCode] = useState(props.code ?? '');
-  const [logs, setLogs] = useState([]);
 
   const [title, setTitle] = useState(props.title ?? '');
   const [saving, setSaving] = useState(false);
@@ -192,20 +191,6 @@ export default function SandboxEngine(props) {
           </button>
         </div>
         <div className={styles.logs}>
-          {
-            logs.map((log, i) =>
-              <div key={i}>
-                {
-                  log.type === 'text' ?
-                  <p>{log.text}</p> :
-                  log.type === 'image' ?
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img src={log.url} alt={log.url} /> :
-                  null
-                }
-              </div>
-            )
-          }
         </div>
       </div>
     </div>
