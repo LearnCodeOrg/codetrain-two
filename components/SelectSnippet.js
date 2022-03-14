@@ -13,21 +13,18 @@ export default function SelectSnippet(props) {
   const [snippets] = useCollectionData(snippetsQuery, { idField: 'id' });
 
   // return if loading snippets
-  if (!snippets) return <p>Loading...</p>;
-  if (!snippets.length) return (
-    <>
-      <p>No snippets yet</p>
-    </>
-  );
+  if (!snippets) return <span>Loading...</span>;
+  if (!snippets.length) return <span>No snippets saved</span>;
 
   return (
     <select
-      value={currSnippet}
+      className={styles.select}
+      value={currSnippet?.id ?? ''}
       onChange={e => {
         const id = e.target.value;
         if (!id) loadSnippet(null);
         else {
-          const snippet = snippets.find(snippet => snippet.id === id);
+          const snippet = snippets.find(s => s.id === id);
           loadSnippet(snippet);
         }
       }}
