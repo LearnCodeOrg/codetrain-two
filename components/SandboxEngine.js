@@ -41,30 +41,23 @@ export default function SandboxEngine(props) {
   function compile() {
     // reset console
     clear();
-    const fullCode = `
-      const logs = [];
-      function log(text) {
-        logs.push({ type: 'text', text: text });
-      }
-      function logImage(url) {
-        logs.push({ type: 'image', url: url });
-      }
-      function prompt(text) {
-        const out = window.prompt(text);
-        log(\`> \${text} > \${out}\`);
-        return out;
-      }
-      function alert(text) {
-        window.alert(text);
-        log(\`> \${text}\`);
-      }
-      ;${code};
-      return logs;
-    `;
-    // try running
+    function log(text) {
+      document.getElementById('output').innerHTML += `${text}\n`;
+    }
+    function logImage(url) {
+      document.getElementById('output').innerHTML += `<img src=${url} alt=${url} />\n`;
+    }
+    function prompt(text) {
+      const out = window.prompt(text);
+      log(`> ${text} > ${out}`);
+      return out;
+    }
+    function alert(text) {
+      window.alert(text);
+      log(`> ${text}`);
+    }
     try {
-      const codeLogs = new Function(fullCode)();
-      setLogs(codeLogs);
+      eval(code);
     } catch (e) {
       setError(e.message);
     }
