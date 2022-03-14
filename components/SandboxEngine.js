@@ -17,9 +17,8 @@ import highlightJs from '../util/highlightJs';
 import styles from '../styles/components/SandboxEngine.module.css';
 
 export default function SandboxEngine(props) {
-  const { id } = props;
+  const { currUser } = props;
 
-  const auth = getAuth();
   const db = getFirestore();
 
   const [error, setError] = useState(null);
@@ -100,6 +99,13 @@ export default function SandboxEngine(props) {
       const snippetsRef = collection(db, 'snippets');
       await addDoc(snippetsRef, snippet);
     }
+  }
+
+  // loads given snippet
+  function loadSnippet(snippet) {
+    setCurrSnippet(snippet);
+    setCode(snippet?.code ?? '');
+    clear();
   }
 
   // deletes snippet in firebase
