@@ -1,16 +1,16 @@
 import IconButton from '../components/IconButton';
 import Code from '../components/Code';
+import MatButton from '../components/MatButton';
 import CodeLine from '../components/CodeLine';
 import SelectSnippet from '../components/SelectSnippet';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
-import MatButton from '../components/MatButton';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 
-import { getAuth } from 'firebase/auth';
-import { getFirestore, doc, updateDoc, collection, addDoc } from 'firebase/firestore';
-import { useState } from 'react';
+import {
+  getFirestore, doc, updateDoc, collection, addDoc, deleteDoc
+} from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import highlightJs from '../util/highlightJs';
 
@@ -65,7 +65,7 @@ export default function SandboxEngine(props) {
 
   // saves snippet
   function save() {
-    setTitle(props.title ?? '');
+    setTitle(currSnippet?.title ?? '');
     setSaving(true);
   }
 
@@ -92,7 +92,8 @@ export default function SandboxEngine(props) {
     // create snippet
     } else {
       const snippetsRef = collection(db, 'snippets');
-      await addDoc(snippetsRef, snippet);
+      const snippetDoc = await addDoc(snippetsRef, snippet);
+      setCurrSnippet({ id: snippetDoc.id, ...snippet });
     }
   }
 
@@ -136,6 +137,7 @@ export default function SandboxEngine(props) {
           </form>
         </DialogContent>
       </Dialog>
+      <div className={styles.content}>
       <div className={
         docsHidden ? `${styles.docs} ${styles.hidden}` : styles.docs
       }>
@@ -210,6 +212,7 @@ export default function SandboxEngine(props) {
           >
           </pre>
         </div>
+      </div>
       </div>
     </div>
   );
