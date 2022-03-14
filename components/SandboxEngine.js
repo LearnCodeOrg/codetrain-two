@@ -28,8 +28,9 @@ export default function SandboxEngine(props) {
 
   // compiles user code
   function compile() {
-    setLogs([]);
-    const codeLogs = new Function(`
+    // reset console
+    clear();
+    const fullCode = `
       const logs = [];
       function log(text) {
         logs.push({ type: 'text', text: text });
@@ -48,8 +49,14 @@ export default function SandboxEngine(props) {
       }
       ;${code};
       return logs;
-    `)();
-    setLogs(codeLogs);
+    `;
+    // try running
+    try {
+      const codeLogs = new Function(fullCode)();
+      setLogs(codeLogs);
+    } catch (e) {
+      setError(e.message);
+    }
   }
 
   // saves snippet
