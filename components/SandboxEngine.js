@@ -71,19 +71,21 @@ export default function SandboxEngine(props) {
 
   // clears logs
   function clear() {
-    setLogs([]);
+    document.getElementById('output').innerHTML = '';
     setError(null);
   }
 
   // saves snippet to firebase
   async function saveSnippet() {
+    // get snippet object
     setSaving(false);
     const snippet = {
       code: code,
-      uid: auth.currentUser.uid,
+      uid: currUser.id,
       title: title
     };
     // update snippet
+    const id = currSnippet?.id;
     if (id) {
       const snippetRef = doc(db, 'snippets', id);
       updateDoc(snippetRef, snippet);
@@ -202,6 +204,11 @@ export default function SandboxEngine(props) {
           </button>
         </div>
         <div className={styles.logs}>
+          <pre
+            className={styles.output}
+            id="output"
+          >
+          </pre>
         </div>
       </div>
     </div>
