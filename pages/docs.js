@@ -112,8 +112,22 @@ playSound('powerup');`}
         <CodeLine>Objects can be retrieved with `getObject`.</CodeLine>
         <CodeLine>`getObject(id)` returns the first reference of an object with given `id`.</CodeLine>
         <CodeLine>Objects can be created and deleted with `createObject` and `deleteObject`.</CodeLine>
+        <Code>
+{`// get object with ID 'player'
+const player = getObject('player');
+
+// move player right
+player.move('right');`}
+        </Code>
         <CodeLine>`createObject(object, x, y)` creates `object` at `x`, `y`.</CodeLine>
         <CodeLine>`deleteObject(id)` deletes object with given `id`.</CodeLine>
+        <Code>
+{`// create player
+const player = createObject('player', 0, 0);
+
+// delete player
+deleteObject(player.id);`}
+        </Code>
       </div>
     </div>
   );
