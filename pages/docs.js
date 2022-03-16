@@ -108,6 +108,12 @@ addSound('powerup', 'https://codetrain.org/sounds/powerup.mp3');
 // play powerup sound
 playSound('powerup');`}
         </Code>
+        <h1>Objects</h1>
+        <CodeLine>Objects can be retrieved with `getObject`.</CodeLine>
+        <CodeLine>`getObject(id)` returns the first reference of an object with given `id`.</CodeLine>
+        <CodeLine>Objects can be created and deleted with `createObject` and `deleteObject`.</CodeLine>
+        <CodeLine>`createObject(object, x, y)` creates `object` at `x`, `y`.</CodeLine>
+        <CodeLine>`deleteObject(id)` deletes object with given `id`.</CodeLine>
       </div>
     </div>
   );
