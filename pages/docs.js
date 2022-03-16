@@ -128,6 +128,14 @@ const player = createObject('player', 0, 0);
 // delete player
 deleteObject(player.id);`}
         </Code>
+        <h1>Tiles</h1>
+        <CodeLine>Tiles can be retrieved with `getTile` and `GameObject.getTile`.</CodeLine>
+        <CodeLine>`getTile(x, y)` returns tile at `x`, `y`.</CodeLine>
+        <CodeLine>`GameObject.getTile()` returns tile at current position.</CodeLine>
+        <Code>
+        <CodeLine>Tiles can be modified with `setTile` and `GameObject.setTile`.</CodeLine>
+        <CodeLine>`setTile(x, y, tile)` sets tile at `x`, `y` to `tile`.</CodeLine>
+        <CodeLine>`GameObject.setTile(tile)` sets tile at current position to `tile`.</CodeLine>
       </div>
     </div>
   );
