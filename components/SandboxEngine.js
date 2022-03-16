@@ -189,13 +189,27 @@ export default function SandboxEngine(props) {
             icon="save"
           />
           {
-            currUser ?
+            currUser === undefined ?
+            <span>Loading...</span> :
+            currUser === false ?
+            <span
+              className={styles.clickable}
+              onClick={() => signIn(setupUser)}
+            >
+              Sign in to save
+            </span> :
+            currUser === null ?
+            <span
+              className={styles.clickable}
+              onClick={setupUser}
+            >
+              Setup user
+            </span> :
             <SelectSnippet
               currSnippet={currSnippet}
               loadSnippet={loadSnippet}
               {...props}
-            /> :
-            <span>Sign in to save snippets</span>
+            />
           }
           {
             currSnippet &&
