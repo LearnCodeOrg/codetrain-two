@@ -133,9 +133,22 @@ deleteObject(player.id);`}
         <CodeLine>`getTile(x, y)` returns tile at `x`, `y`.</CodeLine>
         <CodeLine>`GameObject.getTile()` returns tile at current position.</CodeLine>
         <Code>
+{`// get tile at position
+const tileHere = this.getTile();
+
+// get tile at 0, 0
+const tileThere = getTile(0, 0);`}
+        </Code>
         <CodeLine>Tiles can be modified with `setTile` and `GameObject.setTile`.</CodeLine>
         <CodeLine>`setTile(x, y, tile)` sets tile at `x`, `y` to `tile`.</CodeLine>
         <CodeLine>`GameObject.setTile(tile)` sets tile at current position to `tile`.</CodeLine>
+        <Code>
+{`// set tile at position
+this.setTile(0);
+
+// set tile at 0, 0
+setTile(0, 0, 0);`}
+        </Code>
       </div>
     </div>
   );
