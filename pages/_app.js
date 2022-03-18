@@ -13,6 +13,10 @@ import createUser from '../util/createUser';
 import styles from '../styles/pages/App.module.css';
 import '../styles/globals.css';
 
+// initialize acorn
+import acorn from '../interpreter/acorn';
+global.acorn = acorn;
+
 // initialize firebase
 if (!getApps().length) initializeApp(firebaseConfig);
 
