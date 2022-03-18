@@ -5,11 +5,12 @@ import Link from 'next/link';
 import { getAuth } from 'firebase/auth';
 import { getFirestore, collection, query, where } from 'firebase/firestore';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
+import signIn from '../util/signIn';
 
 import styles from '../styles/pages/Projects.module.css';
 
 export default function Projects(props) {
-  const { currUser } = props;
+  const { currUser, setupUser } = props;
 
   const auth = getAuth();
   const db = getFirestore();
@@ -26,7 +27,7 @@ export default function Projects(props) {
       <>
         <p>No projects yet</p>
         <Link href="/create">
-          <a>Create a project</a>
+          <a className={styles.link}>Create a project</a>
         </Link>
       </>
     );
@@ -54,7 +55,12 @@ export default function Projects(props) {
           <p>Loading...</p> :
           (currUser || currUser === null) ?
           <ProjectsListener /> :
-          <p>Sign in to view projects</p>
+          <p
+            className={styles.link}
+            onClick={() => signIn(setupUser)}
+          >
+            Sign in to view projects
+          </p>
         }
       </div>
     </div>

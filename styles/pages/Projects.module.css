@@ -10,3 +10,11 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+.link {
+  cursor: pointer;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
