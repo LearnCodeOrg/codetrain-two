@@ -13,11 +13,12 @@ import {
 } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import highlightJs from '../util/highlightJs';
+import signIn from '../util/signIn';
 
 import styles from '../styles/components/SandboxEngine.module.css';
 
 export default function SandboxEngine(props) {
-  const { currUser } = props;
+  const { currUser, setupUser } = props;
 
   const db = getFirestore();
 
@@ -77,8 +78,12 @@ export default function SandboxEngine(props) {
 
   // saves snippet
   function save() {
-    setTitle(currSnippet?.title ?? '');
-    setSaving(true);
+    if (currUser === false) signIn(setupUser);
+    if (currUser === null) setupUser();
+    else if (currUser) {
+      setTitle(currSnippet?.title ?? '');
+      setSaving(true);
+    }
   }
 
   // clears logs
