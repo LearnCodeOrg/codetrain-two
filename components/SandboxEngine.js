@@ -43,17 +43,7 @@ export default function SandboxEngine(props) {
   function compile() {
     // reset console
     clear();
-    let src = code.split('\n');
-    let evalWithClosure = (statements, rest) => {
-      if (!statements.length && !rest.length) return;
-      statements.push(rest.shift());
-      try {
-        eval(`void (evalWithClosure = ${evalWithClosure.toString()}); ${statements.join('\n')}`);
-        statements = [];
-      } catch (e) {
-        if (rest.length === 0) throw e;
       }
-      setTimeout(() => evalWithClosure(statements, rest), 0);
     };
     function nextStep(int) {
       if (int.step()) {
