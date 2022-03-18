@@ -42,21 +42,6 @@ export default function SandboxEngine(props) {
   function compile() {
     // reset console
     clear();
-    function log(text) {
-      document.getElementById('output').innerHTML += `${text}\n`;
-    }
-    function logImage(url) {
-      document.getElementById('output').innerHTML += `<img src=${url} alt=${url} />\n`;
-    }
-    function prompt(text) {
-      const out = window.prompt(text);
-      log(`> ${text} > ${out}`);
-      return out;
-    }
-    function alert(text) {
-      window.alert(text);
-      log(`> ${text}`);
-    }
     let src = code.split('\n');
     let evalWithClosure = (statements, rest) => {
       if (!statements.length && !rest.length) return;
