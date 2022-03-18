@@ -14,6 +14,7 @@ import {
 import { useEffect, useState } from 'react';
 import highlightJs from '../util/highlightJs';
 import signIn from '../util/signIn';
+import { Interpreter } from '../interpreter/interpreter';
 
 import styles from '../styles/components/SandboxEngine.module.css';
 
@@ -54,8 +55,14 @@ export default function SandboxEngine(props) {
       }
       setTimeout(() => evalWithClosure(statements, rest), 0);
     };
+    function nextStep(int) {
+      if (int.step()) {
+        setTimeout(() => nextStep(int), 0);
+      }
+    }
     try {
-      evalWithClosure([], src);
+      const int = new Interpreter(code, initFunc);
+      nextStep(int);
     } catch (e) {
       setError(e.message);
     }
