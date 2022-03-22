@@ -43,37 +43,9 @@ export default function SandboxEngine(props) {
   function compile() {
     // reset console
     clear();
-    function initFunc(interpreter, globalObject) {
-      function log(s) {
-        document.getElementById('output').innerHTML += s + '\n';
-      }
-      const funcs = [
-        { name: 'alert', func: s => {
-          window.alert(s);
-          log(`> ${s}`);
-        }},
-        { name: 'prompt', func: s => {
-          const v = window.prompt(s);
-          log(`> ${s} > ${v}`);
-          return v;
-        }},
-        { name: 'log', func: log },
-        { name: 'logImage', func: u => {
-          log(`<img src=${u} alt=${u} />`);
-        }}
-      ];
-      for (const func of funcs) {
-        interpreter.setProperty(globalObject, func.name, interpreter.createNativeFunction(func.func));
-      }
     }
-    function nextStep(int) {
-      if (int.step()) {
-        setTimeout(() => nextStep(int), 0);
-      }
     }
     try {
-      const int = new Interpreter(code, initFunc);
-      nextStep(int);
     } catch (e) {
       setError(e.message);
     }
