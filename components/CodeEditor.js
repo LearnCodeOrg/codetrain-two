@@ -5,8 +5,11 @@ import 'ace-builds/src-noconflict/theme-monokai.js';
 import 'ace-builds/src-noconflict/ext-language_tools';
 import 'ace-builds/src-noconflict/ext-searchbox';
 
+import styles from '../styles/components/CodeEditor.module.css';
+
 export default function CodeEditor(props) {
   return (
+    <div className={styles.container}>
     <AceEditor
       mode="javascript"
       theme="monokai"
@@ -33,5 +36,6 @@ export default function CodeEditor(props) {
       }
       {...props}
     />
+    </div>
   );
 }
