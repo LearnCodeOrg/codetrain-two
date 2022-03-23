@@ -82,7 +82,6 @@ export default function SandboxEngine(props) {
   // compiles user code
   async function compile() {
     // reset console
-    clear();
     setOutput('...');
     // eslint-disable-next-line no-undef
     await new Promise(res => setTimeout(res, 0));
@@ -122,12 +121,6 @@ export default function SandboxEngine(props) {
     }
   }
 
-  // clears logs
-  function clear() {
-    setOutput('');
-    setError(null);
-  }
-
   // saves snippet to firebase
   async function saveSnippet() {
     // get snippet object
@@ -154,12 +147,14 @@ export default function SandboxEngine(props) {
   function loadSnippet(snippet) {
     setCurrSnippet(snippet);
     setCode(snippet?.code ?? '');
-    clear();
+    if (snippet) {
+      setOutput(`Loaded snippet ${snippet.title}`, 'green');
+    } else setOutput('');
   }
 
   // deletes snippet in firebase
   async function deleteSnippet() {
-    if (!window.confirm('Delete snippet?')) return;
+    if (!window.confirm(`Delete snippet ${currSnippet.title}?`)) return;
     const snippetRef = doc(db, 'snippets', currSnippet.id);
     await deleteDoc(snippetRef);
     loadSnippet(null);
@@ -252,7 +247,7 @@ export default function SandboxEngine(props) {
           <span>Console</span>
           <button
             className="textbutton"
-            onClick={clear}
+            onClick={() => setOutput('')}
           >
             Clear
           </button>
