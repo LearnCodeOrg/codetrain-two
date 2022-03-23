@@ -64,13 +64,19 @@ export default function SandboxEngine(props) {
   }, []);
 
   // sets output to given string
-  function setOutput(str) {
-    document.getElementById('output').innerHTML = str;
+  function setOutput(str, color) {
+    document.getElementById('output').innerHTML =
+      color ?
+      `<span style="color: ${color}">${str}</span>`
+      : str;
   }
 
   // adds given string to output
-  function addOutput(str) {
-    document.getElementById('output').innerHTML += str;
+  function addOutput(str, color) {
+    document.getElementById('output').innerHTML +=
+      color ?
+      `<span style="color: ${color}">${str}</span>`
+      : str;
   }
 
   // compiles user code
