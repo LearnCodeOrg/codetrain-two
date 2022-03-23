@@ -51,21 +51,23 @@ export default function CodeEditor(props) {
         fontSize={fontSize}
         {...props}
       />
-      <MatButton
-        className={styles.addbutton}
-        onClick={() => setFontSize(val => Math.min(val + 1, maxFontSize))}
-        Icon={AddIcon}
-      />
-      <MatButton
-        className={styles.minusbutton}
-        onClick={() => setFontSize(val => Math.max(val - 1, minFontSize))}
-        Icon={RemoveIcon}
-      />
-      <MatButton
-        className={mode === 'dark' ? styles.toggledark : styles.togglelight}
-        onClick={() => setMode(mode === 'dark' ? 'light' : 'dark')}
-        Icon={mode === 'dark' ? ModeNightIcon : LightModeIcon}
-      />
+      <div className={mode === 'dark' ? styles.darkbuttons : styles.lightbuttons}>
+        <MatButton
+          className={styles.addbutton}
+          onClick={() => setFontSize(val => Math.min(val + 1, maxFontSize))}
+          Icon={AddIcon}
+        />
+        <MatButton
+          className={styles.minusbutton}
+          onClick={() => setFontSize(val => Math.max(val - 1, minFontSize))}
+          Icon={RemoveIcon}
+        />
+        <MatButton
+          className={styles.togglebutton}
+          onClick={() => setMode(mode === 'dark' ? 'light' : 'dark')}
+          Icon={mode === 'dark' ? ModeNightIcon : LightModeIcon}
+        />
+      </div>
     </div>
   );
 }
