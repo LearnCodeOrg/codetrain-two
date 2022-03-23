@@ -34,6 +34,22 @@ export default function SandboxEngine(props) {
 
   const [currSnippet, setCurrSnippet] = useState(null);
 
+  // called before page unloads
+  function beforeUnload(e) {
+    // return if editor not dirty
+    if (!editorDirty) return;
+    // cancel unload
+    e.preventDefault();
+    e.returnValue = '';
+  }
+
+  // on start
+  useEffect(() => {
+    // initialize unload event listener
+    window.addEventListener('beforeunload', beforeUnload);
+    return () => window.removeEventListener('beforeunload', beforeUnload);
+  }, []);
+
   // highlight js on start
   useEffect(() => {
     highlightJs();
