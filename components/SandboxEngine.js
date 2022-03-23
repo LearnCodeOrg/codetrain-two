@@ -11,10 +11,11 @@ import DialogContent from '@mui/material/DialogContent';
 import {
   getFirestore, doc, updateDoc, collection, addDoc, deleteDoc
 } from 'firebase/firestore';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import highlightJs from '../util/highlightJs';
 import signIn from '../util/signIn';
-import { Interpreter } from '../interpreter/interpreter';
+
+let editorDirty = false;
 
 import styles from '../styles/components/SandboxEngine.module.css';
 
@@ -34,6 +35,8 @@ export default function SandboxEngine(props) {
 
   const [currSnippet, setCurrSnippet] = useState(null);
 
+  const didMountRef = useRef(false);
+
   // called before page unloads
   function beforeUnload(e) {
     // return if editor not dirty
@@ -49,6 +52,11 @@ export default function SandboxEngine(props) {
     window.addEventListener('beforeunload', beforeUnload);
     return () => window.removeEventListener('beforeunload', beforeUnload);
   }, []);
+
+  useEffect(() => {
+    if (didMountRef.current) editorDirty = true;
+    else didMountRef.current = true;
+  }, [code]);
 
   // highlight js on start
   useEffect(() => {
