@@ -43,6 +43,22 @@ export default function Engine(props) {
     props.tiles ? JSON.parse(props.tiles) : defaultTiles
   )
 
+  // called before page unloads
+  function beforeUnload(e) {
+    // return if editor not dirty
+    if (!editorDirty) return;
+    // cancel unload
+    e.preventDefault();
+    e.returnValue = '';
+  }
+
+  // on start
+  useEffect(() => {
+    // initialize unload event listener
+    window.addEventListener('beforeunload', beforeUnload);
+    return () => window.removeEventListener('beforeunload', beforeUnload);
+  }, []);
+
   // clear object on tile change
   useEffect(() => {
     if (currTile !== -1 && currObject !== -1) {
