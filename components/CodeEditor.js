@@ -45,6 +45,7 @@ export default function CodeEditor(props) {
       {...props}
     />
     <MatButton
+      className={mode === 'dark' ? styles.toggledark : styles.togglelight}
       onClick={() => setMode(mode === 'dark' ? 'light' : 'dark')}
       Icon={
         mode === 'dark' ?
