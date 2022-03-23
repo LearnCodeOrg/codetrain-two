@@ -18,41 +18,37 @@ export default function CodeEditor(props) {
 
   return (
     <div className={styles.container}>
-    <AceEditor
-      mode="javascript"
-      theme={mode === 'dark' ? 'monokai' : 'tomorrow'}
-      wrapEnabled={true}
-      showPrintMargin={false}
-      tabSize={2}
-      setOptions={{
-        useWorker: false,
-        enableLiveAutocompletion: true
-      }}
-      width="500px"
-      height="500px"
-      markers={
-        (props.marker && props.marker.object === props.currObject) ?
-        [{
-          startRow: props.marker.row - 1,
-          startCol: props.marker.col - 1,
-          endRow: props.marker.row,
-          endCol: 0,
-          className: 'errormarker',
-          type: 'text'
-        }] :
-        []
-      }
-      {...props}
-    />
-    <MatButton
-      className={mode === 'dark' ? styles.toggledark : styles.togglelight}
-      onClick={() => setMode(mode === 'dark' ? 'light' : 'dark')}
-      Icon={
-        mode === 'dark' ?
-        ModeNightIcon :
-        LightModeIcon
-      }
-    />
+      <AceEditor
+        mode="javascript"
+        theme={mode === 'dark' ? 'monokai' : 'tomorrow'}
+        wrapEnabled={true}
+        showPrintMargin={false}
+        tabSize={2}
+        setOptions={{
+          useWorker: false,
+          enableLiveAutocompletion: true
+        }}
+        width="500px"
+        height="500px"
+        markers={
+          (props.marker && props.marker.object === props.currObject) ?
+          [{
+            startRow: props.marker.row - 1,
+            startCol: props.marker.col - 1,
+            endRow: props.marker.row,
+            endCol: 0,
+            className: 'errormarker',
+            type: 'text'
+          }] :
+          []
+        }
+        {...props}
+      />
+      <MatButton
+        className={mode === 'dark' ? styles.toggledark : styles.togglelight}
+        onClick={() => setMode(mode === 'dark' ? 'light' : 'dark')}
+        Icon={mode === 'dark' ? ModeNightIcon : LightModeIcon}
+      />
     </div>
   );
 }
