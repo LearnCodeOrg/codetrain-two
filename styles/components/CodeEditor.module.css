@@ -1,22 +1,29 @@
 .container {
   position: relative;
-  border-top: 1px solid #000;
-  border-bottom: 1px solid #000;
 }
 
-.toggledark, .togglelight {
+.darkbuttons, .lightbuttons {
   position: absolute;
   right: 0;
   bottom: 0;
-  padding: 4px;
-  width: 36px;
-  height: 36px;
+  display: flex;
+  align-items: center;
 }
 
-.toggledark {
+.darkbuttons button {
   color: #fff;
 }
 
-.togglelight {
+.lightbuttons button {
   color: #000;
+}
+
+.addbutton {
+  width: 24px;
+}
+
+.togglebutton {
+  padding: 4px;
+  width: 36px;
+  height: 36px;
 }
