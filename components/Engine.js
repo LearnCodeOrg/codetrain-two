@@ -5,7 +5,7 @@ import Colors from '../components/Colors';
 import GameView from '../components/GameView';
 import Code from '../components/Code';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import {
   defaultCodes, defaultColors,
   defaultObjectSprites, defaultTileSprites,
@@ -13,6 +13,8 @@ import {
 } from '../util/data';
 
 import styles from '../styles/components/Engine.module.css';
+
+let editorDirty = false;
 
 export default function Engine(props) {
   const [lastCurrObject, setLastCurrObject] = useState(0);
@@ -43,6 +45,8 @@ export default function Engine(props) {
     props.tiles ? JSON.parse(props.tiles) : defaultTiles
   )
 
+  const didMountRef = useRef(false);
+
   // called before page unloads
   function beforeUnload(e) {
     // return if editor not dirty
@@ -58,6 +62,12 @@ export default function Engine(props) {
     window.addEventListener('beforeunload', beforeUnload);
     return () => window.removeEventListener('beforeunload', beforeUnload);
   }, []);
+
+  // update editor dirtiness
+  useEffect(() => {
+    if (didMountRef.current) editorDirty = true;
+    else didMountRef.current = true;
+  }, [codes, colors, objectSprites, tileSprites, objects, tiles]);
 
   // clear object on tile change
   useEffect(() => {
