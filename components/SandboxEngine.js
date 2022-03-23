@@ -39,16 +39,26 @@ export default function SandboxEngine(props) {
     highlightJs();
   }, []);
 
+  // sets output to given string
+  function setOutput(str) {
+    document.getElementById('output').innerHTML = str;
+  }
+
+  // adds given string to output
+  function addOutput(str) {
+    document.getElementById('output').innerHTML += str;
+  }
+
   // compiles user code
   async function compile() {
     // reset console
     clear();
-    document.getElementById('output').innerHTML = '...';
+    setOutput('...');
     // eslint-disable-next-line no-undef
     await new Promise(res => setTimeout(res, 0));
-    document.getElementById('output').innerHTML = '';
+    setOutput('');
     function log(str) {
-      document.getElementById('output').innerHTML += str + '\n';
+      addOutput(`${str}\n`);
     }
     // eslint-disable-next-line no-unused-vars
     function alert(str) {
@@ -84,7 +94,7 @@ export default function SandboxEngine(props) {
 
   // clears logs
   function clear() {
-    document.getElementById('output').innerHTML = '';
+    setOutput('');
     setError(null);
   }
 
