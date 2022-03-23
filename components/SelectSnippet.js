@@ -14,7 +14,7 @@ export default function SelectSnippet(props) {
 
   // return if loading snippets
   if (!snippets) return <span>Loading...</span>;
-  if (!snippets.length) return <span>No snippets saved</span>;
+  if (!snippets.length) return <span>No snippets</span>;
 
   return (
     <select
