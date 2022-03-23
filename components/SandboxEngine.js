@@ -40,12 +40,33 @@ export default function SandboxEngine(props) {
   }, []);
 
   // compiles user code
-  function compile() {
+  async function compile() {
     // reset console
     clear();
+    document.getElementById('output').innerHTML = '...';
+    // eslint-disable-next-line no-undef
+    await new Promise(res => setTimeout(res, 0));
+    document.getElementById('output').innerHTML = '';
+    function log(str) {
+      document.getElementById('output').innerHTML += str + '\n';
     }
+    // eslint-disable-next-line no-unused-vars
+    function alert(str) {
+      window.alert(str);
+      log(`> ${str}`);
+    }
+    // eslint-disable-next-line no-unused-vars
+    function prompt(str) {
+      const val = window.prompt(str);
+      log(`> ${str} > ${val}`);
+      return val;
+    }
+    // eslint-disable-next-line no-unused-vars
+    function logImage(url) {
+      log(`<img src=${url} alt=${url} />`);
     }
     try {
+      eval(code);
     } catch (e) {
       setError(e.message);
     }
