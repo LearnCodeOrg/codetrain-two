@@ -1,6 +1,8 @@
 import AceEditor from 'react-ace';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import ModeNightIcon from '@mui/icons-material/ModeNight';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
 import MatButton from '../components/MatButton';
 
 import { useState } from 'react';
@@ -13,8 +15,12 @@ import 'ace-builds/src-noconflict/ext-searchbox';
 
 import styles from '../styles/components/CodeEditor.module.css';
 
+const maxFontSize = 48;
+const minFontSize = 6;
+
 export default function CodeEditor(props) {
   const [mode, setMode] = useState('dark');
+  const [fontSize, setFontSize] = useState(12);
 
   return (
     <div className={styles.container}>
@@ -42,7 +48,18 @@ export default function CodeEditor(props) {
           }] :
           []
         }
+        fontSize={fontSize}
         {...props}
+      />
+      <MatButton
+        className={styles.addbutton}
+        onClick={() => setFontSize(val => Math.min(val + 1, maxFontSize))}
+        Icon={AddIcon}
+      />
+      <MatButton
+        className={styles.minusbutton}
+        onClick={() => setFontSize(val => Math.max(val - 1, minFontSize))}
+        Icon={RemoveIcon}
       />
       <MatButton
         className={mode === 'dark' ? styles.toggledark : styles.togglelight}
