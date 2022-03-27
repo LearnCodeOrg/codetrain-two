@@ -37,6 +37,14 @@ export const defaultTileSprites = Array(objectCount).fill(0).map(val =>
   defaultTileSprite
 );
 
+export const defaultObjectNames = Array(objectCount).fill(0).map((val, i) =>
+  `object ${i}`
+);
+
+export const defaultTileNames = Array(objectCount).fill(0).map((val, i) =>
+  `tile ${i}`
+);
+
 export const defaultCodes = Array(objectCount).fill(0).map((val, i) => (
 `// GameObject${i}
 return class GameObject${i} extends GameObject {
