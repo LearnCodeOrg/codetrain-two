@@ -24,8 +24,6 @@ export default function SandboxEngine(props) {
 
   const db = getFirestore();
 
-  const [error, setError] = useState(null);
-
   const [docsHidden, setDocsHidden] = useState(false);
 
   const [code, setCode] = useState(props.code ?? '');
@@ -106,8 +104,8 @@ export default function SandboxEngine(props) {
     }
     try {
       eval(code);
-    } catch (e) {
-      setError(e.message);
+      addOutput('Done', 'green');
+    } catch (error) {
     }
   }
 
@@ -240,7 +238,6 @@ export default function SandboxEngine(props) {
             />
           }
         </div>
-        {error && <p className={styles.error}>{error}</p>}
       </div>
       <div className={styles.console}>
         <div className={styles.head}>
