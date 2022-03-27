@@ -44,6 +44,9 @@ export default function Engine(props) {
   const [tiles, setTiles] = useState(
     props.tiles ? JSON.parse(props.tiles) : defaultTiles
   )
+  const [objectNames, setObjectNames] = useState(
+    props.objectNames ? JSON.parse(props.objectNames) : defaultObjectNames
+  );
 
   const didMountRef = useRef(false);
 
@@ -103,6 +106,13 @@ export default function Engine(props) {
   useEffect(() => {
     window.onError = onError;
   }, []);
+
+  // updates current object name
+  function updateObjectNames(name) {
+    const newObjectNames = objectNames.slice();
+    newObjectNames.splice(currObject, 1, name);
+    setObjectNames(newObjectNames);
+  }
 
   return (
     <div className={styles.container}>
