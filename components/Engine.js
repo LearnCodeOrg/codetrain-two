@@ -124,6 +124,12 @@ export default function Engine(props) {
     setTileNames(newTileNames);
   }
 
+  // updates current sprite name
+  function updateSpriteNames(name) {
+    if (currTile === -1) updateTileNames(name);
+    else updateObjectNames(name);
+  }
+
   return (
     <div className={styles.container}>
       <Code
@@ -144,6 +150,11 @@ export default function Engine(props) {
           colors={colors}
           currTile={currTile}
           setCurrTile={setCurrTile}
+        />
+        <input
+          className="textinput"
+          value={spriteName}
+          onChange={e => updateSpriteNames(e.target.value)}
         />
         <Colors
           colors={colors}
