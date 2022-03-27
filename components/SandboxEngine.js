@@ -106,6 +106,18 @@ export default function SandboxEngine(props) {
       eval(code);
       addOutput('Done', 'green');
     } catch (error) {
+      // search for error position in stack
+      const errorLines = error.stack.split('\n').slice(1);
+      let errorPosition;
+      // for each error line
+      for (const errorLine of errorLines) {
+        // get anonymous index and skip if none
+        const anonymousIndex = errorLine.indexOf('<anonymous>:');
+        if (anonymousIndex === -1) continue;
+        // get error position and break
+        errorPosition = errorLine.slice(anonymousIndex + 12, -1).split(':');
+        break;
+      }
     }
   }
 
