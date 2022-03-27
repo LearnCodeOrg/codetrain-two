@@ -47,6 +47,9 @@ export default function Engine(props) {
   const [objectNames, setObjectNames] = useState(
     props.objectNames ? JSON.parse(props.objectNames) : defaultObjectNames
   );
+  const [tileNames, setTileNames] = useState(
+    props.tileNames ? JSON.parse(props.tileNames) : defaultTileNames
+  );
 
   const didMountRef = useRef(false);
 
@@ -112,6 +115,13 @@ export default function Engine(props) {
     const newObjectNames = objectNames.slice();
     newObjectNames.splice(currObject, 1, name);
     setObjectNames(newObjectNames);
+  }
+
+  // updates current tile name
+  function updateTileNames(name) {
+    const newTileNames = tileNames.slice();
+    newTileNames.splice(currTile, 1, name);
+    setTileNames(newTileNames);
   }
 
   return (
