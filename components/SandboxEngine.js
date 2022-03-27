@@ -118,6 +118,20 @@ export default function SandboxEngine(props) {
         errorPosition = errorLine.slice(anonymousIndex + 12, -1).split(':');
         break;
       }
+      // get error message
+      const errorMessage = error.stack.split("\n")[0];
+      // if error position found
+      if (errorPosition) {
+        // get error row and col
+        const errorRow = parseInt(errorPosition[0]);
+        const errorCol = parseInt(errorPosition[1]);
+        // set error text
+        setOutput(`line ${errorRow} col ${errorCol}:\n${errorMessage}`, 'red');
+      // if no error position found
+      } else {
+        // set error text
+        setOutput(`${errorMessage}`, 'red');
+      }
     }
   }
 
