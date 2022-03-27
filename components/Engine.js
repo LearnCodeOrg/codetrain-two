@@ -9,7 +9,8 @@ import { useEffect, useState, useRef } from 'react';
 import {
   defaultCodes, defaultColors,
   defaultObjectSprites, defaultTileSprites,
-  defaultObjects, defaultTiles
+  defaultObjects, defaultTiles,
+  defaultObjectNames, defaultTileNames
 } from '../util/data';
 
 import styles from '../styles/components/Engine.module.css';
@@ -52,6 +53,12 @@ export default function Engine(props) {
   );
 
   const didMountRef = useRef(false);
+
+  // current sprite name
+  const spriteName =
+    currObject === -1 ?
+    tileNames[currTile] :
+    objectNames[currObject];
 
   // called before page unloads
   function beforeUnload(e) {
@@ -156,6 +163,8 @@ export default function Engine(props) {
           value={spriteName}
           onChange={e => updateSpriteNames(e.target.value)}
         />
+      </div>
+      <div>
         <Colors
           colors={colors}
           setColors={setColors}
