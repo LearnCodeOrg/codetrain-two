@@ -145,7 +145,7 @@ export default function Engine(props) {
         marker={marker}
         currObject={currObject}
       />
-      <div className={styles.draw}>
+      <div className={styles.select}>
         <Objects
           objectSprites={objectSprites}
           colors={colors}
@@ -164,7 +164,7 @@ export default function Engine(props) {
           onChange={e => updateSpriteNames(e.target.value)}
         />
       </div>
-      <div>
+      <div className={styles.draw}>
         <Colors
           colors={colors}
           setColors={setColors}
