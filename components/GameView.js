@@ -22,6 +22,7 @@ export default function GameView(props) {
     objectSprites, currObject,
     tileSprites, currTile,
     objects, setObjects,
+    objectNames, tileNames,
     tiles, setTiles,
     id, currUser, setupUser
   } = props;
@@ -65,6 +66,8 @@ export default function GameView(props) {
       tileSprites: JSON.stringify(tileSprites),
       objects: JSON.stringify(objects),
       tiles: JSON.stringify(tiles),
+      objectNames: JSON.stringify(objectNames),
+      tileNames: JSON.stringify(tileNames),
       uid: auth.currentUser.uid,
       title: title
     };
