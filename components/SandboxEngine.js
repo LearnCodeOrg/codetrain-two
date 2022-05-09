@@ -170,8 +170,11 @@ export default function SandboxEngine(props) {
 
   // loads given snippet
   function loadSnippet(snippet) {
+    if (currSnippet) saveSnippet(); // autosave
+    // swap snippet
     setCurrSnippet(snippet);
     setCode(snippet?.code ?? '');
+    setTitle(snippet?.title ?? '');
     if (snippet) {
       setOutput(`Loaded snippet ${snippet.title}`, 'green');
     } else setOutput('');
