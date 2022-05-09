@@ -2,6 +2,11 @@
   display: flex;
 }
 
+.select {
+  margin: 20px;
+}
+
 .draw {
   margin: 20px;
+  margin-left: 0;
 }
