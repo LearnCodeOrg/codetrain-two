@@ -79,6 +79,7 @@ export default function SandboxEngine(props) {
 
   // compiles user code
   async function compile() {
+    if (currSnippet) saveSnippet(); // autosave
     // reset console
     setOutput('...');
     // eslint-disable-next-line no-undef
@@ -148,7 +149,6 @@ export default function SandboxEngine(props) {
   // saves snippet to firebase
   async function saveSnippet() {
     // get snippet object
-    setSaving(false);
     const snippet = {
       code: code,
       uid: currUser.id,
@@ -156,6 +156,7 @@ export default function SandboxEngine(props) {
     };
     // update snippet
     const id = currSnippet?.id;
+    setSaving(false);
     if (id) {
       const snippetRef = doc(db, 'snippets', id);
       updateDoc(snippetRef, snippet);
